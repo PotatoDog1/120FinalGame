@@ -6,8 +6,9 @@ class Preload extends Phaser.Scene{
     preload() {
 
         //root frame
-        this.load.image('temp_frame', './assets/temp_frame.png');
+        this.load.image('frame', './assets/temp_frame.png');
         this.load.image('bg_notepad', './assets/notepad.png');
+        this.load.image('crossroad', './assets/temp_crossroad.png');
 
         /*
 
