@@ -23,7 +23,7 @@ class Preload extends Phaser.Scene{
     }
 
     create() {
-        
+        console.log('you are in preload meow uwu');
         this.scene.start("menuScene");
 
     }

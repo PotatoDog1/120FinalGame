@@ -1,3 +1,15 @@
+/**
+ * Lost in Translation
+ * A game by:
+ * Dany
+ * Emily
+ * Fion
+ * Gillian
+ * 
+ * Game Title: Lost in Translation
+ * Date Completed:
+ * 
+ */
 let config = {
     type: Phaser.CANVAS,
     width: 640,
@@ -24,4 +36,3 @@ let menuConfig = {
 
 //define keyboard keys
 let keyQ;
-
