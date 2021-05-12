@@ -6,3 +6,17 @@ let config = {
 }
 
 let game = new Phaser.Game(config);
+
+//main game font format
+let wordConfig = {
+    fontFamily: 'Georgia',
+    fontSize: '27px',
+    color: '#191919',
+    align: 'left'
+}
+
+let menuConfig = {
+    fontFamily: 'Georgia',
+    fontSize: '25px',
+    align: 'left'
+}

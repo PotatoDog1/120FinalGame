@@ -5,18 +5,18 @@ class Menu extends Phaser.Scene {
 
     create() {
 
-      console.log("You are in Menu.js meow");
+    console.log("You are in Menu.js meow");
 
-      //create pointer
-      this.mouse = this.input.activePointer;
-      
+    //create pointer
+    this.mouse = this.input.activePointer;
+
+    this.instruction = this.add.text(game.config.width/2, game.config.height/2, 'Click to start game.', menuConfig);
       
     }
 
     update() {
 
         if (this.mouse.isDown) {
-            console.log("Going into play scene meow!");
             this.scene.start('playScene');
         }
 
