@@ -12,7 +12,8 @@ let wordConfig = {
     fontFamily: 'Georgia',
     fontSize: '27px',
     color: '#191919',
-    align: 'left'
+    align: 'left',
+    fixedWidth: 500
 }
 
 let menuConfig = {
