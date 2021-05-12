@@ -20,7 +20,7 @@ class Play extends Phaser.Scene {
 
       //create text
       this.narrativeText = this.add.text(95, 445, 'Testing.', wordConfig);
-
+      //for some reasons, the handwriting font only shows up after I revisit this scene???
     }
 
     update() {

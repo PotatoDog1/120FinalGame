@@ -10,7 +10,7 @@ class Menu extends Phaser.Scene {
     //create pointer
     this.mouse = this.input.activePointer;
 
-    this.instruction = this.add.text(game.config.width/2, game.config.height/2, 'Click to start game.', menuConfig);
+    this.add.text(game.config.width/2, game.config.height/2, 'Click to start game.', menuConfig);
       
     }
 

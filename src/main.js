@@ -9,7 +9,7 @@ let game = new Phaser.Game(config);
 
 //define font format
 let wordConfig = {
-    fontFamily: 'Georgia',
+    fontFamily: 'Handwriting',
     fontSize: '27px',
     color: '#191919',
     align: 'left',
@@ -24,3 +24,4 @@ let menuConfig = {
 
 //define keyboard keys
 let keyQ;
+
