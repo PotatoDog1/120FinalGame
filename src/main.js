@@ -40,7 +40,7 @@ let keyA;
 
 //define script text
 let scriptText;
-let nextLine = 0;
+let nextLine = 1;
 
 //define sound
 let main_bgm;
