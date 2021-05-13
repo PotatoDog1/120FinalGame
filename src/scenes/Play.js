@@ -7,8 +7,20 @@ class Play extends Phaser.Scene {
 
       console.log("You are in Play.js meow");
 
+      //mouse
+      this.mouse = this.input.activePointer;
+
       //debug keys
       keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+      keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+
+      //add bgm
+      if (!main_bgm) {
+        main_bgm = this.sound.add('bgm_1', { volume: 0.3 });
+        main_bgm.play({
+          loop: true,
+        });
+    }
       
       //add temp art assets
       this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
@@ -18,12 +30,22 @@ class Play extends Phaser.Scene {
       //create frame
       this.add.image(0, 0, 'frame').setOrigin(0, 0);
 
+      //get script
+      scriptText = this.cache.json.get('json_script');
+
       //create text
-      this.narrativeText = this.add.text(95, 445, 'Testing.', wordConfig);
+      this.narrativeText = this.add.text(80, 445, 'Testing.', wordConfig);
       //for some reasons, the handwriting font only shows up after I revisit this scene???
+
+
     }
 
     update() {
+
+      if(Phaser.Input.Keyboard.JustDown(keyA) && nextLine < scriptText.crossroad.length){
+        this.narrativeText.setText(scriptText.crossroad[nextLine]);
+        nextLine++;
+      }
 
       if(keyQ.isDown) {
         this.scene.start('menuScene');

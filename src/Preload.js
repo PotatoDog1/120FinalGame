@@ -10,16 +10,12 @@ class Preload extends Phaser.Scene{
         this.load.image('bg_notepad', './assets/notepad.png');
         this.load.image('crossroad', './assets/temp_crossroad.png');
 
-        /*
+        //sound
+        this.load.audio('bgm_1', './assets/bgm_1.mp3');
 
-        idea on how to load and read large amount of text:
-        1. do it manually for each line - time consuming and very not efficient, but works
-        2. use an array or 2D array to save all lines, will be more efficient and easier to organize
-            example for this: https://phaser.io/examples/v2/text/display-text-word-by-word
-        3. somehow do it with json? I feel like there is a way to do it but idk how lmao
-
-        */
-    
+        //json scripts
+        this.load.json('jsonData', 'assets/test.json'); //testing json
+        this.load.json('json_script', 'assets/script.json'); // actual script
     }
 
     create() {

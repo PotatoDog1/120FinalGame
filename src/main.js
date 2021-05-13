@@ -22,10 +22,10 @@ let game = new Phaser.Game(config);
 //define font format
 let wordConfig = {
     fontFamily: 'Handwriting',
-    fontSize: '27px',
+    fontSize: '25px',
     color: '#191919',
     align: 'left',
-    fixedWidth: 500
+    lineSpacing: 6
 }
 
 let menuConfig = {
@@ -36,3 +36,11 @@ let menuConfig = {
 
 //define keyboard keys
 let keyQ;
+let keyA;
+
+//define script text
+let scriptText;
+let nextLine = 0;
+
+//define sound
+let main_bgm;
