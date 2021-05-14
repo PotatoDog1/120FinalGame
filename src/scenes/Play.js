@@ -41,7 +41,7 @@ class Play extends Phaser.Scene {
 
       //I think we may need to write a function just for clicking through the text so 
       //that reuse the same codes but for different arrays in the json file
-      if(Phaser.Input.Keyboard.JustDown(keyA) && nextLine < scriptText.crossroad.length){
+      if(Phaser.Input.Keyboard.JustDown(keyA) && nextLine < scriptText.crossroad1.length){
         this.narrativeText.setText(scriptText.crossroad1[nextLine]);
         nextLine++;
       }
