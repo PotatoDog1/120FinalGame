@@ -1,5 +1,9 @@
 {
-    "crossroad":[ "You've arrived at a crossroads in your journey.\nYour car's engine hums in the background.\nDisplayed before you is an intricate series of\nintertwining woods and ever-shifting grass.", 
+    "crossroad":[
+        "You've arrived at a crossroads in your journey.\nYour car's engine hums in the background.\nDisplayed before you is an intricate series of\nintertwining woods and ever-shifting grass.", 
         "The woods themselves feel alive,\nswaying gently as a gentle breeze passes overhead.\nDying leaves fall from their branches.", 
-        "The trail you have been following for some\ntime stops short in front of a singular tree.\n\nIt looks down on you." ]
+        "The trail you have been following for some\ntime stops short in front of a singular tree.\n\nIt looks down on you.",
+        "You look up at the tree.\nIts branches lack the leaves that its nearby\nsiblings tout. A small shoe, no larger than an infant's,\nhangs by its laces from one of the tree's limbs.",
+        "Upon closer inspection, you find that with very\nlittle effort, you can grab the shoe if you so wish."
+     ]       
 }

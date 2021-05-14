@@ -42,6 +42,7 @@ class Play extends Phaser.Scene {
       if(Phaser.Input.Keyboard.JustDown(keyA) && nextLine < scriptText.crossroad.length){
         this.narrativeText.setText(scriptText.crossroad[nextLine]);
         nextLine++;
+        
       }
 
       if(keyQ.isDown) {
