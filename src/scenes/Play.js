@@ -31,7 +31,7 @@ class Play extends Phaser.Scene {
       scriptText = this.cache.json.get('json_script');
 
       //create text
-      this.narrativeText = this.add.text(80, 445, scriptText.crossroad[0], wordConfig);
+      this.narrativeText = this.add.text(80, 445, scriptText.crossroad1[0], wordConfig);
       //for some reasons, the handwriting font only shows up after I revisit this scene???
 
 
@@ -39,10 +39,11 @@ class Play extends Phaser.Scene {
 
     update() {
 
+      //I think we may need to write a function just for clicking through the text so 
+      //that reuse the same codes but for different arrays in the json file
       if(Phaser.Input.Keyboard.JustDown(keyA) && nextLine < scriptText.crossroad.length){
-        this.narrativeText.setText(scriptText.crossroad[nextLine]);
+        this.narrativeText.setText(scriptText.crossroad1[nextLine]);
         nextLine++;
-        
       }
 
       if(keyQ.isDown) {
