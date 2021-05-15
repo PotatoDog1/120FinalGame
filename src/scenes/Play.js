@@ -25,6 +25,16 @@ class Play extends Phaser.Scene {
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
         this.add.image(0, 400, 'bg_notepad').setOrigin(0,0);
         this.placeImage = this.add.image(0, 0, 'crossroad').setOrigin(0, 0);
+        this.portrait = this.add.image(415, 65, 'portrait').setOrigin(0, 0);
+        
+        //breathing portrait animation
+        this.tweens.add({
+            targets: [this.portrait],
+            scale: {from: 1.02, to: 1.0},
+            duration: 830,
+            yoyo: true,
+            repeat: -1
+        });
 
         //create frame
         this.add.image(0, 0, 'frame').setOrigin(0, 0);

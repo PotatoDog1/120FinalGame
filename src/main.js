@@ -49,5 +49,8 @@ let nextLine = 1;
 let checkDone = [false, false];      //the length of this array will corresond to the number of flags/choices players can make
 let checkDoneIndex = 0;     //corresponds to the checkDone array
 
+//tween Scale variable
+const SCALE = 0.5;
+
 //define sound
 let main_bgm;
