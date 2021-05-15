@@ -13,9 +13,14 @@ class Preload extends Phaser.Scene{
         //sound
         this.load.audio('bgm_1', './assets/bgm_1.mp3');
 
+        //choice images
+        this.load.image('continue', './assets/choices/choice_continue.png');   
+        this.load.image('leave', './assets/choices/choice_leave.png');     
+
         //json scripts
         this.load.json('jsonData', 'assets/test.json'); //testing json
         this.load.json('json_script', 'assets/script.json'); // actual script
+
     }
 
     create() {

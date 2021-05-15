@@ -41,17 +41,22 @@ class Play extends Phaser.Scene {
 
     update() {
 
-        if(!checkDone[0]) {     //first narrative flag check; these are to stop it keep updating the narrative text to the corresponding flag
+        if(!checkDone[0]) {     //first narrative flag check to start the game; these are to stop it keep updating the narrative text to the corresponding flag
             this.getNextLine(scriptText.crossroad1);
         } else {
-            if(Phaser.Input.Keyboard.JustDown(keyLeft) && !this.leaveRoute) {
-                console.log('pressed left');
+
+            if(Phaser.Input.Keyboard.JustDown(keyRight) && !this.leaveRoute) { // second part is to check if players have chosen the other choice yet
+                //console.log('pressed right');
                 this.continueRoute = true;      //branch flag
                 narrativeText.setText(scriptText.crossroad1_continue[0]);
-            } else if(Phaser.Input.Keyboard.JustDown(keyRight) && !this.continueRoute) {
-                console.log('pressed right');
+                this.button_continue.visible = false;
+                this.button_leave.visible = false;
+            } else if(Phaser.Input.Keyboard.JustDown(keyLeft) && !this.continueRoute) {  // second part to check if players have chosen the other choice yet
+                //console.log('pressed left');
                 this.leaveRoute = true;     //branch flag
                 narrativeText.setText(scriptText.crossroad1_leave[0]);
+                this.button_continue.visible = false;
+                this.button_leave.visible = false;
             }
 
             if(!checkDone[1]){      //second narrative flag check
@@ -89,6 +94,11 @@ class Play extends Phaser.Scene {
             checkDone[checkDoneIndex] = true;
             checkDoneIndex++;
             nextLine = 1;
+
+            if(checkDone[0] && (!this.leaveRoute && !this.continueRoute)) {         //to display choices, probably need to do it for every branch
+                this.button_continue = this.add.image(80, 490, 'continue').setOrigin(0,0);
+                this.button_leave = this.add.image(80, 527, 'leave').setOrigin(0,0);
+            }
         }
 
     }
