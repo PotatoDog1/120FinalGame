@@ -40,14 +40,14 @@ let keySpace;
 let keyLeft;
 let keyRight;
 
-//define script variables
+//define script variables for getNextLine()
 let scriptText;
 let narrativeText;
 let nextLine = 1;
 
 //branch check
-let checkDone = [false, false, false];
-let checkDoneIndex = 0;
+let checkDone = [false, false];      //the length of this array will corresond to the number of flags/choices players can make
+let checkDoneIndex = 0;     //corresponds to the checkDone array
 
 //define sound
 let main_bgm;

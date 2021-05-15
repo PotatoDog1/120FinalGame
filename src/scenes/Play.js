@@ -41,18 +41,18 @@ class Play extends Phaser.Scene {
 
     update() {
 
-        if(!checkDone[0]) {
+        if(!checkDone[0]) {     //first narrative flag check; these are to stop it keep updating the narrative text to the corresponding flag
             this.getNextLine(scriptText.crossroad1);
         } else {
             if(Phaser.Input.Keyboard.JustDown(keyLeft)) {
                 console.log('pressed left');
-                this.continueRoute = true;
+                this.continueRoute = true;      //branch flag
             } else if(Phaser.Input.Keyboard.JustDown(keyRight)) {
                 console.log('pressed right');
-                this.leaveRoute = true;
+                this.leaveRoute = true;     //branch flag
             }
 
-            if(!checkDone[1]){
+            if(!checkDone[1]){      //second narrative flag check
                 if(this.continueRoute) {
                     this.getNextLine(scriptText.crossroad1_continue);
                 } else if (this.leaveRoute) {
@@ -62,18 +62,18 @@ class Play extends Phaser.Scene {
         }
 
         if(keyQ.isDown) {
-            for(var i = 0; i < checkDone.length; i++){
+            for(var i = 0; i < checkDone.length; i++){      //to loop through the narrative flag array and reset them all to false
                 checkDone[i] = false;
                 console.log("looping through checkDone. Finished " + i + " time, " + i + " is " + checkDone[i]);
             }
-            checkDoneIndex = 0;
-            main_bgm.stop();          //to stop game bgm when they come back to menu
+            checkDoneIndex = 0;     //to reset narrative to the beginning
+            main_bgm.stop();        //to stop game bgm when they come back to menu
             this.scene.start('menuScene');
         }
 
     }
 
-    //--------------------------Functions 
+    //--------------------------Function 
 
     //this is for going through each line of the narrative from the arrays in the script.json file
     getNextLine(target) {     
