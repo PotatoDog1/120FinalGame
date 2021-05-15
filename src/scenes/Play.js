@@ -44,12 +44,14 @@ class Play extends Phaser.Scene {
         if(!checkDone[0]) {     //first narrative flag check; these are to stop it keep updating the narrative text to the corresponding flag
             this.getNextLine(scriptText.crossroad1);
         } else {
-            if(Phaser.Input.Keyboard.JustDown(keyLeft)) {
+            if(Phaser.Input.Keyboard.JustDown(keyLeft) && !this.leaveRoute) {
                 console.log('pressed left');
                 this.continueRoute = true;      //branch flag
-            } else if(Phaser.Input.Keyboard.JustDown(keyRight)) {
+                narrativeText.setText(scriptText.crossroad1_continue[0]);
+            } else if(Phaser.Input.Keyboard.JustDown(keyRight) && !this.continueRoute) {
                 console.log('pressed right');
                 this.leaveRoute = true;     //branch flag
+                narrativeText.setText(scriptText.crossroad1_leave[0]);
             }
 
             if(!checkDone[1]){      //second narrative flag check
@@ -86,7 +88,7 @@ class Play extends Phaser.Scene {
         if (nextLine == target.length){
             checkDone[checkDoneIndex] = true;
             checkDoneIndex++;
-            nextLine = 0;
+            nextLine = 1;
         }
 
     }
