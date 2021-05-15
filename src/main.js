@@ -36,11 +36,18 @@ let menuConfig = {
 
 //define keyboard keys
 let keyQ;
-let keyA;
+let keySpace;
+let keyLeft;
+let keyRight;
 
-//define script text
+//define script variables
 let scriptText;
+let narrativeText;
 let nextLine = 1;
+
+//branch check
+let checkDone = [false, false, false];
+let checkDoneIndex = 0;
 
 //define sound
 let main_bgm;
