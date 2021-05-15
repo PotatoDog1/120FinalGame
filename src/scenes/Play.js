@@ -56,13 +56,13 @@ class Play extends Phaser.Scene {
         } else {
 
             if(Phaser.Input.Keyboard.JustDown(keyRight) && !this.leaveRoute && !this.continueRoute) { // second part is to make sure players can't go back to the beginning of this flag
-                //console.log('pressed right');
+                //continue into the forest route
                 this.continueRoute = true;      //branch flag
                 narrativeText.setText(scriptText.crossroad1_continue[0]);
                 this.button_continue.visible = false;
                 this.button_leave.visible = false;
             } else if(Phaser.Input.Keyboard.JustDown(keyLeft) && !this.continueRoute && !this.leaveRoute) {  // second part is to make sure players can't go back to the beginning of this flag
-                //console.log('pressed left');
+                //leave forest route
                 this.leaveRoute = true;     //branch flag
                 narrativeText.setText(scriptText.crossroad1_leave[0]);
                 this.button_continue.visible = false;
@@ -87,6 +87,7 @@ class Play extends Phaser.Scene {
             main_bgm.stop();        //to stop game bgm when they come back to menu
             this.scene.start('menuScene');
         }
+
 
     }
 
