@@ -4,12 +4,13 @@
         "The woods themselves feel alive,\nswaying gently as a gentle breeze passes overhead.\nDying leaves fall from their branches.", 
         "The trail you have been following for some\ntime stops short in front of a singular tree.\nIt looks down on you.",
         "You look up at the tree.\nIts branches lack the leaves that its nearby\nsiblings tout. A small shoe, no larger than an infant's,\nhangs by its laces from one of the tree's limbs.",
-        "Upon closer inspection, you find that with very\nlittle effort, you can grab the shoe if you so wish.",
+        "Upon closer inspection, you find that\nwith very little effort,you can grab the shoe\nif you so wish.",
         "What are you going to do?"
      ],
      "crossroad1_continue":[
-        "The tree, no longer an interesting obstacle\nin your journey, is blotted out of your\nmind as you continue forward,\nmoving past the finished trail and into the forest proper.",
-        "The crunch of branches underfoot radiates\nthrough the woods, the distant sound\nof a woodpecker returning its call.\nIn the distance, you see it. Your destination. Your goal.",
+        "The tree, no longer an interesting obstacle\nin your journey, is blotted out of your\nmind as you continue forward, moving past\nthe finished trail and into the forest proper.",
+        "The crunch of branches underfoot radiates\nthrough the woods, the distant sound\nof a woodpecker returning its call.",
+        "In the distance, you see it.\nYour destination.\nYour goal.",
         "It stands tall, taller than you imagined.\nOf course, in reality most towers are larger\nthan you envision them to be, sturdier too."
      ],
      "crossroad1_leave":[

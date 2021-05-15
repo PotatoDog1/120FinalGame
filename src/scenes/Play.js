@@ -55,13 +55,13 @@ class Play extends Phaser.Scene {
             this.getNextLine(scriptText.crossroad1);
         } else {
 
-            if(Phaser.Input.Keyboard.JustDown(keyRight) && !this.leaveRoute) { // second part is to check if players have chosen the other choice yet
+            if(Phaser.Input.Keyboard.JustDown(keyRight) && !this.leaveRoute && !this.continueRoute) { // second part is to check if players have chosen the other choice yet
                 //console.log('pressed right');
                 this.continueRoute = true;      //branch flag
                 narrativeText.setText(scriptText.crossroad1_continue[0]);
                 this.button_continue.visible = false;
                 this.button_leave.visible = false;
-            } else if(Phaser.Input.Keyboard.JustDown(keyLeft) && !this.continueRoute) {  // second part to check if players have chosen the other choice yet
+            } else if(Phaser.Input.Keyboard.JustDown(keyLeft) && !this.continueRoute && !this.leaveRoute) {  // second part to check if players have chosen the other choice yet
                 //console.log('pressed left');
                 this.leaveRoute = true;     //branch flag
                 narrativeText.setText(scriptText.crossroad1_leave[0]);
