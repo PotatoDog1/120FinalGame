@@ -46,15 +46,8 @@ let narrativeText;
 let nextLine = 1;
 
 //branch check
-let finishNarrative = [false, false];      //the length of this array will corresond to the number of flags/choices players can make
-    //notes:     [crossroad, continue/leave]
-let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
-
-//item check
-let hasItem = [false];
-    //notes:  [shoe]
-let finishItemNarrative = [false];
-    //notes:              [shoeNarrative]
+let checkDone = [false, false];      //the length of this array will corresond to the number of flags/choices players can make
+let checkDoneIndex = 0;     //corresponds to the checkDone array
 
 //tween Scale variable
 const SCALE = 0.5;
