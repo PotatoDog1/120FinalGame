@@ -184,7 +184,7 @@ class Play extends Phaser.Scene {
         //when it reaches the end of the array
         if (nextLine == target.length){
 
-            if(target != scriptText.pickUpShoe){        //to prevent item narrative texts messing up the checkDone/flag array
+            if(!this.checkItemNarrative(target)){       //to prevent item narrative texts messing up the checkDone/flag array
                 checkDone[checkDoneIndex] = true;
                 checkDoneIndex++;
             }
@@ -205,8 +205,20 @@ class Play extends Phaser.Scene {
 
     }
 
+    //to return target back to where it was before dragging
     returnToLocation(target) {
         target.setPosition(target.input.dragStartX, target.input.dragStartY);
+    }
+
+    //check if target is an item narrative or not    
+    checkItemNarrative(target) {
+        if(target === scriptText.pickUpShoe){           //need to update every time we add an new item
+            console.log("found an item")
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
 }
