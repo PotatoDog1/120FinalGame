@@ -35,29 +35,51 @@ class Play extends Phaser.Scene {
             yoyo: true,
             repeat: -1
         });
-        
-        // three scribbling animations, each one faster than the last
-        // to be used as the anger meter goes up, can start off with just the 
-        // first scribble for low anger and add on the second and third scribble 
-        // animation when the player gets really angry - Gillian
 
         // scribbling animation
         let scribble = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
         scribble.setScale(.10);
         scribble.anims.play('scribbling');
         console.log('scribbling!');
-        
-        // // scribble faster
-        // let scribbleFaster = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
-        // scribbleFaster.setScale(.10);
-        // scribbleFaster.anims.play('scribblingFaster');
-        // console.log('scribbling x 2');
 
-        // // scribble fastest
-        // let scribbleFastest = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
-        // scribbleFastest.setScale(.10);
-        // scribbleFastest.playReverse('scribblingFastest');
-        // console.log('scribbling x 3');
+        //Inventory related ----------------------------------------------------
+
+        //inventory bag; set it as a dropzone
+        this.bag = this.add.sprite(370, 255, 'bag').setOrigin(0, 0);
+        this.bag.setInteractive({
+            dropZone: true
+        });
+
+        //nodrop zone
+        this.noDropZone = this.add.sprite(0, 0, 'noDrop').setOrigin(0, 0);
+        this.noDropZone.depth = -0.5; //to hide it from players
+        this.noDropZone.setInteractive({
+            dropZone: true
+        })
+
+        //interactive shoe
+        this.shoe = this.add.sprite(80, 0, 'shoe').setOrigin(0, 0);
+        this.shoe.depth = 1.5;
+        this.shoe.setInteractive({
+            draggable: true,
+            useHandCursor: true
+        });
+
+        this.shoe.on('drag', (pointer, dragX, dragY) => { //actually move the sprite
+            this.shoe.x = dragX;
+            this.shoe.y = dragY;
+        });
+
+        this.shoe.on('drop', (pointer, target) => {  
+            if (target.texture.key === 'bag') {           // if they drop it on the inventory, it will disappear
+                this.shoe.destroy();
+            } else if(target.texture.key === 'noDrop') {  // if they didn't drop it on the inventory
+                this.returnToLocation(this.shoe);
+            }
+        });
+
+        this.shoe.visible = false;
+
 
         //create frame
         this.frame = this.add.image(0, 0, 'frame').setOrigin(0, 0);
@@ -70,8 +92,6 @@ class Play extends Phaser.Scene {
 
         //create text
         narrativeText = this.add.text(80, 445, scriptText.crossroad1[0], wordConfig);
-        
-        
 
     }
 
@@ -110,7 +130,8 @@ class Play extends Phaser.Scene {
                 checkDone[i] = false;
                 console.log("looping through checkDone. Finished " + i + " time, " + i + " is " + checkDone[i]);
             }
-            checkDoneIndex = 0;     //to reset narrative to the beginning
+            checkDoneIndex = 0;     //to reset narrative to the beginning flag
+            nextLine = 1;           //to reset narrative to the beginning line
             main_bgm.stop();        //to stop game bgm when they come back to menu
             this.scene.start('menuScene');
         }
@@ -118,17 +139,21 @@ class Play extends Phaser.Scene {
 
     }
 
-    //--------------------------Function 
+    //Functions---------------------------------------------------
 
     //this is for going through each line of the narrative from the arrays in the script.json file
     getNextLine(target) {     
         if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
             narrativeText.setText(target[nextLine]);
-            console.log("nextLine is now at " + nextLine);
             nextLine++;
         }
 
-        if (nextLine == target.length){
+        if(!checkDone[0] && nextLine == 4){
+            this.shoe.visible = true;                         //shows shoe at appropriate timing
+            this.shoe.input.draggable = false;                // so players won't be able to drag it until a certain scene
+        }
+
+        if (nextLine == target.length){         //when it reaches the end of the array
             checkDone[checkDoneIndex] = true;
             checkDoneIndex++;
             nextLine = 1;
@@ -136,9 +161,14 @@ class Play extends Phaser.Scene {
             if(checkDone[0] && (!this.leaveRoute && !this.continueRoute)) {         //to display choices, probably need to do it for every branch
                 this.button_continue = this.add.image(80, 490, 'continue').setOrigin(0,0);
                 this.button_leave = this.add.image(80, 527, 'leave').setOrigin(0,0);
+                this.shoe.input.draggable = true;
             }
         }
 
+    }
+
+    returnToLocation(target) {
+        target.setPosition(target.input.dragStartX, target.input.dragStartY);
     }
 
 }
