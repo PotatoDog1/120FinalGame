@@ -36,6 +36,12 @@ class Play extends Phaser.Scene {
             repeat: -1
         });
 
+        //all choices 
+        this.button_continue = this.add.image(80, 490, 'continue').setOrigin(0,0);
+        this.button_leave = this.add.image(80, 527, 'leave').setOrigin(0,0);
+        this.button_continue.visible = false;
+        this.button_leave.visible = false;
+
         // scribbling animation
         let scribble = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
         scribble.setScale(.10);
@@ -73,6 +79,8 @@ class Play extends Phaser.Scene {
         this.shoe.on('drop', (pointer, target) => {  
             if (target.texture.key === 'bag') {           // if they drop it on the inventory, it will disappear
                 this.shoe.destroy();
+                withShoe = true;
+                narrativeText.setText(scriptText.pickUpShoe[0]);
             } else if(target.texture.key === 'noDrop') {  // if they didn't drop it on the inventory
                 this.returnToLocation(this.shoe);
             }
@@ -101,19 +109,37 @@ class Play extends Phaser.Scene {
             this.getNextLine(scriptText.crossroad1);
         } else {
 
+            if(withShoe){
+                if(!shoeDone){
+                    this.button_continue.visible = false;
+                    this.button_leave.visible = false;
+                    this.getNextLine(scriptText.pickUpShoe);
+                }
+
+            }else if(!withShoe && !this.leaveRoute && !this.continueRoute){
+                this.shoe.input.draggable = true;
+            }
+
             if(Phaser.Input.Keyboard.JustDown(keyRight) && !this.leaveRoute && !this.continueRoute) { // second part is to make sure players can't go back to the beginning of this flag
                 //continue into the forest route
                 this.continueRoute = true;      //branch flag
                 narrativeText.setText(scriptText.crossroad1_continue[0]);
-                this.button_continue.visible = false;
-                this.button_leave.visible = false;
+                this.button_continue.destroy();
+                this.button_leave.destroy();
+                if(!withShoe){
+                    this.shoe.destroy();
+                }
                 this.placeImage = this.add.image(0, 0, 'tower').setOrigin(0, 0);
             } else if(Phaser.Input.Keyboard.JustDown(keyLeft) && !this.continueRoute && !this.leaveRoute) {  // second part is to make sure players can't go back to the beginning of this flag
                 //leave forest route
                 this.leaveRoute = true;     //branch flag
                 narrativeText.setText(scriptText.crossroad1_leave[0]);
-                this.button_continue.visible = false;
-                this.button_leave.visible = false;
+                this.button_continue.destroy();
+                this.button_leave.destroy();
+
+                if(!withShoe){
+                    this.shoe.destroy();
+                }
             }
 
             if(!checkDone[1]){      //second narrative flag check
@@ -144,24 +170,36 @@ class Play extends Phaser.Scene {
     //this is for going through each line of the narrative from the arrays in the script.json file
     getNextLine(target) {     
         if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
+            console.log("nextLine is " + nextLine);
             narrativeText.setText(target[nextLine]);
             nextLine++;
         }
 
-        if(!checkDone[0] && nextLine == 4){
-            this.shoe.visible = true;                         //shows shoe at appropriate timing
-            this.shoe.input.draggable = false;                // so players won't be able to drag it until a certain scene
+        //to add the shoe object
+        if(!checkDone[0] && nextLine == 4 && !withShoe){                        
+            this.shoe.visible = true;
+            this.shoe.input.draggable = false;    // so players won't be able to drag it until a certain scene
         }
 
-        if (nextLine == target.length){         //when it reaches the end of the array
-            checkDone[checkDoneIndex] = true;
-            checkDoneIndex++;
+        //when it reaches the end of the array
+        if (nextLine == target.length){
+
+            if(target != scriptText.pickUpShoe){        //to prevent item narrative texts messing up the checkDone/flag array
+                checkDone[checkDoneIndex] = true;
+                checkDoneIndex++;
+            }
+
+            //reset to the beginning of the line
             nextLine = 1;
 
-            if(checkDone[0] && (!this.leaveRoute && !this.continueRoute)) {         //to display choices, probably need to do it for every branch
-                this.button_continue = this.add.image(80, 490, 'continue').setOrigin(0,0);
-                this.button_leave = this.add.image(80, 527, 'leave').setOrigin(0,0);
-                this.shoe.input.draggable = true;
+            //to display choices, probably need to do it for every branch
+            if(checkDone[0] && (!this.leaveRoute && !this.continueRoute)) { 
+                this.button_continue.visible = true;
+                this.button_leave.visible = true;
+            }
+
+            if(withShoe){
+                shoeDone = true;
             }
         }
 

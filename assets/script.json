@@ -5,7 +5,14 @@
         "The trail you have been following for some\ntime stops short in front of a singular tree.\nIt looks down on you.",
         "You look up at the tree.\nIts branches lack the leaves that its nearby\nsiblings tout. A small shoe, no larger than an infant's,\nhangs by its laces from one of the tree's limbs.",
         "Upon closer inspection, you find that with\nvery little effort,you can grab the shoe\nif you so wish.",
-        "What are you going to do?"
+        
+        "*You may drag certain items into your bag\nwhen you are searching in an area.\nThere is no pressure on collecting anything.\nPlease do whatever you feel like.*",
+        "Feel free to leave when you are ready."
+     ],
+     "pickUpShoe":[
+        "You grab the shoe. It's worn from use.\nMud and dirt cover the laces.\nYou're not quite sure why you grabbed it.",
+        "Best not to dwell on that decision,\nlook on the bright side; you have a shoe now.",
+        "Feel free to leave when you are ready."
      ],
      "crossroad1_continue":[
         "The tree, no longer an interesting obstacle\nin your journey, is blotted out of your\nmind as you continue forward, moving past\nthe finished trail and into the forest proper.",
