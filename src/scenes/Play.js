@@ -35,6 +35,29 @@ class Play extends Phaser.Scene {
             yoyo: true,
             repeat: -1
         });
+        
+        // three scribbling animations, each one faster than the last
+        // to be used as the anger meter goes up, can start off with just the 
+        // first scribble for low anger and add on the second and third scribble 
+        // animation when the player gets really angry - Gillian
+
+        // scribbling animation
+        let scribble = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
+        scribble.setScale(.10);
+        scribble.anims.play('scribbling');
+        console.log('scribbling!');
+        
+        // // scribble faster
+        // let scribbleFaster = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
+        // scribbleFaster.setScale(.10);
+        // scribbleFaster.anims.play('scribblingFaster');
+        // console.log('scribbling x 2');
+
+        // // scribble fastest
+        // let scribbleFastest = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
+        // scribbleFastest.setScale(.10);
+        // scribbleFastest.playReverse('scribblingFastest');
+        // console.log('scribbling x 3');
 
         //create frame
         this.frame = this.add.image(0, 0, 'frame').setOrigin(0, 0);
@@ -47,6 +70,8 @@ class Play extends Phaser.Scene {
 
         //create text
         narrativeText = this.add.text(80, 445, scriptText.crossroad1[0], wordConfig);
+        
+        
 
     }
 
