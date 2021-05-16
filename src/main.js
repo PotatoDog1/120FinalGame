@@ -10,7 +10,7 @@
  * Date Completed:
  * 
  */
-let config = {
+ let config = {
     type: Phaser.CANVAS,
     width: 640,
     height: 640,
@@ -47,8 +47,15 @@ let narrativeText;
 let nextLine = 1;
 
 //branch check
-let checkDone = [false, false];      //the length of this array will corresond to the number of flags/choices players can make
-let checkDoneIndex = 0;     //corresponds to the checkDone array
+let finishNarrative = [false, false];      //the length of this array will corresond to the number of flags/choices players can make
+    //notes:          [crossroad, continue/leave]
+let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
+
+//item check
+let hasItem = [false];
+    //notes:  [shoe]
+let finishItemNarrative = [false];
+    //notes:              [shoeNarrative]
 
 //tween Scale variable
 const SCALE = 0.5;
