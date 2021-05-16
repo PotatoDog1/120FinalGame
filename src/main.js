@@ -10,10 +10,11 @@
  * Date Completed:
  * 
  */
-let config = {
+ let config = {
     type: Phaser.CANVAS,
     width: 640,
     height: 640,
+    autoCenter: true,
     scene: [Preload, Menu, Play]
 }
 
@@ -47,7 +48,7 @@ let nextLine = 1;
 
 //branch check
 let finishNarrative = [false, false];      //the length of this array will corresond to the number of flags/choices players can make
-    //notes:     [crossroad, continue/leave]
+    //notes:          [crossroad, continue/leave]
 let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
 
 //item check
