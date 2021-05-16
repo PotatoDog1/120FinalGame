@@ -25,7 +25,6 @@ class Preload extends Phaser.Scene{
         this.load.image('leave', './assets/choices/choice_leave.png');     
 
         //json scripts
-        // this.load.json('jsonData', 'assets/test.json'); //testing json
         this.load.json('json_script', 'assets/script.json'); // actual script
 
         // scribbling animation texture atlas
@@ -33,7 +32,7 @@ class Preload extends Phaser.Scene{
     }
 
     create() {
-        console.log('you are in preload meow uwu');
+
         // scribbling animation
         this.anims.create({
             key: 'scribbling',
@@ -44,30 +43,6 @@ class Preload extends Phaser.Scene{
                 zeroPad: 4    
             }),
             frameRate: 8,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'scribblingFaster',
-            frames: this.anims.generateFrameNames('scribble', { 
-                start: 0,
-                end: 4,
-                prefix: 'scribble',
-                zeroPad: 4    
-            }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: 'scribblingFastest',
-            frames: this.anims.generateFrameNames('scribble', { 
-                start: 0,
-                end: 4,
-                prefix: 'scribble',
-                zeroPad: 4    
-            }),
-            frameRate: 12,
             repeat: -1
         });
 

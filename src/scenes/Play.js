@@ -4,13 +4,8 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-    
-        console.log("You are in Play.js meow");
 
-        //mouse for future inventory use
-        this.mouse = this.input.activePointer;
-
-        //debug keys
+        //define keys
         keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -20,7 +15,6 @@ class Play extends Phaser.Scene {
         main_bgm = this.sound.add('bgm_1', { volume: 0.3 });
         main_bgm.play({ loop: true });
 
-        
         //add temp art assets
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
         this.add.image(0, 400, 'bg_notepad').setOrigin(0,0);
@@ -46,24 +40,22 @@ class Play extends Phaser.Scene {
         let scribble = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
         scribble.setScale(.10);
         scribble.anims.play('scribbling');
-        console.log('scribbling!');
 
         //Inventory related ----------------------------------------------------
 
-        //inventory bag; set it as a dropzone
+        //inventory bag
         this.bag = this.add.sprite(370, 255, 'bag').setOrigin(0, 0);
         this.bag.setInteractive({
             dropZone: true
         });
 
-        //nodrop zone
+        //nodrop zone image
         this.noDropZone = this.add.sprite(0, 0, 'noDrop').setOrigin(0, 0);
-        this.noDropZone.depth = -0.5; //to hide it from players
+        this.noDropZone.depth = -0.5;       //to hide it from players
         this.noDropZone.setInteractive({
             dropZone: true
         })
 
-        //interactive shoe
         this.shoe = this.add.sprite(80, 0, 'shoe').setOrigin(0, 0);
         this.shoe.depth = 1.5;
         this.shoe.setInteractive({
@@ -71,22 +63,24 @@ class Play extends Phaser.Scene {
             useHandCursor: true
         });
 
-        this.shoe.on('drag', (pointer, dragX, dragY) => { //actually move the sprite
+        this.shoe.on('drag', (pointer, dragX, dragY) => {       //actually move the shoe sprite
             this.shoe.x = dragX;
             this.shoe.y = dragY;
         });
 
         this.shoe.on('drop', (pointer, target) => {  
-            if (target.texture.key === 'bag') {           // if they drop it on the inventory, it will disappear
+            if (target.texture.key === 'bag') {
                 this.shoe.destroy();
                 withShoe = true;
                 narrativeText.setText(scriptText.pickUpShoe[0]);
-            } else if(target.texture.key === 'noDrop') {  // if they didn't drop it on the inventory
+            } else if(target.texture.key === 'noDrop') {        // if they didn't drop it on the inventory bag
                 this.returnToLocation(this.shoe);
             }
         });
 
         this.shoe.visible = false;
+
+        //Inventory end ----------------------------------------------------
 
 
         //create frame
@@ -159,6 +153,7 @@ class Play extends Phaser.Scene {
             checkDoneIndex = 0;     //to reset narrative to the beginning flag
             nextLine = 1;           //to reset narrative to the beginning line
             main_bgm.stop();        //to stop game bgm when they come back to menu
+            withShoe = false;
             this.scene.start('menuScene');
         }
 
