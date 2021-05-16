@@ -14,6 +14,7 @@ let config = {
     type: Phaser.CANVAS,
     width: 640,
     height: 640,
+    autoCenter: true,
     scene: [Preload, Menu, Play]
 }
 

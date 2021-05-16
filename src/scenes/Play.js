@@ -5,7 +5,6 @@ class Play extends Phaser.Scene {
 
     create() {
     
-        console.log("Dany Testing Commits.");1
         console.log("You are in Play.js meow");
 
         //mouse for future inventory use
