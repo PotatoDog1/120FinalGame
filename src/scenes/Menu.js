@@ -5,8 +5,6 @@ class Menu extends Phaser.Scene {
 
     create() {
 
-        console.log("You are in Menu.js meow");
-
         //create pointer
         this.mouse = this.input.activePointer;
 
