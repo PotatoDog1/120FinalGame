@@ -10,6 +10,7 @@ class Preload extends Phaser.Scene{
         this.load.image('bg_notepad', './assets/notepad.png');
         this.load.image('crossroad', './assets/temp_crossroad.png');
         this.load.image('portrait', './assets/portraitTemp_shrinked.png');
+        this.load.image('tower', './assets/towerTemp.png');
 
         //sound
         this.load.audio('bgm_1', './assets/bgm_1.mp3');

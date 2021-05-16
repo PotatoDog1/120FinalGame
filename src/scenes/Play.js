@@ -37,7 +37,7 @@ class Play extends Phaser.Scene {
         });
 
         //create frame
-        this.add.image(0, 0, 'frame').setOrigin(0, 0);
+        this.frame = this.add.image(0, 0, 'frame').setOrigin(0, 0);
 
         //get script
         scriptText = this.cache.json.get('json_script');
@@ -61,6 +61,7 @@ class Play extends Phaser.Scene {
                 narrativeText.setText(scriptText.crossroad1_continue[0]);
                 this.button_continue.visible = false;
                 this.button_leave.visible = false;
+                //this.placeImage = this.add.image(0, 0, 'tower').setOrigin(0, 0);
             } else if(Phaser.Input.Keyboard.JustDown(keyLeft) && !this.continueRoute && !this.leaveRoute) {  // second part is to make sure players can't go back to the beginning of this flag
                 //leave forest route
                 this.leaveRoute = true;     //branch flag
