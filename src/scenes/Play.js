@@ -128,14 +128,14 @@ class Play extends Phaser.Scene {
                 }
             }
 
-            if(!finishNarrative[1]){      //enter second narrative flag check
+            if(!finishNarrative[2]){      //enter second narrative flag check
                 if(this.continueRoute) {
                     this.getNextLine(scriptText.crossroad1_continue);
                 } else if (this.leaveRoute) {
                     this.getNextLine(scriptText.crossroad1_leave);
                 }
             } else {                      //finish second part narrative and reach choices
-
+                
                 
 
             }
@@ -194,12 +194,15 @@ class Play extends Phaser.Scene {
 
     //checks if target is an item narrative or not;to prevent item narrative texts from messing up the finishNarrative/flag array
     checkItemNarrative(target) {
+        /* will update when we have the next item
         if(target === scriptText.pickUpShoe){           //need to update every time we add an new item
             console.log("found an item")
             return true;
         } else {
             return false;
         }
+        */
+       return false;
     }
 
     //checks if players have progressed into flag1 yet
@@ -230,6 +233,11 @@ class Play extends Phaser.Scene {
         for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
             hasItem[i] = false;
         }
+
+        for(var i = 0; i < finishItemNarrative.length; i++) {       //to loop through the itemNarrative array and reset them to false
+            finishItemNarrative[i] = false;
+        }
+
         finishNarrativeIndex = 0;     //to reset narrative to the beginning flag
         nextLine = 1;           //to reset narrative to the beginning line
         main_bgm.stop();        //to stop game bgm when they come back to menu
