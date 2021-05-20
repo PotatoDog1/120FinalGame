@@ -100,7 +100,7 @@ class Play extends Phaser.Scene {
 
         if(!finishNarrative[0]) {     //enter first narrative flag check to start the game; these are to stop it from updating the narrative text to the corresponding flag all the time
             this.getNextLine(scriptText.crossroad1);
-        } else {
+        } else {                //finish first part narrative and reach choices
 
             if(hasItem[0]){     //if players pick up the item(shoe)
                 if(!finishItemNarrative[0]){     //enter shoe narrative 
@@ -135,6 +135,10 @@ class Play extends Phaser.Scene {
                 } else if (this.leaveRoute) {
                     this.getNextLine(scriptText.crossroad1_leave);
                 }
+            } else {                      //finish second part narrative and reach choices
+
+                
+
             }
         }
 
@@ -224,7 +228,7 @@ class Play extends Phaser.Scene {
             //console.log("looping through finishNarrative. Finished " + i + " time, " + i + " is " + finishNarrative[i]);
         }
 
-        for(var i = 0; i < hasItem.length; i++) {
+        for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
             hasItem[i] = false;
         }
         finishNarrativeIndex = 0;     //to reset narrative to the beginning flag

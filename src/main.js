@@ -47,8 +47,8 @@ let narrativeText;
 let nextLine = 1;
 
 //branch check
-let finishNarrative = [false, false];      //the length of this array will corresond to the number of flags/choices players can make
-    //notes:          [crossroad, continue/leave]
+let finishNarrative = [false, false, false];      //the length of this array will corresond to the number of flags/choices players can make
+    //notes:          [crossroad, continue/leave, fog/leave]
 let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
 
 //item check
