@@ -126,6 +126,7 @@ class Play extends Phaser.Scene {
                     this.destroyChoiceButtons(this.button_continue, this.button_leave);
                 }
                 
+                //tried to implement mouse click on the choices
                 /*
                 this.button_continue.on('pointerdown', function (pointer) {
                     this.continueRoute = true;      //branch flag
