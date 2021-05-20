@@ -101,16 +101,15 @@ class Play extends Phaser.Scene {
         if(!finishNarrative[0]) {     //enter first narrative flag check to start the game; these are to stop it from updating the narrative text to the corresponding flag all the time
             this.getNextLine(scriptText.crossroad1);
         } else {                //finish first part narrative and reach choices
-
             if(hasItem[0]){     //if players pick up the item(shoe)
                 if(!finishItemNarrative[0]){     //enter shoe narrative 
                     this.button_continue.visible = false;
                     this.button_leave.visible = false;
                     this.getNextLine(scriptText.pickUpShoe);
                 }
-            }else if(!hasItem[0] && this.haveNotEnteredFlag1()){
+            } else if(!hasItem[0] && this.haveNotEnteredFlag1()){
                 this.shoe.input.draggable = true;
-            }
+            } 
 
             if(this.haveNotEnteredFlag1()){     //Makes sure players can't go back to the beginning of this flag
                 if(Phaser.Input.Keyboard.JustDown(keyRight)) {              //continue into the forest route
@@ -176,7 +175,7 @@ class Play extends Phaser.Scene {
             nextLine = 1;
 
             //to display choices, probably need to do it for every branch
-            if(finishNarrative[0] && this.haveNotEnteredFlag1()) { 
+            if(finishNarrative[0] && this.haveNotEnteredFlag1() && hasItem[0]) { 
                 this.button_continue.visible = true;
                 this.button_leave.visible = true;
             }
