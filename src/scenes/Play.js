@@ -90,6 +90,8 @@ class Play extends Phaser.Scene {
         scriptText = this.cache.json.get('json_script');
         this.continueRoute = false;
         this.leaveRoute = false;
+        this.fogRoute = false;
+        this.firstTimer = true;
 
         //create text
         narrativeText = this.add.text(80, 445, scriptText.crossroad1[0], wordConfig);
@@ -134,10 +136,17 @@ class Play extends Phaser.Scene {
                 } else if (this.leaveRoute) {
                     this.getNextLine(scriptText.crossroad1_leave);
                 }
-            } else {                      //finish second part narrative and reach choices
-                
-                
-
+            } else {                      //finish second narrative flag, return to main narrative if available
+                if(this.continueRoute) {
+                    if(!finishNarrative[3]){
+                        this.placeImage = this.add.image(0,0, 'towerFog').setOrigin(0, 0);
+                        narrativeText.setText(scriptText.crossroad1_fog[0]);
+                    }
+                } else if (this.leaveRoute) {
+                    if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                        this.resetGame();
+                    }
+                }
             }
         }
 
@@ -153,8 +162,13 @@ class Play extends Phaser.Scene {
     getNextLine(target) {     
         if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
             console.log("nextLine is " + nextLine);
+            if(this.firstTimer == true){
+                nextLine = 0;
+                this.firstTimer = false; 
+            }
             narrativeText.setText(target[nextLine]);
             nextLine++;
+
         }
 
         //to add the shoe object
@@ -165,6 +179,8 @@ class Play extends Phaser.Scene {
 
         //when it reaches the end of the array
         if (nextLine == target.length){
+
+            this.firstTimer = true;
 
             if(!this.checkItemNarrative(target)){       //if it's a flag narrative
                 finishNarrative[finishNarrativeIndex] = true;
