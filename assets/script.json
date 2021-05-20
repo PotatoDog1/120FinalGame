@@ -46,6 +46,157 @@
       "Its roots, which reach out some thirty feet or\nso in all directions, form a perfect circle around the trunk.",
       "This clearing, allowing you a view of the sky,\nsits in silence. The whistling of wind shakes\nthe leaves of the old wood.",
       "You are alone."
+    ],
+    "grotto_Investigate":[
+       "The tree stands unmoving before you.\nSlowly and methodically carving a path to the dirt below,\namber resin leaks from the old wood.",
+       "The air is silent around you,\nthe fog kept on the outskirts of this small grotto."
+    ],
+    "grottoWifeFinally":[
+      "\"Finally. what?\" Your wife responds.",
+      "You're sitting on your couch, the leather old and cracking.\nYour wife sits next to you, her gaze undecipherable.",
+      "She's waiting for a response."
+    ],
+    "grottoWifeSilence":[
+       "\"Listen, if you don't feel like talking, that's fine. Just please don't ignore me.\"\nShe continues, a hint of annoyance in her voice.",
+       "She's doing her best to hide it,\nbut you know her well enough.",
+       "She's dealt with this before."
+    ],
+    "grottoApologeticWife":[
+       "She stares at you for a moment before nodding her head.",
+       "\"We were talking about Adalade.\nYou said you finally got her into that preschool, right?\nThe one next to the Dennys?\""
+    ],
+    "grottoWifeLifePreschool":[
+       "\"Oh. Really?\"\nShe seems surprised.",
+       "\"Do you think you can take her then?\nOn your way to work?\""
+    ],
+    "wifeNoPreschool":[
+       "She nods in understanding.\nYou know the look.\nYou've seen it before.\nThe hint of disappointment.\nThe attempt to hide it.\nIt's routine."
+    ],
+    "backToGrotto":[
+       "A strong gust of wind forces you back to the grotto.\nA chill runs through your spin.\nYou are alone again."
+    ],
+    "waitAtGrotto":[
+       "It dawns on you that you're wasting your time here.",
+       "\"Honey, did you pick up Adalade from school?\"\nYour wife calls from the living room.",
+       "You didn't.\nShe got out of school two hours ago.\nYou've been sitting on this couch since you woke up."
+    ],
+    "areYouSerious":[
+       "\"Holy fucking shit. You did not leave our daughter at school again.\"",
+       "A deafening silence follows her words.",
+       "Then, the shuffling of feet,\ndangling of keys,\n and the closing of a front door all follow in quick succession.",
+       "You stand there.\nMotionless."
+    ],
+    "flashbackScreamAtWife":[
+       "You yell as she leaves.",
+       "Suddenly out of breath, you find yourself heaving for air."
+    ],
+    "grottoBreathingExercise":[
+       "You take a breath.\nYou remember how to do this, right?",
+       "It's the box breathing method.",
+       "You know, 4-4-4-4?",
+       "You spend sixteen seconds breathing.\nYes, exactly sixteen."
+    ],
+    "punchGrottoTree":[
+       "You punch the tree.\nIt deserved it probably.\nYour hand stings with disapproval."
+    ],
+    "grottoLeavePartOne":[
+       "You turn to leave from the grotto,\nonly to see an unrecognizable assortment\nof trees and forest behind you.",
+       "You are totally and completely lost."
+    ],
+    "grottoLeavePart2:":[
+       "A sudden and complete sense of dread and paranoia overcome you\nas you return to the grotto.",
+       "For some reason,\nyou feel as though you just danced with death."
+    ],
+    "creekStart":[
+       "The sound of running water begins to fill\nyour ears as you spot a small\nriver cutting the forest in two.",
+       "A bridge connects the ten foot gap\nbetween you and the land opposite the river.",
+       "It's wooden floorboards sway and rattle gently with the wind.",
+       "This bridge hasn't been maintained in some time.\nDroplets of water drip from its wood, as though it has just been misted.",
+       "It beckons you to cross the chasm.\nAs you peer below, over the edge, you quickly note the distance to be fifteen feet, give or take a foot.",
+       "It would not be a pleasant fall."
+    ],
+    "cussAtWorld":[
+       "Your wife stands, staring at you.\nUnflinching.\nHer gaze stern and focused.",
+       "You are in your garage,\nsunlight flooding in from the open door that\nallows a view into the empty street.",
+       "\"Is that all?\"She asks you.\nThe tone is piercing."
+    ],
+    "yesIsThatAll":[
+       "Her expression recoils slightly,\ncaught off-guard by your answer.",
+       "\"Well in that case, I'm done here.\nYou need to figure your shit out,\nbecause you can't just be cussing at me like that.\"",
+       "\"I deserve better. I'm here for you, but I'm not here to be your punching bag.\"",
+       "She sighs.\nThis is a conversation she's had many times over.",
+       "\"You know what? I...Just. Nevermind. Figure your shit out, okay?\" She asks,\nturning and leaving the garage.",
+       "Your car sits expectantly in the room."
+    ],
+    "confirmYellAtWife":[
+       "Are you sure?"
+    ],
+    "noIsThatAll":[
+       "The moment you begin to speak, your wife interrupts you.",
+       "\"No? What the fuck do you mean no?\n Do you honestly think I'm just going to fucking sit here while you yell at me\n in my own garage?",
+       "\"Do you think I have the TIME to do that?\nFor YOU of all people? You've got to be joke, right?\"",
+       "She laughs.",
+       "\"Oh, this is rich. I'll tell you what,\nyou can tell your friends you got to stroke your little ego\none last time before I left you.\"",
+       "\"I'm sure that'll fix the gaping hole in your heart.\"",
+       "The door slams as she leaves.",
+       "For the first time, you are alone.",
+       "Your car sits expectantly in the room."
+    ],
+    "sayNothingIsThatAll":[
+       "\"You can't keep doing this.\"\n She sighs.",
+       "\"You can't just explode and then stay silent\nas though that solves the problem.\nI do not deserve this.\"",
+       "She speaks,\n\"Get your shit together, alright?\nI said I'd be there for you, but I'm not here to be your punching bag.",
+       "\"Not talking to me doesn't solve the problem.\n Bottling up doesn't solve the problem.\"",
+       "A deep exhale escapes from her nose\nas she turns to leave.",
+       "\"And Adalade doesn't deserve this either. Figure your shit out.\"",
+       "Your car sits expectantly in the room."
+    ],
+    "theSceneBeforeTheGameStarts":[
+       "Without hesitation, you enter your vehicle,\nslamming the reverse as you exit your home.",
+       "The highway offers little respite as you pass person after person,\ntheir cars becoming blurs on the wayside.",
+       "An exit, one that, to your knowledge,\nhas just finished construction, appears up ahead."
+    ],
+    "bridgeCrossing":[
+       "You approach the bridge, placing your hands on its posts,\neach of which are staked deep into the earth.",
+       "It beckons you to cross.",
+       "You step forward, the wooden floorboards creaking beneath you.\nThe bridge holds your weight.\nYou allow yourself a breath of relief.",
+       "A gust of wind forces you to steel your grip.\nYou feel your hands tighten around the rope handles\n of the bridge as it rattles with the breeze."
+    ],
+    "walkAcrossBridge":[
+       "You take your steps slowly,\ncareful to not step on any portions of clearly rotted wood.",
+       "The bridge rattles as you step,\nsome of the floorboards shifting slightly beneath your weight.",
+       "Before long, you have found yourself\non the other side of the river, the forest covered in fog behind you.",
+       "A breeze sways the treetops.\nThe soft sound of leaves brushing against leaves fills the air.",
+       "The tower, ever so close,\nstands fortified in the ground.\nIt appears your journey is nearing an end."
+    ],
+    "takeABreakAtBridge":[
+       "You feel calmer.\nThe tightness in your chest mellows slightly as you take a breath.\nThe forest offers a moment of brevity and peace.",
+       "The air is cold against your nose, forcing a sniffle.",
+       "A squirrel passing underfoot catches your attention\nbefore disappearing high into one of the trees.",
+       "You are alone, but at least there's company."
+    ],
+    "goodEnding":[
+       "You begin the ascent of the spiral staircase, small windows adorning the its sides,\nallowing you glimpses into the outside world as you climb.",
+       "Your legs are heavy, weary from the journey.\nThe fog seems to recede the higher you climb,\nthe forest becoming more and more visible\nas you trek further up the tower",
+       "You climb for what seems like ages, soon finding that the top of this\ntower has long since been destroyed.",
+       "Or perhaps, it was never completed.",
+       "It stands half-constructed. As you peer below,\nyou find that the ground is a great distance below you.",
+       "You stand at the half-constructed peak of this tower,\ngazing at the forest and its surroundings.",
+       "A familiar grotto, noticeable by the forest clearing, sways below you.\nThe sounds of the fauna appear to be dying down as the sunn\nwanes below the horizon in the distance.",
+       "A single lighthouse, sitting on a rock formation just past the coast,\nhas begun to spin its light in a familiar rhythm.",
+       "You feel at ease as you stare at this view.\nThe forest sways in delight.",
+       "The sun begins to dip over the horizon."
+    ],
+    "badEnding":[
+       "You begin the ascent of the spiral staircase,\nsmall windows adorning the its sides,\nallowing you glimpses into the outside world as you climb.",
+       "Your legs are heavy, weary from the journey.\nThe fog outside seems to completely engulf the base of the tower.",
+       "In other words, below you is a sea of fog,\nthe gray of the clouds staionary above you.",
+       "You climb for what seems like ages, soon finding that the top of this\ntower has long since been destroyed.",
+       "Or perhaps, it was never completed.",
+       "It stands half-constructed. As you peer below,\nyou find that the ground is a great distance below you.",
+       "Looking up, the forest and its surroundings remain drenched in fog.",
+       "The coast gently waves in the distance,\na singular lighthouse planting on a rock formation in the water\nspins its focused light in a familiar rhythm.",
+       "Ever so faintly, you hear the sound of waves crashing on rock.",
+       "he forest offers you this view,\nhowever, a waning sun in the distance,\nducking under the horizon, indicates that it is not to last."
     ]
-
 }
