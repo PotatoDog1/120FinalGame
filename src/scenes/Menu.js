@@ -15,7 +15,6 @@ class Menu extends Phaser.Scene {
         this.instructionText.setFontStyle('bold');
         this.instructionText.setFontSize(18);
 
-        //testing push to main
     }
 
     update() {
