@@ -31,8 +31,8 @@ class Play extends Phaser.Scene {
         });
 
         //all choices 
-        this.button_continue = this.add.image(80, 490, 'continue').setOrigin(0,0);
-        this.button_leave = this.add.image(80, 527, 'leave').setOrigin(0,0);
+        this.button_continue = this.add.sprite(80, 490, 'continue').setOrigin(0,0).setInteractive();
+        this.button_leave = this.add.sprite(80, 527, 'leave').setOrigin(0,0).setInteractive();
         this.button_continue.visible = false;
         this.button_leave.visible = false;
 
@@ -54,7 +54,7 @@ class Play extends Phaser.Scene {
         this.noDropZone.depth = -0.5;       //to hide it from players
         this.noDropZone.setInteractive({
             dropZone: true
-        })
+        });
 
         this.shoe = this.add.sprite(80, 0, 'shoe').setOrigin(0, 0);
         this.shoe.depth = 1.5;
@@ -115,6 +115,7 @@ class Play extends Phaser.Scene {
 
             if(this.haveNotEnteredFlag1()){     //Makes sure players can't go back to the beginning of this flag
                 
+                /*
                 if(Phaser.Input.Keyboard.JustDown(keyRight)) {              //continue into the forest route
                     this.continueRoute = true;      //branch flag
                     narrativeText.setText(scriptText.crossroad1_continue[0]);
@@ -125,22 +126,23 @@ class Play extends Phaser.Scene {
                     narrativeText.setText(scriptText.crossroad1_leave[0]);
                     this.destroyChoiceButtons(this.button_continue, this.button_leave);
                 }
+                */
                 
                 //tried to implement mouse click on the choices
-                /*
+                
                 this.button_continue.on('pointerdown', function (pointer) {
                     this.continueRoute = true;      //branch flag
                     narrativeText.setText(scriptText.crossroad1_continue[0]);
-                    //this.destroyChoiceButtons(this.button_continue, this.button_leave);
+                    this.destroyChoiceButtons(this.button_continue, this.button_leave);
                     this.placeImage = this.add.image(0, 0, 'tower').setOrigin(0, 0);
-                });
+                }, this);
 
                 this.button_leave.on('pointerdown', function(pointer) {
                     this.leaveRoute = true;     //branch flag
                     narrativeText.setText(scriptText.crossroad1_leave[0]);
-                    //this.destroyChoiceButtons(this.button_continue, this.button_leave);
-                });
-                */
+                    this.destroyChoiceButtons(this.button_continue, this.button_leave);
+                }, this);
+                
 
             } else {
                 if(!hasItem[0]){            //if players chose a route without picking up the shoe
