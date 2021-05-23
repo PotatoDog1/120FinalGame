@@ -125,7 +125,7 @@ class Grotto extends Phaser.Scene {
                     this.finallyRoute = true;      //branch flag
                     narrativeText.setText(scriptText.grotto_wifeFinally[0]);
                     this.destroyChoiceButtons(this.button_finally, this.button_investigate, this.button_movePast);
-                    this.placeImage = this.add.image(0, 0, 'livingRoom').setOrigin(0, 0);
+                    this.placeImage = this.add.image(0, 0, 'livingRoom').setOrigin(0, 0).setScale(0.97);
                 }, this);
 
                 this.button_investigate.on('pointerdown', function(pointer) {

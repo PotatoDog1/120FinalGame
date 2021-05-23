@@ -19,7 +19,7 @@ class Preload extends Phaser.Scene{
         
         //grotto temp art assets
         this.load.image('grotto', './assets/grottoTemp.png');
-        this.load.image('livingRoom', './assets/livingRoomTemp.png');
+        this.load.image('livingRoom', './assets/livingRoom_shrinked.png');
 
         //area to define non droppable zone
         this.load.image('noDrop', './assets/nonDropZone.png');
