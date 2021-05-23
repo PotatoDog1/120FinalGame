@@ -7,7 +7,6 @@ class Grotto extends Phaser.Scene {
 
         //define keys
         keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-        keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //add bgm
@@ -103,9 +102,61 @@ class Grotto extends Phaser.Scene {
 
     update() {
 
+    
+
         if (Phaser.Input.Keyboard.JustDown(keyW)) {
             this.scene.start('crossroadScene');
         }
 
+        if(keyQ.isDown) {               //return to menu
+            this.resetGame();
+        }
     }
+
+    //Functions---------------------------------------------------
+
+    //Goes through each line of the narrative from the arrays in the script.json file
+    getNextLine(target) {     
+        if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
+            console.log("nextLine is " + nextLine);
+            narrativeText.setText(target[nextLine]);
+            nextLine++;
+
+        }
+
+        //when it reaches the end of the array
+        if (nextLine == target.length){
+
+            if(!this.checkItemNarrative(target)){       //if it's a flag narrative
+                finishNarrative[finishNarrativeIndex] = true;
+                finishNarrativeIndex++;
+            }
+
+            //reset to the beginning of the line
+            nextLine = 1;
+
+        }
+
+    }
+
+    resetGame() {
+        for(var i = 0; i < finishNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+            finishNarrative[i] = false;
+            //console.log("looping through finishNarrative. Finished " + i + " time, " + i + " is " + finishNarrative[i]);
+        }
+
+        for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
+            hasItem[i] = false;
+        }
+
+        for(var i = 0; i < finishItemNarrative.length; i++) {       //to loop through the itemNarrative array and reset them to false
+            finishItemNarrative[i] = false;
+        }
+
+        finishNarrativeIndex = 0;     //to reset narrative to the beginning flag
+        nextLine = 1;           //to reset narrative to the beginning line
+        main_bgm.stop();        //to stop game bgm when they come back to menu
+        this.scene.start('menuScene');
+    }
+
 }

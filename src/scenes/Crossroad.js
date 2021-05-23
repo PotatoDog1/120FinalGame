@@ -315,10 +315,7 @@ class Crossroad extends Phaser.Scene {
             }
 
             hasItem[0] = true;          //it's the shoe
-    
-            for(var i = 0; i < finishItemNarrative.length; i++) {       //to loop through the itemNarrative array and reset them to false
-                finishItemNarrative[i] = false;
-            }
+            finishItemNarrative[0] = true;      //shoe narrative
 
             finishNarrativeIndex = 6;     //to reset narrative to the beginning flag
             nextLine = 1;           //to reset narrative to the beginning line
