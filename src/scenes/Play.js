@@ -19,26 +19,34 @@ class Play extends Phaser.Scene {
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
         this.add.image(0, 400, 'bg_notepad').setOrigin(0,0);
         this.placeImage = this.add.image(0, 0, 'crossroad').setOrigin(0, 0);
-        this.portrait = this.add.image(415, 65, 'portrait').setOrigin(0, 0);
+        this.portrait = this.add.image(515, 160, 'portrait').setScale(1.15);
         
         //breathing portrait animation
         this.tweens.add({
             targets: [this.portrait],
-            scale: {from: 1.02, to: 1.0},
+            scale: {from: 1.17, to: 1.15},
             duration: 830,
             yoyo: true,
             repeat: -1
         });
+
+        this.checkPocketNarrative = false;
+        this.checkPocket = false;
 
         //all choices 
         this.button_continue = this.add.sprite(80, 490, 'continue').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_leave = this.add.sprite(80, 527, 'leave').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_continue2 = this.add.sprite(80, 490, 'continue2').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_leave2 = this.add.sprite(80, 527, 'leave2').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_yes = this.add.sprite(80, 530, 'yes').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_no = this.add.sprite(80, 571, 'no').setOrigin(0,0).setInteractive({useHandCursor: true});
+        
         this.button_continue.visible = false;
         this.button_leave.visible = false;
         this.button_continue2.visible = false;
         this.button_leave2.visible = false;
+        this.button_yes.visible = false;
+        this.button_no.visible = false;
 
         // scribbling animation
         let scribble = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
@@ -48,10 +56,38 @@ class Play extends Phaser.Scene {
         //Inventory related ----------------------------------------------------
 
         //inventory bag
-        this.bag = this.add.sprite(377, 255, 'bag').setOrigin(0, 0);
+        this.bag = this.add.sprite(509, 327, 'bag').setOrigin(0.5, 0.5);
         this.bag.setInteractive({
-            dropZone: true
+            dropZone: true,
+            useHandCursor: true
         });
+        this.bag.on('pointerdown', function(pointer) {          //after players check pocket
+            if(this.checkPocketNarrative){
+                this.bagShake.stop();
+                narrativeText.setText(scriptText.pocket[0]);
+                this.checkPocket = true;
+                this.checkPocketNarrative = false;
+            }
+        }, this);
+
+        //when pointer is over the bag, it will scale up, if not it will scale down
+        this.bag.on('pointerover', function(pointer) {
+            this.setScale(1.1);
+        });
+
+        this.bag.on('pointerout', function(pointer) {
+            this.setScale(1);
+        })
+
+        this.bagShake = this.tweens.add({
+            targets: this.bag,
+            angle: {from: -4, to: 4},
+            ease: 'Bounce.easeIn',
+            duration: 1400,
+            repeat: -1,
+            yoyo: true,
+        });
+        this.bagShake.pause();
 
         //nodrop zone image
         this.noDropZone = this.add.sprite(0, 0, 'noDrop').setOrigin(0, 0);
@@ -60,12 +96,20 @@ class Play extends Phaser.Scene {
             dropZone: true
         })
 
-        this.shoe = this.add.sprite(80, 0, 'shoe').setOrigin(0, 0);
-        this.shoe.depth = 1.5;
+        this.shoe = this.add.sprite(193, 129, 'shoe');
+        this.shoe.depth = 1.2;
         this.shoe.setInteractive({
             draggable: true,
             useHandCursor: true
         });
+
+        this.shoe.on('pointerover', function(pointer) {
+            this.setScale(1.1);
+        });
+
+        this.shoe.on('pointerout', function(pointer) {
+            this.setScale(1);
+        })
 
         this.shoe.on('drag', (pointer, dragX, dragY) => {       //actually move the shoe sprite
             this.shoe.x = dragX;
@@ -96,8 +140,8 @@ class Play extends Phaser.Scene {
         this.leaveRoute = false;
         this.continueRoute2 = false;
         this.leaveRoute2 = false;
-        this.fogRoute = false;
-        this.firstTimer = true;
+        this.yesRoute = false;
+        this.noRoute = false;
 
         //create text
         narrativeText = this.add.text(80, 445, scriptText.crossroad[0], wordConfig);
@@ -115,11 +159,11 @@ class Play extends Phaser.Scene {
                     this.button_leave.visible = false;
                     this.getNextLine(scriptText.pickUpShoe);
                 }
-            } else if(!hasItem[0] && this.pickingChoice1()){
+            } else if(!hasItem[0] && this.pickingChoice(this.leaveRoute, this.continueRoute)){
                 this.shoe.input.draggable = true;
             } 
 
-            if(this.pickingChoice1()){     //Makes sure players can't go back to the beginning of this flag
+            if(this.pickingChoice(this.leaveRoute, this.continueRoute)){     //Makes sure players can't go back to the beginning of this flag
                                
                 this.button_continue.on('pointerdown', function (pointer) {
                     this.continueRoute = true;      //branch flag
@@ -170,11 +214,17 @@ class Play extends Phaser.Scene {
                         }
                         
                     } else {
-                        //console.log("hehehe");
                         if(this.continueRoute2) {
-                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                                this.resetGame();
+                            if(!this.checkPocket){          //before players click on bag
+                                this.bagShake.play();
+                                this.checkPocketNarrative = true;
                             }
+
+                            if(this.checkPocket == true && !finishNarrative[4]){            //after players click on pocket
+                                this.bag.setAngle(0);
+                                this.getNextLine(scriptText.pocket);
+                            }
+
                         } else if(this.leaveRoute2) {
                             if(Phaser.Input.Keyboard.JustDown(keySpace)) {
                                 this.resetGame();
@@ -226,14 +276,19 @@ class Play extends Phaser.Scene {
             nextLine = 1;
 
             //to display choices, probably need to do it for every branch
-            if(finishNarrative[0] && this.pickingChoice1() && hasItem[0]) { 
+            if(finishNarrative[0] && this.pickingChoice(this.leaveRoute, this.continueRoute) && hasItem[0]) { 
                 this.button_continue.visible = true;
                 this.button_leave.visible = true;
             } 
-            if (finishNarrative[2] && this.pickingChoice2() && this.continueRoute){
+            if(finishNarrative[2] && this.pickingChoice(this.leaveRoute2, this.continueRoute2) && this.continueRoute){
                 this.button_continue2.visible = true;
                 this.button_leave2.visible = true;
             }
+            if(finishNarrative[4] && this.pickingChoice(this.yesRoute, this.noRoute) && this.continueRoute) {
+                this.button_yes.visible = true;
+                this.button_no.visible = true;
+            }
+
 
             if(hasItem[0]){
                 finishItemNarrative[0] = true;
@@ -260,13 +315,9 @@ class Play extends Phaser.Scene {
        return false;
     }
 
-    //checks if players have progressed into flag1 yet
-    pickingChoice1() {
-        return !this.leaveRoute && !this.continueRoute;
-    }
-
-    pickingChoice2(){
-        return !this.leaveRoute2 && !this.continueRoute2;
+    //checks if players have picked a choice at the moment yet
+    pickingChoice(choice1, choice2) {
+        return !choice1 && !choice2;
     }
 
     //destroys choice buttons in one function
