@@ -313,15 +313,16 @@ class Crossroad extends Phaser.Scene {
             for(var i = 0; i < finishNarrative.length - 1; i++) {      //to loop through the narrative flag array and reset them all to false
                 finishNarrative[i] = true;
             }
-    
-            for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
-                hasItem[i] = false;
-            }
+
+            hasItem[0] = true;          //it's the shoe
     
             for(var i = 0; i < finishItemNarrative.length; i++) {       //to loop through the itemNarrative array and reset them to false
                 finishItemNarrative[i] = false;
             }
-            console.log("pressed e");
+
+            finishNarrativeIndex = 6;     //to reset narrative to the beginning flag
+            nextLine = 1;           //to reset narrative to the beginning line
+            main_bgm.stop();        //to stop game bgm when they come back to menu
             this.scene.start('grottoScene');
         }
 
