@@ -13,6 +13,7 @@ class Preload extends Phaser.Scene{
         this.load.image('tower', './assets/towerTemp.png');
         this.load.image('shoe', './assets/shoe.png');
         this.load.image('bag', './assets/inventoryTemp.png');
+        this.load.image('towerFog', './assets/towerFogTemp.png');
 
         //area to define non droppable zone
         this.load.image('noDrop', './assets/nonDropZone.png');
@@ -22,7 +23,9 @@ class Preload extends Phaser.Scene{
 
         //choice images
         this.load.image('continue', './assets/choices/choice_continue.png');   
-        this.load.image('leave', './assets/choices/choice_leave.png');     
+        this.load.image('leave', './assets/choices/choice_leave.png');  
+        this.load.image('continue2', './assets/choices/choice_continue2.png');   
+        this.load.image('leave2', './assets/choices/choice_leave2.png'); 
 
         //json scripts
         this.load.json('json_script', 'assets/script.json'); // actual script

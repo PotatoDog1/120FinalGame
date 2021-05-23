@@ -31,10 +31,14 @@ class Play extends Phaser.Scene {
         });
 
         //all choices 
-        this.button_continue = this.add.image(80, 490, 'continue').setOrigin(0,0);
-        this.button_leave = this.add.image(80, 527, 'leave').setOrigin(0,0);
+        this.button_continue = this.add.sprite(80, 490, 'continue').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_leave = this.add.sprite(80, 527, 'leave').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_continue2 = this.add.sprite(80, 490, 'continue2').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_leave2 = this.add.sprite(80, 527, 'leave2').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_continue.visible = false;
         this.button_leave.visible = false;
+        this.button_continue2.visible = false;
+        this.button_leave2.visible = false;
 
         // scribbling animation
         let scribble = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
@@ -90,55 +94,99 @@ class Play extends Phaser.Scene {
         scriptText = this.cache.json.get('json_script');
         this.continueRoute = false;
         this.leaveRoute = false;
+        this.continueRoute2 = false;
+        this.leaveRoute2 = false;
+        this.fogRoute = false;
+        this.firstTimer = true;
 
         //create text
-        narrativeText = this.add.text(80, 445, scriptText.crossroad1[0], wordConfig);
+        narrativeText = this.add.text(80, 445, scriptText.crossroad[0], wordConfig);
 
     }
 
     update() {
 
         if(!finishNarrative[0]) {     //enter first narrative flag check to start the game; these are to stop it from updating the narrative text to the corresponding flag all the time
-            this.getNextLine(scriptText.crossroad1);
+            this.getNextLine(scriptText.crossroad);
         } else {                //finish first part narrative and reach choices
-
             if(hasItem[0]){     //if players pick up the item(shoe)
                 if(!finishItemNarrative[0]){     //enter shoe narrative 
                     this.button_continue.visible = false;
                     this.button_leave.visible = false;
                     this.getNextLine(scriptText.pickUpShoe);
                 }
-            }else if(!hasItem[0] && this.haveNotEnteredFlag1()){
+            } else if(!hasItem[0] && this.pickingChoice1()){
                 this.shoe.input.draggable = true;
-            }
+            } 
 
-            if(this.haveNotEnteredFlag1()){     //Makes sure players can't go back to the beginning of this flag
-                if(Phaser.Input.Keyboard.JustDown(keyRight)) {              //continue into the forest route
+            if(this.pickingChoice1()){     //Makes sure players can't go back to the beginning of this flag
+                               
+                this.button_continue.on('pointerdown', function (pointer) {
                     this.continueRoute = true;      //branch flag
-                    narrativeText.setText(scriptText.crossroad1_continue[0]);
+                    narrativeText.setText(scriptText.crossroad_continue[0]);
                     this.destroyChoiceButtons(this.button_continue, this.button_leave);
                     this.placeImage = this.add.image(0, 0, 'tower').setOrigin(0, 0);
-                } else if(Phaser.Input.Keyboard.JustDown(keyLeft)) {       //leave forest route
+                }, this);
+
+                this.button_leave.on('pointerdown', function(pointer) {
                     this.leaveRoute = true;     //branch flag
-                    narrativeText.setText(scriptText.crossroad1_leave[0]);
+                    narrativeText.setText(scriptText.crossroad_leave[0]);
                     this.destroyChoiceButtons(this.button_continue, this.button_leave);
-                }
+                }, this);
+                
             } else {
-                if(!hasItem[0]){            //if players chose a route without picking up the shoe
+                if(!hasItem[0]){            //if players chose a route without picking up the shoe(need revising)
                     this.shoe.destroy();
                 }
             }
 
-            if(!finishNarrative[1]){      //enter second narrative flag check
+            if(!finishNarrative[2]){      //enter second narrative flag check
                 if(this.continueRoute) {
-                    this.getNextLine(scriptText.crossroad1_continue);
+                    this.getNextLine(scriptText.crossroad_continue);
                 } else if (this.leaveRoute) {
-                    this.getNextLine(scriptText.crossroad1_leave);
+                    this.getNextLine(scriptText.crossroad_leave);
                 }
-            } else {                      //finish second part narrative and reach choices
+            } else {                      //finish second narrative flag, return to main narrative if available
+                if(this.continueRoute) {
 
-                
+                    this.button_continue2.on('pointerdown', function (pointer) {
+                        this.continueRoute2 = true;      //branch flag
+                        narrativeText.setText(scriptText.crossroad_fog[0]);
+                        this.destroyChoiceButtons(this.button_continue2, this.button_leave2);
+                        this.placeImage = this.add.image(0, 0, 'towerFog').setOrigin(0, 0);
+                    }, this);
+    
+                    this.button_leave2.on('pointerdown', function(pointer) {
+                        this.leaveRoute2 = true;     //branch flag
+                        narrativeText.setText(scriptText.crossroad_leave[0]);
+                        this.destroyChoiceButtons(this.button_continue2, this.button_leave2);
+                    }, this);
 
+                    if(!finishNarrative[3]){
+                        if(this.continueRoute2) {
+                            this.getNextLine(scriptText.crossroad_fog);
+                        } else if (this.leaveRoute2) {
+                            this.getNextLine(scriptText.crossroad_leave);
+                        }
+                        
+                    } else {
+                        //console.log("hehehe");
+                        if(this.continueRoute2) {
+                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                this.resetGame();
+                            }
+                        } else if(this.leaveRoute2) {
+                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                this.resetGame();
+                            }
+                        }
+                    }
+
+                } else if (this.leaveRoute) {
+                    if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                        this.resetGame();
+                    }
+                }
             }
         }
 
@@ -154,8 +202,10 @@ class Play extends Phaser.Scene {
     getNextLine(target) {     
         if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
             console.log("nextLine is " + nextLine);
+
             narrativeText.setText(target[nextLine]);
             nextLine++;
+
         }
 
         //to add the shoe object
@@ -176,9 +226,13 @@ class Play extends Phaser.Scene {
             nextLine = 1;
 
             //to display choices, probably need to do it for every branch
-            if(finishNarrative[0] && this.haveNotEnteredFlag1()) { 
+            if(finishNarrative[0] && this.pickingChoice1() && hasItem[0]) { 
                 this.button_continue.visible = true;
                 this.button_leave.visible = true;
+            } 
+            if (finishNarrative[2] && this.pickingChoice2() && this.continueRoute){
+                this.button_continue2.visible = true;
+                this.button_leave2.visible = true;
             }
 
             if(hasItem[0]){
@@ -195,17 +249,24 @@ class Play extends Phaser.Scene {
 
     //checks if target is an item narrative or not;to prevent item narrative texts from messing up the finishNarrative/flag array
     checkItemNarrative(target) {
+        /* will update when we have the next item
         if(target === scriptText.pickUpShoe){           //need to update every time we add an new item
             console.log("found an item")
             return true;
         } else {
             return false;
         }
+        */
+       return false;
     }
 
     //checks if players have progressed into flag1 yet
-    haveNotEnteredFlag1() {
+    pickingChoice1() {
         return !this.leaveRoute && !this.continueRoute;
+    }
+
+    pickingChoice2(){
+        return !this.leaveRoute2 && !this.continueRoute2;
     }
 
     //destroys choice buttons in one function
@@ -231,6 +292,11 @@ class Play extends Phaser.Scene {
         for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
             hasItem[i] = false;
         }
+
+        for(var i = 0; i < finishItemNarrative.length; i++) {       //to loop through the itemNarrative array and reset them to false
+            finishItemNarrative[i] = false;
+        }
+
         finishNarrativeIndex = 0;     //to reset narrative to the beginning flag
         nextLine = 1;           //to reset narrative to the beginning line
         main_bgm.stop();        //to stop game bgm when they come back to menu

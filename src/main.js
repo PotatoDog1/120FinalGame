@@ -47,15 +47,19 @@ let narrativeText;
 let nextLine = 1;
 
 //branch check
-let finishNarrative = [false, false, false];      //the length of this array will corresond to the number of flags/choices players can make
-    //notes:          [crossroad, continue/leave, fog/leave]
+let finishNarrative = [false, false, false, false];      //the length of this array will corresond to the number of flags/choices players can make
+    //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave]
 let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
 
-//item check
+//main plot check(mandatory)
+let nonStopNarrative = [true, true, false, true];
+
+
+//item check - will be updated when items besides shoe got added to the game
 let hasItem = [false];
-    //notes:  [shoe]
+    //notes:  [XXXXX]
 let finishItemNarrative = [false];
-    //notes:              [shoeNarrative]
+    //notes:              [XXXXX]
 
 //tween Scale variable
 const SCALE = 0.5;
