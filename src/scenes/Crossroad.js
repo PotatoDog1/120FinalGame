@@ -305,13 +305,14 @@ class Crossroad extends Phaser.Scene {
             }
         }
 
-        if(keyQ.isDown) {               //return to menu
+        if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
             this.resetGame();
         }
 
-        if(keyE.isDown) {
-            for(var i = 0; i < finishNarrative.length - 1; i++) {      //to loop through the narrative flag array and reset them all to false
+        if(Phaser.Input.Keyboard.JustDown(keyE)) {
+            for(var i = 0; i < 6; i++) {      //to loop through the narrative flag array and reset them all to false
                 finishNarrative[i] = true;
+                //console.log("finishNarrative[" + i + "] is " + finishNarrative[i]);
             }
 
             hasItem[0] = true;          //it's the shoe

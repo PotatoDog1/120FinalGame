@@ -46,29 +46,29 @@
    ],
    "grotto":[
      "One tree, its wood blackand sickly, stands as\nthe centerpiece in a small grotto. ",
-     "Its roots, which reach out some thirty feet or\nso in all directions, form a perfect circle around the trunk.",
+     "Its roots, which reach out some thirty feet\nor so in all directions, form a perfect circle\naround the trunk.",
      "This clearing, allowing you a view of the sky,\nsits in silence. The whistling of wind shakes\nthe leaves of the old wood.",
      "You are alone."
    ],
-   "grotto_Investigate":[
+   "grotto_investigate":[
       "The tree stands unmoving before you.\nSlowly and methodically carving a path to the dirt below,\namber resin leaks from the old wood.",
       "The air is silent around you,\nthe fog kept on the outskirts of this small grotto."
    ],
-   "grottoWifeFinally":[
+   "grotto_wifeFinally":[
      "\"Finally. what?\" Your wife responds.",
      "You're sitting on your couch, the leather old and cracking.\nYour wife sits next to you, her gaze undecipherable.",
      "She's waiting for a response."
    ],
-   "grottoWifeSilence":[
+   "grotto_wifeSilence":[
       "\"Listen, if you don't feel like talking, that's fine. Just please don't ignore me.\"\nShe continues, a hint of annoyance in her voice.",
       "She's doing her best to hide it,\nbut you know her well enough.",
       "She's dealt with this before."
    ],
-   "grottoApologeticWife":[
+   "grotto_apologeticWife":[
       "She stares at you for a moment before nodding her head.",
       "\"We were talking about Adalade.\nYou said you finally got her into that preschool, right?\nThe one next to the Dennys?\""
    ],
-   "grottoWifeLifePreschool":[
+   "grotto_wifeLifePreschool":[
       "\"Oh. Really?\"\nShe seems surprised.",
       "\"Do you think you can take her then?\nOn your way to work?\""
    ],
@@ -93,7 +93,7 @@
       "You yell as she leaves.",
       "Suddenly out of breath, you find yourself heaving for air."
    ],
-   "grottoBreathingExercise":[
+   "grotto_breathingExercise":[
       "You take a breath.\nYou remember how to do this, right?",
       "It's the box breathing method.",
       "You know, 4-4-4-4?",
@@ -101,6 +101,10 @@
    ],
    "punchGrottoTree":[
       "You punch the tree.\nIt deserved it probably.\nYour hand stings with disapproval."
+   ],
+   "grotto_leave":[
+      "You leave the grotto in the past, turning to\ncontnue your pursuit of the distant tower,\nits spires reaching far into the gray overcast above.",
+      "The sounds of the fauna echo throughout the region."
    ],
    "grottoLeavePartOne":[
       "You turn to leave from the grotto,\nonly to see an unrecognizable assortment\nof trees and forest behind you.",

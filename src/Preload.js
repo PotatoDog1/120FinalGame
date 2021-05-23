@@ -19,6 +19,7 @@ class Preload extends Phaser.Scene{
         
         //grotto temp art assets
         this.load.image('grotto', './assets/grottoTemp.png');
+        this.load.image('livingRoom', './assets/livingRoomTemp.png');
 
         //area to define non droppable zone
         this.load.image('noDrop', './assets/nonDropZone.png');
@@ -33,6 +34,9 @@ class Preload extends Phaser.Scene{
         this.load.image('leave2', './assets/choices/choice_leave2.png'); 
         this.load.image('yes', './assets/choices/choice_yes.png'); 
         this.load.image('no', './assets/choices/choice_no.png'); 
+        this.load.image('finally', './assets/choices/choice_finally.png'); 
+        this.load.image('investigate', './assets/choices/choice_investigate.png');
+        this.load.image('movePast', './assets/choices/choice_movePast.png');  
 
         //json scripts
         this.load.json('json_script', 'assets/script.json'); // actual script
