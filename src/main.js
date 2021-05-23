@@ -38,6 +38,7 @@ let menuConfig = {
 //define keyboard keys
 let keyQ;
 let keyW;
+let keyE;
 let keySpace;
 
 //define script variables for getNextLine()
@@ -50,13 +51,9 @@ let finishNarrative = [false, false, false, false, false, false, false];      //
     //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave, pocket, pocketYes/No, grotto]
 let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
 
-//main plot check(mandatory)
-let nonStopNarrative = [true, true, false, true];
-
-
 //item check - will be updated when items besides shoe got added to the game
 let hasItem = [false];
-    //notes:  [XXXXX]
+    //notes:  [shoe]
 let finishItemNarrative = [false];
     //notes:              [XXXXX]
 

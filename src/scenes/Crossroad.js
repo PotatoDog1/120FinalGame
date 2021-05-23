@@ -7,6 +7,7 @@ class Crossroad extends Phaser.Scene {
 
         //define keys
         keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //add bgm
@@ -304,8 +305,24 @@ class Crossroad extends Phaser.Scene {
             }
         }
 
-        if(keyQ.isDown) {
+        if(keyQ.isDown) {               //return to menu
             this.resetGame();
+        }
+
+        if(keyE.isDown) {
+            for(var i = 0; i < finishNarrative.length - 1; i++) {      //to loop through the narrative flag array and reset them all to false
+                finishNarrative[i] = true;
+            }
+    
+            for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
+                hasItem[i] = false;
+            }
+    
+            for(var i = 0; i < finishItemNarrative.length; i++) {       //to loop through the itemNarrative array and reset them to false
+                finishItemNarrative[i] = false;
+            }
+            console.log("pressed e");
+            this.scene.start('grottoScene');
         }
 
     }

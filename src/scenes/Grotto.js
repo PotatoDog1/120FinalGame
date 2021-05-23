@@ -7,6 +7,7 @@ class Grotto extends Phaser.Scene {
 
         //define keys
         keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //add bgm
@@ -102,7 +103,7 @@ class Grotto extends Phaser.Scene {
 
     update() {
 
-        if (Phaser.Input.Keyboard.JustDown(keyQ)) {
+        if (Phaser.Input.Keyboard.JustDown(keyW)) {
             this.scene.start('crossroadScene');
         }
 
