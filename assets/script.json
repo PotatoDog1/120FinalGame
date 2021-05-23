@@ -19,8 +19,9 @@
        "In the distance, you see it.\nYour destination.\nYour goal.",
        "It stands tall, taller than you imagined.\nOf course, in reality most towers are larger\nthan you envision them to be, sturdier too.\nIt breaks the cloud-line.",
        "In fact, now that you've taken note of it, you\nfind that it is the only object to pierce the\ndense canopy of the woods. Additionally,\nyou can't even see the top.",
-       "As your gaze falls back to the forest,\nyou notice that a fog has begun overtaking the\nground layer. It appears that soon, this tower\nwill be your only guide.",
-       "Best to keep that in mind.\nYou continue forward, into the fog."
+       "As your gaze falls back to the forest,\nyou notice that a fog has begun overtaking the\nground layer.",
+       "It appears that soon, this tower\nwill be your only guide.\nBest to keep that in mind.",
+       "Last chance to decide where to go now."
     ],
     "crossroad_leave":[
        "You've left the forest.\nPerhaps it was for the best.",
@@ -28,7 +29,8 @@
     ],
     "crossroad_fog":[
       "You have trekked into the fog.",
-      "An immediate sense of regret washes over you.\nAs you turn to retrace your steps, you find\nthat the woods have already shifted behind you.\nThe tower, however, remains stationary."
+      "An immediate sense of regret washes over you.\nAs you turn to retrace your steps, you find\nthat the woods have already shifted behind you.\nThe tower, however, remains stationary.",
+      "That's it so far, press space to go back to Menu"
    ],
    "pocket":[
       "You dig through your pockets, looking for an\nindescript object. You aren't quite sure why.",

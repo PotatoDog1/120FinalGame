@@ -33,8 +33,12 @@ class Play extends Phaser.Scene {
         //all choices 
         this.button_continue = this.add.sprite(80, 490, 'continue').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_leave = this.add.sprite(80, 527, 'leave').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_continue2 = this.add.sprite(80, 490, 'continue2').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_leave2 = this.add.sprite(80, 527, 'leave2').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_continue.visible = false;
         this.button_leave.visible = false;
+        this.button_continue2.visible = false;
+        this.button_leave2.visible = false;
 
         // scribbling animation
         let scribble = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
@@ -90,6 +94,8 @@ class Play extends Phaser.Scene {
         scriptText = this.cache.json.get('json_script');
         this.continueRoute = false;
         this.leaveRoute = false;
+        this.continueRoute2 = false;
+        this.leaveRoute2 = false;
         this.fogRoute = false;
         this.firstTimer = true;
 
@@ -129,7 +135,7 @@ class Play extends Phaser.Scene {
                 }, this);
                 
             } else {
-                if(!hasItem[0]){            //if players chose a route without picking up the shoe
+                if(!hasItem[0]){            //if players chose a route without picking up the shoe(need revising)
                     this.shoe.destroy();
                 }
             }
@@ -142,15 +148,39 @@ class Play extends Phaser.Scene {
                 }
             } else {                      //finish second narrative flag, return to main narrative if available
                 if(this.continueRoute) {
-                    if(!finishNarrative[3]){
-                        this.placeImage = this.add.image(0,0, 'towerFog').setOrigin(0, 0);
+
+                    this.button_continue2.on('pointerdown', function (pointer) {
+                        this.continueRoute2 = true;      //branch flag
                         narrativeText.setText(scriptText.crossroad_fog[0]);
+                        this.destroyChoiceButtons(this.button_continue2, this.button_leave2);
+                        this.placeImage = this.add.image(0, 0, 'towerFog').setOrigin(0, 0);
+                    }, this);
+    
+                    this.button_leave2.on('pointerdown', function(pointer) {
+                        this.leaveRoute2 = true;     //branch flag
+                        narrativeText.setText(scriptText.crossroad_leave[0]);
+                        this.destroyChoiceButtons(this.button_continue2, this.button_leave2);
+                    }, this);
+
+                    if(!finishNarrative[3]){
+                        if(this.continueRoute2) {
+                            this.getNextLine(scriptText.crossroad_fog);
+                        } else if (this.leaveRoute2) {
+                            this.getNextLine(scriptText.crossroad_leave);
+                        }
+                        
                     } else {
-
+                        //console.log("hehehe");
+                        if(this.continueRoute2) {
+                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                this.resetGame();
+                            }
+                        } else if(this.leaveRoute2) {
+                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                this.resetGame();
+                            }
+                        }
                     }
-
-
-
 
                 } else if (this.leaveRoute) {
                     if(Phaser.Input.Keyboard.JustDown(keySpace)) {
@@ -172,18 +202,6 @@ class Play extends Phaser.Scene {
     getNextLine(target) {     
         if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
             console.log("nextLine is " + nextLine);
-            
-            /*
-            if(this.firstTimer == true){
-                nextLine = 0;
-                this.firstTimer = false; 
-            }
-                        
-            if(nonStopNarrative[finishNarrativeIndex] == false){
-                nextLine = 0;
-                nonStopNarrative[finishItemNarrative] == true;
-            }
-            */
 
             narrativeText.setText(target[nextLine]);
             nextLine++;
@@ -199,8 +217,6 @@ class Play extends Phaser.Scene {
         //when it reaches the end of the array
         if (nextLine == target.length){
 
-            //this.firstTimer = true;
-
             if(!this.checkItemNarrative(target)){       //if it's a flag narrative
                 finishNarrative[finishNarrativeIndex] = true;
                 finishNarrativeIndex++;
@@ -213,6 +229,10 @@ class Play extends Phaser.Scene {
             if(finishNarrative[0] && this.pickingChoice1() && hasItem[0]) { 
                 this.button_continue.visible = true;
                 this.button_leave.visible = true;
+            } 
+            if (finishNarrative[2] && this.pickingChoice2() && this.continueRoute){
+                this.button_continue2.visible = true;
+                this.button_leave2.visible = true;
             }
 
             if(hasItem[0]){
@@ -243,6 +263,10 @@ class Play extends Phaser.Scene {
     //checks if players have progressed into flag1 yet
     pickingChoice1() {
         return !this.leaveRoute && !this.continueRoute;
+    }
+
+    pickingChoice2(){
+        return !this.leaveRoute2 && !this.continueRoute2;
     }
 
     //destroys choice buttons in one function
