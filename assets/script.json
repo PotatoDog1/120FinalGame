@@ -29,21 +29,23 @@
     ],
     "crossroad_fog":[
       "You have trekked into the fog.",
-      "An immediate sense of regret washes over you.\nAs you turn to retrace your steps, you find\nthat the woods have already shifted behind you.\nThe tower, however, remains stationary.",
-      "That's it so far, press space to go back to Menu"
+      "An immediate sense of regret washes over you.\nAs you turn to retrace your steps, you find\nthat the woods have already shifted behind you.",
+      "The tower, however, remains stationary.\nYou dig through your pockets.\n*Please check your inventory.*"
    ],
    "pocket":[
-      "You dig through your pockets, looking for an\nindescript object. You aren't quite sure why.",
-      "You dumped everything you owned before coming here,\nremember?"
+      "You try to look for an indescript object.\nYou aren't quite sure why.",
+      "You dumped everything you owned before\ncoming here, remember?"
    ],
    "pocket_yes":[
-      "It's a hard thing to forget, isn't it?"
+      "It's a hard thing to forget, isn't it?",
+      "You continue forth, not allowing empty pockets\nto hinder your travel."
    ],
    "pocket_no":[
-      "Oh. Well, you did. And now you know."
+      "Oh. Well, you did. And now you know.",
+      "You continue forth, not allowing empty pockets\nto hinder your travel."
    ],
    "grotto":[
-     "You continue forth, not allowing empty pockets\nto hinder your travel. One tree, its wood black\nand sickly, stands as the centerpiece in a small grotto. ",
+     "One tree, its wood black\nand sickly, stands as the centerpiece in a small grotto. ",
      "Its roots, which reach out some thirty feet or\nso in all directions, form a perfect circle around the trunk.",
      "This clearing, allowing you a view of the sky,\nsits in silence. The whistling of wind shakes\nthe leaves of the old wood.",
      "You are alone."

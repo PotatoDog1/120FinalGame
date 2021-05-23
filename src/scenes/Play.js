@@ -19,16 +19,19 @@ class Play extends Phaser.Scene {
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
         this.add.image(0, 400, 'bg_notepad').setOrigin(0,0);
         this.placeImage = this.add.image(0, 0, 'crossroad').setOrigin(0, 0);
-        this.portrait = this.add.image(415, 65, 'portrait').setOrigin(0, 0);
+        this.portrait = this.add.image(515, 160, 'portrait').setScale(1.15);
         
         //breathing portrait animation
         this.tweens.add({
             targets: [this.portrait],
-            scale: {from: 1.02, to: 1.0},
+            scale: {from: 1.17, to: 1.15},
             duration: 830,
             yoyo: true,
             repeat: -1
         });
+
+        this.checkPocketNarrative = false;
+        this.checkPocket = false;
 
         //all choices 
         this.button_continue = this.add.sprite(80, 490, 'continue').setOrigin(0,0).setInteractive({useHandCursor: true});
@@ -48,10 +51,38 @@ class Play extends Phaser.Scene {
         //Inventory related ----------------------------------------------------
 
         //inventory bag
-        this.bag = this.add.sprite(377, 255, 'bag').setOrigin(0, 0);
+        this.bag = this.add.sprite(509, 327, 'bag').setOrigin(0.5, 0.5);
         this.bag.setInteractive({
-            dropZone: true
+            dropZone: true,
+            useHandCursor: true
         });
+        this.bag.on('pointerdown', function(pointer) {          //after players check pocket
+            if(this.checkPocketNarrative){
+                this.bagShake.stop();
+                narrativeText.setText(scriptText.pocket[0]);
+                this.checkPocket = true;
+                this.checkPocketNarrative = false;
+            }
+        }, this);
+
+        //when pointer is over the bag, it will scale up, if not it will scale down
+        this.bag.on('pointerover', function(pointer) {
+            this.setScale(1.1);
+        });
+
+        this.bag.on('pointerout', function(pointer) {
+            this.setScale(1);
+        })
+
+        this.bagShake = this.tweens.add({
+            targets: this.bag,
+            angle: {from: -4, to: 4},
+            ease: 'Bounce.easeIn',
+            duration: 1400,
+            repeat: -1,
+            yoyo: true,
+        });
+        this.bagShake.pause();
 
         //nodrop zone image
         this.noDropZone = this.add.sprite(0, 0, 'noDrop').setOrigin(0, 0);
@@ -60,12 +91,20 @@ class Play extends Phaser.Scene {
             dropZone: true
         })
 
-        this.shoe = this.add.sprite(80, 0, 'shoe').setOrigin(0, 0);
-        this.shoe.depth = 1.5;
+        this.shoe = this.add.sprite(193, 129, 'shoe');
+        this.shoe.depth = 1.2;
         this.shoe.setInteractive({
             draggable: true,
             useHandCursor: true
         });
+
+        this.shoe.on('pointerover', function(pointer) {
+            this.setScale(1.1);
+        });
+
+        this.shoe.on('pointerout', function(pointer) {
+            this.setScale(1);
+        })
 
         this.shoe.on('drag', (pointer, dragX, dragY) => {       //actually move the shoe sprite
             this.shoe.x = dragX;
@@ -170,11 +209,17 @@ class Play extends Phaser.Scene {
                         }
                         
                     } else {
-                        //console.log("hehehe");
                         if(this.continueRoute2) {
-                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                                this.resetGame();
+                            if(!this.checkPocket){          //before players click on bag
+                                this.bagShake.play();
+                                this.checkPocketNarrative = true;
                             }
+
+                            if(this.checkPocket == true && !finishNarrative[4]){            //after players click on pocket
+                                this.bag.setAngle(0);
+                                this.getNextLine(scriptText.pocket);
+                            }
+
                         } else if(this.leaveRoute2) {
                             if(Phaser.Input.Keyboard.JustDown(keySpace)) {
                                 this.resetGame();
