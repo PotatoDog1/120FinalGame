@@ -5,7 +5,7 @@ class Preload extends Phaser.Scene{
 
     preload() {
 
-        //temp art assets
+        //crossroad temp art assets
         this.load.image('frame', './assets/temp_frame.png');
         this.load.image('bg_notepad', './assets/notepad.png');
         this.load.image('crossroad', './assets/temp_crossroad.png');
@@ -16,6 +16,9 @@ class Preload extends Phaser.Scene{
         this.load.image('towerFog', './assets/towerFogTemp.png');
         this.load.image('fog_left', './assets/fog_left.png');
         this.load.image('fog_right', './assets/fog_right.png');
+        
+        //grotto temp art assets
+        this.load.image('grotto', './assets/grottoTemp.png');
 
         //area to define non droppable zone
         this.load.image('noDrop', './assets/nonDropZone.png');
