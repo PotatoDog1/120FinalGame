@@ -102,7 +102,9 @@ class Grotto extends Phaser.Scene {
 
     update() {
 
-    
+        if(!finishNarrative[6]){
+            this.getNextLine(scriptText.grotto);
+        }
 
         if (Phaser.Input.Keyboard.JustDown(keyW)) {
             this.scene.start('crossroadScene');
@@ -137,6 +139,18 @@ class Grotto extends Phaser.Scene {
 
         }
 
+    }
+
+    checkItemNarrative(target) {
+        /* will update when we have the next item
+        if(target === scriptText.pickUpShoe){           //need to update every time we add an new item
+            console.log("found an item")
+            return true;
+        } else {
+            return false;
+        }
+        */
+       return false;
     }
 
     resetGame() {
