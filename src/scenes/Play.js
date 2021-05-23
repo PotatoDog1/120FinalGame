@@ -94,14 +94,14 @@ class Play extends Phaser.Scene {
         this.firstTimer = true;
 
         //create text
-        narrativeText = this.add.text(80, 445, scriptText.crossroad1[0], wordConfig);
+        narrativeText = this.add.text(80, 445, scriptText.crossroad[0], wordConfig);
 
     }
 
     update() {
 
         if(!finishNarrative[0]) {     //enter first narrative flag check to start the game; these are to stop it from updating the narrative text to the corresponding flag all the time
-            this.getNextLine(scriptText.crossroad1);
+            this.getNextLine(scriptText.crossroad);
         } else {                //finish first part narrative and reach choices
             if(hasItem[0]){     //if players pick up the item(shoe)
                 if(!finishItemNarrative[0]){     //enter shoe narrative 
@@ -117,14 +117,14 @@ class Play extends Phaser.Scene {
                                
                 this.button_continue.on('pointerdown', function (pointer) {
                     this.continueRoute = true;      //branch flag
-                    narrativeText.setText(scriptText.crossroad1_continue[0]);
+                    narrativeText.setText(scriptText.crossroad_continue[0]);
                     this.destroyChoiceButtons(this.button_continue, this.button_leave);
                     this.placeImage = this.add.image(0, 0, 'tower').setOrigin(0, 0);
                 }, this);
 
                 this.button_leave.on('pointerdown', function(pointer) {
                     this.leaveRoute = true;     //branch flag
-                    narrativeText.setText(scriptText.crossroad1_leave[0]);
+                    narrativeText.setText(scriptText.crossroad_leave[0]);
                     this.destroyChoiceButtons(this.button_continue, this.button_leave);
                 }, this);
                 
@@ -136,15 +136,15 @@ class Play extends Phaser.Scene {
 
             if(!finishNarrative[2]){      //enter second narrative flag check
                 if(this.continueRoute) {
-                    this.getNextLine(scriptText.crossroad1_continue);
+                    this.getNextLine(scriptText.crossroad_continue);
                 } else if (this.leaveRoute) {
-                    this.getNextLine(scriptText.crossroad1_leave);
+                    this.getNextLine(scriptText.crossroad_leave);
                 }
             } else {                      //finish second narrative flag, return to main narrative if available
                 if(this.continueRoute) {
                     if(!finishNarrative[3]){
                         this.placeImage = this.add.image(0,0, 'towerFog').setOrigin(0, 0);
-                        narrativeText.setText(scriptText.crossroad1_fog[0]);
+                        narrativeText.setText(scriptText.crossroad_fog[0]);
                     } else {
 
                     }
