@@ -1,6 +1,6 @@
-class Play extends Phaser.Scene {
+class Crossroad extends Phaser.Scene {
     constructor() {
-        super("playScene");
+        super("crossroadScene");
     }
 
     create() {
@@ -8,8 +8,6 @@ class Play extends Phaser.Scene {
         //define keys
         keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-        keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
         //add bgm
         main_bgm = this.sound.add('bgm_1', { volume: 0.3 });
@@ -146,6 +144,39 @@ class Play extends Phaser.Scene {
         //create text
         narrativeText = this.add.text(80, 445, scriptText.crossroad[0], wordConfig);
 
+        //transition -----------------------------------------------------
+        this.fog_left = this.add.sprite(-521, 0, 'fog_left').setOrigin(0, 0);
+        this.fog_left.depth = 2;
+        this.transition_left = this.tweens.add({
+            targets: this.fog_left,
+            delay: 1500,
+            ease: 'Sine.easeOut',
+            duration: 1500,
+            x: 0
+        });
+        this.transition_left.pause();
+        this.fog_left.visible = false;
+
+        this.fog_right = this.add.sprite(640, 0, 'fog_right').setOrigin(0, 0);
+        this.fog_right.depth = 2;
+        this.transition_right = this.tweens.add({
+            targets: this.fog_right,
+            delay: 1500,
+            ease: 'Sine.easeOut',
+            duration: 1500,
+            x: 165,
+            completeDelay: 1000,
+            onComplete: function() {
+                this.scene.start('grottoScene');
+            },
+            onCompleteScope: this
+        });
+        this.transition_right.pause();
+        this.fog_right.visible = false;
+
+        this.grottoTransition = false;
+
+
     }
 
     update() {
@@ -223,6 +254,39 @@ class Play extends Phaser.Scene {
                             if(this.checkPocket == true && !finishNarrative[4]){            //after players click on pocket
                                 this.bag.setAngle(0);
                                 this.getNextLine(scriptText.pocket);
+                            } else {
+                                this.button_yes.on('pointerdown', function (pointer) {
+                                    this.yesRoute = true;      //branch flag
+                                    narrativeText.setText(scriptText.pocket_yes[0]);
+                                    this.destroyChoiceButtons(this.button_yes, this.button_no);
+                                }, this);
+                
+                                this.button_no.on('pointerdown', function(pointer) {
+                                    this.noRoute = true;     //branch flag
+                                    narrativeText.setText(scriptText.pocket_no[0]);
+                                    this.destroyChoiceButtons(this.button_yes, this.button_no);
+                                }, this);
+
+                                if(!finishNarrative[5]){
+                                    if(this.yesRoute) {
+                                        this.getNextLine(scriptText.pocket_yes);
+                                    } else if (this.noRoute) {
+                                        this.getNextLine(scriptText.pocket_no);
+                                    }
+                                } else {
+                                    if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                        if(!this.grottoTransition) {
+                                            narrativeText.setText("You wander in the fog.");
+                                            this.fog_left.visible = true;
+                                            this.fog_right.visible = true;
+                                            this.transition_left.play();
+                                            this.transition_right.play();
+                                            this.grottoTransition = true;
+                                        }
+
+                                    }
+                                }
+
                             }
 
                         } else if(this.leaveRoute2) {
@@ -252,7 +316,6 @@ class Play extends Phaser.Scene {
     getNextLine(target) {     
         if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
             console.log("nextLine is " + nextLine);
-
             narrativeText.setText(target[nextLine]);
             nextLine++;
 
@@ -289,7 +352,7 @@ class Play extends Phaser.Scene {
                 this.button_no.visible = true;
             }
 
-
+            //check  if player gets an item/read an item narrative; need to update this everytime
             if(hasItem[0]){
                 finishItemNarrative[0] = true;
             }

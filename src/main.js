@@ -15,7 +15,7 @@
     width: 640,
     height: 640,
     autoCenter: true,
-    scene: [Preload, Menu, Play]
+    scene: [Preload, Menu, Crossroad, Grotto]
 }
 
 let game = new Phaser.Game(config);
@@ -37,9 +37,8 @@ let menuConfig = {
 
 //define keyboard keys
 let keyQ;
+let keyW;
 let keySpace;
-let keyLeft;
-let keyRight;
 
 //define script variables for getNextLine()
 let scriptText;
@@ -47,8 +46,8 @@ let narrativeText;
 let nextLine = 1;
 
 //branch check
-let finishNarrative = [false, false, false, false, false, false];      //the length of this array will corresond to the number of flags/choices players can make
-    //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave, pocket, pocketYes/No]
+let finishNarrative = [false, false, false, false, false, false, false];      //the length of this array will corresond to the number of flags/choices players can make
+    //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave, pocket, pocketYes/No, grotto]
 let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
 
 //main plot check(mandatory)
