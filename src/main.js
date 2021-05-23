@@ -51,6 +51,10 @@ let finishNarrative = [false, false, false, false];      //the length of this ar
     //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave]
 let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
 
+//main plot check(mandatory)
+let nonStopNarrative = [true, true, false, true];
+
+
 //item check - will be updated when items besides shoe got added to the game
 let hasItem = [false];
     //notes:  [XXXXX]
