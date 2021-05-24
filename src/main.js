@@ -45,6 +45,7 @@ let keySpace;
 let scriptText;
 let narrativeText;
 let nextLine = 1;
+let firstTimer = true;
 
 //main narrative branch check--------------------------------------------------------------
 let finishNarrative = [false, false, false, false, false, false, false, false];      //the length of this array will corresond to the number of flags/choices players can make

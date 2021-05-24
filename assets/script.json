@@ -51,13 +51,15 @@
      "You are alone."
    ],
    "grotto_investigate":[
-      "The tree stands unmoving before you.\nSlowly and methodically carving a path to the dirt below,\namber resin leaks from the old wood.",
-      "The air is silent around you,\nthe fog kept on the outskirts of this small grotto."
+      "The tree stands unmoving before you.\nSlowly and methodically carving a path to the\ndirt below, amber resin leaks from the old wood.",
+      "The air is silent around you, the fog kept\non the outskirts of this small grotto.",
+      "What do you want to do?"
    ],
    "grotto_wifeFinally":[
      "\"Finally. what?\" Your wife responds.",
      "You're sitting on your couch, the leather old\nand cracking. Your wife sits next to you,\nher gaze undecipherable.",
-     "She's waiting for a response."
+     "She's waiting for a response.\n\n To be continued...",
+     "*Continue to go back to Menu*"
    ],
    "grotto_wifeSilence":[
       "\"Listen, if you don't feel like talking, that's fine. Just please don't ignore me.\"\nShe continues, a hint of annoyance in her voice.",
@@ -78,11 +80,6 @@
    "backToGrotto":[
       "A strong gust of wind forces you back to the grotto.\nA chill runs through your spin.\nYou are alone again."
    ],
-   "waitAtGrotto":[
-      "It dawns on you that you're wasting your time here.",
-      "\"Honey, did you pick up Adalade from school?\"\nYour wife calls from the living room.",
-      "You didn't.\nShe got out of school two hours ago.\nYou've been sitting on this couch since you woke up."
-   ],
    "areYouSerious":[
       "\"Holy fucking shit. You did not leave our daughter at school again.\"",
       "A deafening silence follows her words.",
@@ -99,12 +96,19 @@
       "You know, 4-4-4-4?",
       "You spend sixteen seconds breathing.\nYes, exactly sixteen."
    ],
-   "punchGrottoTree":[
-      "You punch the tree.\nIt deserved it probably.\nYour hand stings with disapproval."
+   "grotto_punchTree":[
+      "You punch the tree.\nIt deserved it probably.\nYour hand stings with disapproval.",
+      "Anger fills your body. Your time in the\nforest hasn't brought you the peace\nof mind you had hoped it would."
+   ],
+   "grotto_sit":[
+      "It dawns on you that you're wasting\nyour time here.",
+      "\"Honey, did you pick up Adalade from school?\"\nYour wife calls from the living room.",
+      "You didn't.\nShe got out of school two hours ago.\nYou've been sitting on this couch since you woke up."
    ],
    "grotto_leave":[
-      "You leave the grotto in the past, turning to\ncontnue your pursuit of the distant tower,\nits spires reaching far into the gray overcast above.",
-      "The sounds of the fauna echo throughout\nthe region.\n\nTo be continued..."
+      "You leave the grotto in the past,\nturning to contnue your pursuit of the\ndistant tower, its spires reaching far\ninto the gray overcast above.",
+      "The sounds of the fauna echo throughout\nthe region.\n\nTo be continued...",
+      "*Continue to return back to menu*"
    ],
    "grottoLeavePartOne":[
       "You turn to leave from the grotto,\nonly to see an unrecognizable assortment\nof trees and forest behind you.",

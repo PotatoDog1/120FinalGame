@@ -29,9 +29,15 @@ class Menu extends Phaser.Scene {
                 finishNarrative[i] = true;
                 //console.log("finishNarrative[" + i + "] is " + finishNarrative[i]);
             }
+
+            for(var i = 0; i < finishGrottoNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+                finishGrottoNarrative[i] = false;
+            }
+
             hasItem[0] = true;          //it's the shoe
             finishItemNarrative[0] = true;      //shoe narrative
-
+            
+            finishGrottoIndex = 0;
             finishNarrativeIndex = 6;     //to reset narrative to the beginning flag
             nextLine = 1;           //to reset narrative to the beginning line
             this.scene.start('grottoScene');
