@@ -10,9 +10,10 @@ class Crossroad extends Phaser.Scene {
         keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        //add bgm
+        //add sound
         main_bgm = this.sound.add('bgm_1', { volume: 0.3 });
         main_bgm.play({ loop: true });
+        sfx_pencil = this.sound.add('sfx_pencil', {volume: 2.3});
 
         //add temp art assets
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
@@ -333,6 +334,7 @@ class Crossroad extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
             console.log("nextLine is " + nextLine);
             narrativeText.setText(target[nextLine]);
+            sfx_pencil.play();
             nextLine++;
 
         }

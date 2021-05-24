@@ -12,6 +12,7 @@ class Grotto extends Phaser.Scene {
         //add bgm
         main_bgm = this.sound.add('bgm_1', { volume: 0.3 });
         main_bgm.play({ loop: true });
+        sfx_pencil = this.sound.add('sfx_pencil', {volume: 2.3});
 
         //add UI temp art assets
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
@@ -68,15 +69,40 @@ class Grotto extends Phaser.Scene {
         this.button_finally = this.add.sprite(80, 490, 'finally').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_investigate = this.add.sprite(80, 527, 'investigate').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_movePast = this.add.sprite(80, 567, 'movePast').setOrigin(0,0).setInteractive({useHandCursor: true});
-        
-        
+        this.button_punch = this.add.sprite(80, 490, 'punch').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_sit = this.add.sprite(80, 527, 'sit').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_move = this.add.sprite(80, 567, 'move').setOrigin(0,0).setInteractive({useHandCursor: true});  //mark
+        this.button_youPickHerUp = this.add.sprite(80, 490, 'youPickHerUp').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_shit = this.add.sprite(80, 527, 'shit').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_breathe = this.add.sprite(80, 490, 'breathe').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_yell1 = this.add.sprite(80, 515, 'yell1').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_dots = this.add.sprite(80, 567, 'dots').setOrigin(0,0).setInteractive({useHandCursor: true}); 
+
         this.button_finally.visible = false;
         this.button_investigate.visible = false;
         this.button_movePast.visible = false;
+        this.button_punch.visible = false;
+        this.button_sit.visible = false;
+        this.button_move.visible = false; //mark
+        this.button_youPickHerUp.visible = false;
+        this.button_shit.visible = false;
+        this.button_breathe.visible = false;
+        this.button_yell1.visible = false;
+        this.button_dots.visible = false;
         
+
         this.finallyRoute = false;
         this.investigateRoute = false;
         this.movePastRoute = false;
+
+        //investigate route check
+        this.punchRoute = false;
+        this.sitRoute = false;
+        this.moveRoute = false;
+        this.youPickHerUpRoute = false;
+        this.shitRoute = false;
+        this.breatheRoute = false;
+        this.yell1Route = false;
 
         //Choices end--------------------------------------------------------
 
@@ -117,7 +143,7 @@ class Grotto extends Phaser.Scene {
 
     update() {
 
-        if(!finishNarrative[6]){
+        if(!finishGrottoNarrative[0]) {
             this.getNextLine(scriptText.grotto);
         } else {
             if(this.pickingChoice(this.finallyRoute, this.investigateRoute, this.movePastRoute)) {
@@ -140,6 +166,126 @@ class Grotto extends Phaser.Scene {
                     this.destroyChoiceButtons(this.button_finally, this.button_investigate, this.button_movePast);
                 }, this);
             }
+
+            if(!finishGrottoNarrative[1]) {
+                if(this.finallyRoute) {
+                    this.getNextLine(scriptText.grotto_wifeFinally);
+                } else if (this.investigateRoute) {
+                    this.getNextLine(scriptText.grotto_investigate);
+                } else if (this.movePastRoute) {
+                    this.getNextLine(scriptText.grotto_leave);
+                }
+            } else {
+                if(this.finallyRoute) {
+                    if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                        this.resetGame();
+                    }
+                } else if(this.investigateRoute) {
+
+                    this.button_punch.on('pointerdown', function (pointer) {
+                        this.punchRoute = true;      //branch flag
+                        narrativeText.setText(scriptText.grotto_punchTree[0]);
+                        this.destroyChoiceButtons(this.button_punch, this.button_sit);
+                        this.button_move.visible = false;
+                    }, this);
+    
+                    this.button_sit.on('pointerdown', function(pointer) {
+                        this.sitRoute = true;     //branch flag
+                        narrativeText.setText(scriptText.grotto_sit[0]);
+                        this.destroyChoiceButtons(this.button_punch, this.button_sit, this.button_move);
+                    }, this);
+
+                    this.button_move.on('pointerdown', function(pointer) {
+                        this.moveRoute = true;     //branch flag
+                        narrativeText.setText(scriptText.grotto_leave[0]);
+                        this.destroyChoiceButtons(this.button_punch, this.button_sit, this.button_move);
+                    }, this);
+
+                    if(!finishGrottoNarrative[2]) {
+                        if(this.punchRoute) {
+                            this.getNextLine(scriptText.grotto_punchTree);
+                        } else if (this.sitRoute) {
+                            this.getNextLine(scriptText.grotto_sit);
+                        } else if (this.moveRoute) {
+                            this.getNextLine(scriptText.grotto_leave);
+                        }
+                    } else {
+                        
+                        if(this.punchRoute) {
+                            if(!finishGrottoNarrative[3]) {
+                                this.getNextLine(scriptText.grotto_leave, true);
+                            } else {
+                                //placeholder for bridge connection
+                                if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                    this.resetGame();
+                                }
+                            }
+                        } else if(this.sitRoute) {
+                            this.button_youPickHerUp.on('pointerdown', function (pointer) {
+                                this.youPickHerUpRoute = true;      //branch flag
+                                narrativeText.setText(scriptText.grotto_holyShit[0]);
+                                this.destroyChoiceButtons(this.button_youPickHerUp, this.button_shit);
+                            }, this);
+            
+                            this.button_shit.on('pointerdown', function(pointer) {
+                                this.shitRoute = true;     //branch flag
+                                narrativeText.setText(scriptText.grotto_holyShit[0]);
+                                this.destroyChoiceButtons(this.button_youPickHerUp, this.button_shit);
+                            }, this);
+
+                            if(!finishGrottoNarrative[3]) {
+                                if(this.youPickHerUpRoute || this.shitRoute){
+                                    this.getNextLine(scriptText.grotto_holyShit);
+                                }
+                            } else {
+                                this.button_breathe.on('pointerdown', function (pointer) {
+                                    this.breatheRoute = true;      //branch flag
+                                    narrativeText.setText(scriptText.grotto_breathingExercise[0]);
+                                    this.destroyChoiceButtons(this.button_breathe, this.button_yell1);
+                                }, this);
+                
+                                this.button_yell1.on('pointerdown', function(pointer) {
+                                    this.yell1Route = true;     //branch flag
+                                    narrativeText.setText(scriptText.grotto_yellAtWife[0]);
+                                    this.destroyChoiceButtons(this.button_breathe, this.button_yell1);
+                                }, this);
+
+                                if(!finishGrottoNarrative[4]) {
+                                    if(this.breatheRoute) {
+                                        this.getNextLine(scriptText.grotto_breathingExercise);
+                                    } else if (this.yell1Route) {
+                                        this.getNextLine(scriptText.grotto_yellAtWife);
+                                    }
+                                } else {
+                                    if(!finishGrottoNarrative[5]) {
+                                        this.button_dots.on('pointerdown', function(pointer) {
+                                            narrativeText.setText(scriptText.backToGrotto[0]);
+                                            this.destroyChoiceButtons(this.button_dots);
+                                        }, this);
+
+                                        if(!finishGrottoNarrative[6]) {
+                                            this.getNextLine(scriptText.backToGrotto);
+                                        }
+                                    }
+                                }
+                            }
+
+                        } else if(this.moveRoute) {
+                            //placeholder for bridge connection
+                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                this.resetGame();
+                            }
+                        }
+                    }
+
+                } else if(this.movePastRoute) {
+                    //placeholder for bridge connection
+                    if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                        this.resetGame();
+                    }
+                }
+            }
+
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
@@ -151,10 +297,15 @@ class Grotto extends Phaser.Scene {
     //Functions---------------------------------------------------
 
     //Goes through each line of the narrative from the arrays in the script.json file
-    getNextLine(target) {     
+    getNextLine(target, readFirstLine) {     
         if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
+            if(readFirstLine == true && firstTimer == true){
+                nextLine = 0;
+                firstTimer = false;
+            }
             console.log("nextLine is " + nextLine);
             narrativeText.setText(target[nextLine]);
+            sfx_pencil.play();
             nextLine++;
 
         }
@@ -164,23 +315,48 @@ class Grotto extends Phaser.Scene {
 
             //reset to the beginning of the line
             nextLine = 1;
+            firstTimer = true;
 
             if(!this.checkItemNarrative(target)){       //if it's a flag narrative
-                finishNarrative[finishNarrativeIndex] = true;
-                finishNarrativeIndex++;
+                finishGrottoNarrative[finishGrottoIndex] = true;
+                finishGrottoIndex++;
             }
 
             //display choices
-            if(finishNarrative[6] && this.pickingChoice(this.finallyRoute, this.investigateRoute, this.movePastRoute)) {
-                //console.log("Hi");
-                this.button_finally.visible = true;
-                this.button_investigate.visible = true;
-                this.button_movePast.visible = true;
+            if(finishGrottoNarrative[0] && this.pickingChoice(this.finallyRoute, this.investigateRoute, this.movePastRoute)) {
+                this.showChoiceButtons(this.button_finally, this.button_investigate, this.button_movePast);
             }
 
+            if(finishGrottoNarrative[1] && this.pickingChoice(this.punchRoute, this.sitRoute, this.moveRoute) && this.investigateRoute) {
+                this.showChoiceButtons(this.button_punch, this.button_sit, this.button_move);
+            }
+
+            if(finishGrottoNarrative[2] && this.sitRoute) {
+                this.showChoiceButtons(this.button_youPickHerUp, this.button_shit);
+            }
+
+            if(finishGrottoNarrative[3] && this.pickingChoice(this.breatheRoute, this.yell1Route)) {
+                this.showChoiceButtons(this.button_breathe, this.button_yell1);
+            }
+
+            if(finishGrottoNarrative[4]) {
+                this.showChoiceButtons(this.button_dots);
+            }
 
         }
 
+    }
+
+    showChoiceButtons(button1, button2, button3) {
+        if(button1 != undefined){
+            button1.visible = true;
+        }
+        if(button2 != undefined){
+            button2.visible = true;
+        }
+        if(button3 != undefined){
+            button3.visible = true;
+        }
     }
 
     destroyChoiceButtons(button1, button2, button3) {
@@ -230,7 +406,12 @@ class Grotto extends Phaser.Scene {
             finishItemNarrative[i] = false;
         }
 
+        for(var i = 0; i < finishGrottoNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+            finishNarrative[i] = false;
+        }
+
         finishNarrativeIndex = 0;     //to reset narrative to the beginning flag
+        finishGrottoIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');
