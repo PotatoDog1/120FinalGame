@@ -103,6 +103,7 @@ class Grotto extends Phaser.Scene {
         this.shitRoute = false;
         this.breatheRoute = false;
         this.yell1Route = false;
+        this.dotsRoute = false;
 
         //Choices end--------------------------------------------------------
 
@@ -257,14 +258,19 @@ class Grotto extends Phaser.Scene {
                                         this.getNextLine(scriptText.grotto_yellAtWife);
                                     }
                                 } else {
-                                    if(!finishGrottoNarrative[5]) {
-                                        this.button_dots.on('pointerdown', function(pointer) {
-                                            narrativeText.setText(scriptText.backToGrotto[0]);
-                                            this.destroyChoiceButtons(this.button_dots);
-                                        }, this);
+                                    this.button_dots.on('pointerdown', function(pointer) {
+                                        this.dotsRoute = true;
+                                        narrativeText.setText(scriptText.backToGrotto[0]);
+                                        this.destroyChoiceButtons(this.button_dots);
+                                    }, this);
 
-                                        if(!finishGrottoNarrative[6]) {
+                                    if(!finishGrottoNarrative[5]) {
+                                        if(this.dotsRoute) {
                                             this.getNextLine(scriptText.backToGrotto);
+                                        }
+                                    } else {
+                                        if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                            this.resetGame();
                                         }
                                     }
                                 }
@@ -339,7 +345,7 @@ class Grotto extends Phaser.Scene {
                 this.showChoiceButtons(this.button_breathe, this.button_yell1);
             }
 
-            if(finishGrottoNarrative[4]) {
+            if(finishGrottoNarrative[4] && this.pickingChoice(this.dotsRoute)) {
                 this.showChoiceButtons(this.button_dots);
             }
 
