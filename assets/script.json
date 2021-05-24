@@ -78,22 +78,21 @@
       "She nods in understanding.\nYou know the look.\nYou've seen it before.\nThe hint of disappointment.\nThe attempt to hide it.\nIt's routine."
    ],
    "backToGrotto":[
-      "A strong gust of wind forces you back to the grotto.\nA chill runs through your spin.\nYou are alone again."
+      "A strong gust of wind forces you\nback to the grotto.",
+      "A chill runs through your spin.\nYou are alone again."
    ],
-   "areYouSerious":[
-      "\"Holy fucking shit. You did not leave our daughter at school again.\"",
-      "A deafening silence follows her words.",
-      "Then, the shuffling of feet,\ndangling of keys,\n and the closing of a front door all follow in quick succession.",
-      "You stand there.\nMotionless."
+   "grotto_holyShit":[
+      "\"Holy fucking shit. You did not\nleave our daughter at school again.\"\nA deafening silence follows her words.",
+      "Then, the shuffling of feet, dangling of keys,\nand the closing of a front door\nall follow in quick succession.",
+      "You stand there. Motionless."
    ],
-   "flashbackScreamAtWife":[
-      "You yell as she leaves.",
-      "Suddenly out of breath, you find yourself heaving for air."
+   "grotto_yellAtWife":[
+      "You yell as she leaves. Suddenly out of breath,\nyou find yourself heaving for air.",
+      "Anger builds within you."
    ],
    "grotto_breathingExercise":[
       "You take a breath.\nYou remember how to do this, right?",
-      "It's the box breathing method.",
-      "You know, 4-4-4-4?",
+      "It's the box breathing method.\nYou know, 4-4-4-4?",
       "You spend sixteen seconds breathing.\nYes, exactly sixteen."
    ],
    "grotto_punchTree":[
@@ -103,7 +102,8 @@
    "grotto_sit":[
       "It dawns on you that you're wasting\nyour time here.",
       "\"Honey, did you pick up Adalade from school?\"\nYour wife calls from the living room.",
-      "You didn't.\nShe got out of school two hours ago.\nYou've been sitting on this couch since you woke up."
+      "You didn't. She got out of school two hours\nago. You've been sitting on this couch since\nyou woke up.",
+      "How are you going to respond?"
    ],
    "grotto_leave":[
       "You leave the grotto in the past,\nturning to contnue your pursuit of the\ndistant tower, its spires reaching far\ninto the gray overcast above.",
