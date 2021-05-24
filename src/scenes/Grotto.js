@@ -116,7 +116,7 @@ class Grotto extends Phaser.Scene {
         this.fog_left.depth = 2;
         this.transition_left = this.tweens.add({
             targets: this.fog_left,
-            delay: 500,
+            delay: 300,
             ease: 'Sine.easeOut',
             duration: 1500,
             x: -521,
@@ -130,7 +130,7 @@ class Grotto extends Phaser.Scene {
         this.fog_right.depth = 2;
         this.transition_right = this.tweens.add({
             targets: this.fog_right,
-            delay: 500,
+            delay: 300,
             ease: 'Sine.easeOut',
             duration: 1500,
             x: 640,
@@ -185,6 +185,7 @@ class Grotto extends Phaser.Scene {
 
                     this.button_punch.on('pointerdown', function (pointer) {
                         this.punchRoute = true;      //branch flag
+                        this.cameras.main.shake(200, 0.005);
                         narrativeText.setText(scriptText.grotto_punchTree[0]);
                         this.destroyChoiceButtons(this.button_punch, this.button_sit);
                         this.button_move.visible = false;
@@ -246,6 +247,7 @@ class Grotto extends Phaser.Scene {
                                 }, this);
                 
                                 this.button_yell1.on('pointerdown', function(pointer) {
+                                    this.cameras.main.shake(350, 0.01);
                                     this.yell1Route = true;     //branch flag
                                     narrativeText.setText(scriptText.grotto_yellAtWife[0]);
                                     this.destroyChoiceButtons(this.button_breathe, this.button_yell1);
@@ -269,6 +271,7 @@ class Grotto extends Phaser.Scene {
                                             this.getNextLine(scriptText.backToGrotto);
                                         }
                                     } else {
+                                        //placeholder for backToBridge connection
                                         if(Phaser.Input.Keyboard.JustDown(keySpace)) {
                                             this.resetGame();
                                         }
