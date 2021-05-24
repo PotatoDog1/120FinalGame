@@ -335,7 +335,7 @@ class Grotto extends Phaser.Scene {
                 this.showChoiceButtons(this.button_youPickHerUp, this.button_shit);
             }
 
-            if(finishGrottoNarrative[3] && this.pickingChoice(this.breatheRoute, this.yell1Route)) {
+            if(finishGrottoNarrative[3] && this.pickingChoice(this.breatheRoute, this.yell1Route) && (this.youPickHerUpRoute || this.shitRoute)) {
                 this.showChoiceButtons(this.button_breathe, this.button_yell1);
             }
 
@@ -407,7 +407,7 @@ class Grotto extends Phaser.Scene {
         }
 
         for(var i = 0; i < finishGrottoNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
-            finishNarrative[i] = false;
+            finishGrottoNarrative[i] = false;
         }
 
         finishNarrativeIndex = 0;     //to reset narrative to the beginning flag
