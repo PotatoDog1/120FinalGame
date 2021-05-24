@@ -26,6 +26,7 @@ class Preload extends Phaser.Scene{
 
         //sound
         this.load.audio('bgm_1', './assets/bgm_1.mp3');
+        this.load.audio('sfx_pencil', './assets/pencilscratch2.mp3');
 
         //choice images
         this.load.image('continue', './assets/choices/choice_continue.png');   

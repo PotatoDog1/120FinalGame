@@ -12,6 +12,7 @@ class Grotto extends Phaser.Scene {
         //add bgm
         main_bgm = this.sound.add('bgm_1', { volume: 0.3 });
         main_bgm.play({ loop: true });
+        sfx_pencil = this.sound.add('sfx_pencil', {volume: 2.3});
 
         //add UI temp art assets
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
@@ -117,7 +118,7 @@ class Grotto extends Phaser.Scene {
 
     update() {
 
-        if(!finishNarrative[6]){
+        if(!finishGrottoNarrative[0]) {
             this.getNextLine(scriptText.grotto);
         } else {
             if(this.pickingChoice(this.finallyRoute, this.investigateRoute, this.movePastRoute)) {
@@ -140,6 +141,17 @@ class Grotto extends Phaser.Scene {
                     this.destroyChoiceButtons(this.button_finally, this.button_investigate, this.button_movePast);
                 }, this);
             }
+
+            if(!finishGrottoNarrative[1]) {
+                if(this.finallyRoute) {
+                    this.getNextLine(scriptText.grotto_wifeFinally);
+                } else if (this.investigateRoute) {
+                    this.getNextLine(scriptText.grotto_investigate);
+                } else if (this.movePastRoute) {
+                    this.getNextLine(scriptText.grotto_leave);
+                }
+            }
+
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
@@ -155,6 +167,7 @@ class Grotto extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keySpace) && nextLine < target.length){
             console.log("nextLine is " + nextLine);
             narrativeText.setText(target[nextLine]);
+            sfx_pencil.play();
             nextLine++;
 
         }
@@ -166,12 +179,12 @@ class Grotto extends Phaser.Scene {
             nextLine = 1;
 
             if(!this.checkItemNarrative(target)){       //if it's a flag narrative
-                finishNarrative[finishNarrativeIndex] = true;
-                finishNarrativeIndex++;
+                finishGrottoNarrative[finishGrottoIndex] = true;
+                finishGrottoIndex++;
             }
 
             //display choices
-            if(finishNarrative[6] && this.pickingChoice(this.finallyRoute, this.investigateRoute, this.movePastRoute)) {
+            if(finishGrottoNarrative[0] && this.pickingChoice(this.finallyRoute, this.investigateRoute, this.movePastRoute)) {
                 //console.log("Hi");
                 this.button_finally.visible = true;
                 this.button_investigate.visible = true;
@@ -230,7 +243,13 @@ class Grotto extends Phaser.Scene {
             finishItemNarrative[i] = false;
         }
 
+        for(var i = 0; i < finishGrottoNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+            finishNarrative[i] = false;
+            //console.log("looping through finishNarrative. Finished " + i + " time, " + i + " is " + finishNarrative[i]);
+        }
+
         finishNarrativeIndex = 0;     //to reset narrative to the beginning flag
+        finishGrottoIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');

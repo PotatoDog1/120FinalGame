@@ -46,10 +46,15 @@ let scriptText;
 let narrativeText;
 let nextLine = 1;
 
-//branch check
+//main narrative branch check--------------------------------------------------------------
 let finishNarrative = [false, false, false, false, false, false, false, false];      //the length of this array will corresond to the number of flags/choices players can make
-    //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave, pocket, pocketYes/No, grotto, finally/investigate/movePast]
+    //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave, pocket, pocketYes/No, grotto, movePast]
 let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
+
+//grotto finaly wife branch check----------------------------------------------------------
+let finishGrottoNarrative = [false, false, false, false, false, false, false, false, false, false];
+let finishGrottoIndex = 0;
+
 
 //item check - will be updated when items besides shoe got added to the game
 let hasItem = [false];
@@ -62,3 +67,4 @@ const SCALE = 0.5;
 
 //define sound
 let main_bgm;
+let sfx_pencil;
