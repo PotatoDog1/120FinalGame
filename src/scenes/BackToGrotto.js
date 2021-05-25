@@ -115,67 +115,6 @@ class BackToGrotto extends Phaser.Scene {
             if(Phaser.Input.Keyboard.JustDown(keySpace)) {
                 this.resetGame();
             }
-            /*
-            if(this.pickingChoice(this.finallyRoute, this.investigateRoute, this.movePastRoute)) {
-                this.button_finally.on('pointerdown', function (pointer) {
-                    this.finallyRoute = true;      //branch flag
-                    narrativeText.setText(scriptText.grotto_wifeFinally[0]);
-                    this.destroyChoiceButtons(this.button_finally, this.button_investigate, this.button_movePast);
-                    this.placeImage = this.add.image(0, 0, 'livingRoom').setOrigin(0, 0).setScale(0.97);
-                }, this);
-
-                this.button_investigate.on('pointerdown', function(pointer) {
-                    this.investigateRoute = true;     //branch flag
-                    narrativeText.setText(scriptText.grotto_investigate[0]);
-                    this.destroyChoiceButtons(this.button_finally, this.button_investigate, this.button_movePast);
-                }, this);
-
-                this.button_movePast.on('pointerdown', function(pointer) {
-                    this.movePastRoute = true;     //branch flag
-                    narrativeText.setText(scriptText.grotto_leave[0]);
-                    this.destroyChoiceButtons(this.button_finally, this.button_investigate, this.button_movePast);
-                }, this);
-            }
-
-            if(!finishBackGNarrative[1]) {
-                if(this.finallyRoute) {
-                    this.getNextLine(scriptText.grotto_wifeFinally);
-                } else if (this.investigateRoute) {
-                    this.getNextLine(scriptText.grotto_investigate);
-                } else if (this.movePastRoute) {
-                    this.getNextLine(scriptText.grotto_leave);
-                }
-            } else {
-                if(this.finallyRoute) {
-                    if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                        this.resetGame();
-                    }
-                } else if(this.investigateRoute) {
-
-                    this.button_punch.on('pointerdown', function (pointer) {
-                        this.punchRoute = true;      //branch flag
-                        this.cameras.main.shake(200, 0.005);
-                        narrativeText.setText(scriptText.grotto_punchTree[0]);
-                        this.destroyChoiceButtons(this.button_punch, this.button_sit);
-                        this.button_move.visible = false;
-                    }, this);
-    
-                    this.button_sit.on('pointerdown', function(pointer) {
-                        this.sitRoute = true;     //branch flag
-                        narrativeText.setText(scriptText.grotto_sit[0]);
-                        this.destroyChoiceButtons(this.button_punch, this.button_sit, this.button_move);
-                    }, this);
-
-                    this.button_move.on('pointerdown', function(pointer) {
-                        this.moveRoute = true;     //branch flag
-                        narrativeText.setText(scriptText.grotto_leave[0]);
-                        this.destroyChoiceButtons(this.button_punch, this.button_sit, this.button_move);
-                    }, this);
-
-                }
-
-            }
-            */
 
         }
 
