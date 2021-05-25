@@ -16,6 +16,7 @@ class Preload extends Phaser.Scene{
         this.load.image('towerFog', './assets/towerFogTemp.png');
         this.load.image('fog_left', './assets/fog_left.png');
         this.load.image('fog_right', './assets/fog_right.png');
+        this.load.image('vignette', './assets/vignette_shrinked.png');
         
         //grotto temp art assets
         this.load.image('grotto', './assets/grottoTemp.png');
@@ -46,6 +47,10 @@ class Preload extends Phaser.Scene{
         this.load.image('breathe', './assets/choices/choice_breathe.png');
         this.load.image('yell1', './assets/choices/choice_yell1.png');
         this.load.image('dots', './assets/choices/choice_dots.png');
+        this.load.image('talkingDots', './assets/choices/choice_talkingDots.png');
+        this.load.image('imSorry', './assets/choices/choice_imSorry.png');
+        this.load.image('signUp', './assets/choices/choice_signUp.png');
+        this.load.image('continueIgnore', './assets/choices/choice_continueIgnore.png');
 
         //json scripts
         this.load.json('json_script', 'assets/script.json'); // actual script
