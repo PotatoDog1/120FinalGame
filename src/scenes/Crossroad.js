@@ -5,6 +5,7 @@ class Crossroad extends Phaser.Scene {
 
     create() {
 
+        console.log("back to grotto");
         //define keys
         keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
@@ -169,6 +170,7 @@ class Crossroad extends Phaser.Scene {
             x: 165,
             completeDelay: 1000,
             onComplete: function() {
+                main_bgm.stop(); 
                 this.scene.start('grottoScene');
             },
             onCompleteScope: this

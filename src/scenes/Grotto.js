@@ -121,7 +121,8 @@ class Grotto extends Phaser.Scene {
             duration: 1500,
             x: -521,
             onComplete: function() {
-                this.fog_left.destroy();
+                //this.fog_left.destroy();
+                this.fog_left.visible = false;
             },
             onCompleteScope: this
         });
@@ -135,10 +136,38 @@ class Grotto extends Phaser.Scene {
             duration: 1500,
             x: 640,
             onComplete: function() {
-                this.fog_right.destroy();
+                //this.fog_right.destroy();
+                this.fog_right.visible = false;
             },
             onCompleteScope: this
         });
+
+        //end transition-------------------------------------------------
+        this.endTransition_left = this.tweens.add({
+            targets: this.fog_left,
+            delay: 1500,
+            ease: 'Sine.easeOut',
+            duration: 1500,
+            x: 0
+        });
+        this.endTransition_left.pause();
+        
+        this.endTransition_right = this.tweens.add({
+            targets: this.fog_right,
+            delay: 1500,
+            ease: 'Sine.easeOut',
+            duration: 1500,
+            x: 165,
+            completeDelay: 1000,
+            onComplete: function() {
+                main_bgm.stop(); 
+                this.scene.start('backToGrottoScene');
+            },
+            onCompleteScope: this
+        });
+        this.endTransition_right.pause();
+        
+        this.grottoTransition = false;
 
     }
 
@@ -260,6 +289,16 @@ class Grotto extends Phaser.Scene {
                                         this.getNextLine(scriptText.grotto_yellAtWife);
                                     }
                                 } else {
+                                    //if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                    if(!this.grottoTransition) {
+                                        this.fog_left.visible = true;
+                                        this.fog_right.visible = true;
+                                        this.endTransition_left.play();
+                                        this.endTransition_right.play();
+                                        this.grottoTransition = true;
+                                    }
+                                    //}
+                                    /*
                                     this.button_dots.on('pointerdown', function(pointer) {
                                         this.dotsRoute = true;
                                         narrativeText.setText(scriptText.backToGrotto[0]);
@@ -271,11 +310,18 @@ class Grotto extends Phaser.Scene {
                                             this.getNextLine(scriptText.backToGrotto);
                                         }
                                     } else {
-                                        //placeholder for backToBridge connection
+                                        //placeholder for backToGrotto connection
                                         if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                                            this.resetGame();
+                                            if(!this.grottoTransition) {
+                                                this.fog_left.visible = true;
+                                                this.fog_right.visible = true;
+                                                this.endTransition_left.play();
+                                                this.endTransition_right.play();
+                                                this.grottoTransition = true;
+                                            }
                                         }
                                     }
+                                    */
                                 }
                             }
 
