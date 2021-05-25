@@ -64,7 +64,7 @@ class BackToGrotto extends Phaser.Scene {
 
         //Choices related----------------------------------------------------
 
-        narrativeText = this.add.text(80, 445, scriptText.grotto[0], wordConfig);
+        narrativeText = this.add.text(80, 445, scriptText.backToGrotto[0], wordConfig);
 
 
         //Choices end--------------------------------------------------------
@@ -112,6 +112,9 @@ class BackToGrotto extends Phaser.Scene {
         if(!finishBackGNarrative[0]) {
             this.getNextLine(scriptText.backToGrotto);
         } else {
+            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                this.resetGame();
+            }
             /*
             if(this.pickingChoice(this.finallyRoute, this.investigateRoute, this.movePastRoute)) {
                 this.button_finally.on('pointerdown', function (pointer) {

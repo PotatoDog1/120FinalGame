@@ -394,9 +394,11 @@ class Grotto extends Phaser.Scene {
                 this.showChoiceButtons(this.button_breathe, this.button_yell1);
             }
 
+            /*
             if(finishGrottoNarrative[4] && this.pickingChoice(this.dotsRoute)) {
                 this.showChoiceButtons(this.button_dots);
             }
+            */
 
         }
 
