@@ -58,17 +58,16 @@
    "grotto_wifeFinally":[
      "\"Finally. what?\" Your wife responds.",
      "You're sitting on your couch, the leather old\nand cracking. Your wife sits next to you,\nher gaze undecipherable.",
-     "She's waiting for a response.\n\n To be continued...",
-     "*Continue to go back to Menu*"
+     "She's waiting for a response."
    ],
    "grotto_wifeSilence":[
-      "\"Listen, if you don't feel like talking, that's fine. Just please don't ignore me.\"\nShe continues, a hint of annoyance in her voice.",
-      "She's doing her best to hide it,\nbut you know her well enough.",
-      "She's dealt with this before."
+      "\"Listen, if you don't feel like talking, that's fine.\nJust please don't ignore me.\" She continues,\na hint of annoyance in her voice.",
+      "She's doing her best to hide it, but you know\nher well enough. She's dealt with this before.",
+      "How are you going to respond?"
    ],
    "grotto_apologeticWife":[
-      "She stares at you for a moment before nodding her head.",
-      "\"We were talking about Adalade.\nYou said you finally got her into that preschool, right?\nThe one next to the Dennys?\""
+      "She stares at you for a moment before\nnodding her head.",
+      "\"We were talking about Adalade. You said\nyou finally got her into that preschool, right?\nThe one next to the Dennys?\""
    ],
    "grotto_wifeLifePreschool":[
       "\"Oh. Really?\"\nShe seems surprised.",
