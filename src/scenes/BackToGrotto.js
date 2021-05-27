@@ -186,7 +186,9 @@ class BackToGrotto extends Phaser.Scene {
                             }, this);
 
                             if(!finishBackGNarrative[3]) {
-                                this.getNextLine(scriptText.grotto_leave);
+                                if(this.movePast2Route) {
+                                    this.getNextLine(scriptText.grotto_leave);
+                                }
                             } else {
                                 if(Phaser.Input.Keyboard.JustDown(keySpace)) {
                                     this.resetGame();
