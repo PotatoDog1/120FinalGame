@@ -25,7 +25,7 @@
     ],
     "crossroad_leave":[
        "You've left the forest.\nPerhaps it was for the best.",
-       "FIN.\n\nContinue to go back to Menu."
+       "FIN - I'm a coward.\n\nContinue to go back to Menu."
     ],
     "crossroad_fog":[
       "You have trekked into the fog.",
@@ -80,9 +80,8 @@
       "How will you respond?"
    ],
    "backToGrotto":[
-      "A strong gust of wind forces you\nback to the grotto.",
-      "A chill runs through your spin.\nYou are alone again.\n\nTo be continued...",
-      "*Continue to go back to Menu*"      
+      "A strong gust of wind forces you back to\nthe grotto. A chill runs through your spin.",
+      "You are alone again."     
    ],
    "grotto_holyShit":[
       "\"Holy fucking shit. You did not\nleave our daughter at school again.\"\nA deafening silence follows her words.",
@@ -109,17 +108,21 @@
       "How are you going to respond?"
    ],
    "grotto_leave":[
-      "You leave the grotto in the past,\nturning to contnue your pursuit of the\ndistant tower, its spires reaching far\ninto the gray overcast above.",
+      "You leave the grotto in the past, turning to\ncontnue your pursuit of the distant tower,\nits spires reaching far into the gray\novercast above.",
       "The sounds of the fauna echo throughout\nthe region.\n\nTo be continued...",
       "*Continue to return back to menu*"
    ],
-   "grottoLeavePartOne":[
-      "You turn to leave from the grotto,\nonly to see an unrecognizable assortment\nof trees and forest behind you.",
+   "grotto_leavePartOne":[
+      "You turn to leave from the grotto, only to\nsee an unrecognizable assortment of trees\nand forest behind you.",
       "You are totally and completely lost."
    ],
-   "grottoLeavePart2:":[
-      "A sudden and complete sense of dread and paranoia overcome you\nas you return to the grotto.",
-      "For some reason,\nyou feel as though you just danced with death."
+   "grotto_leavePartTwo":[
+      "A sudden and complete sense of dread and\nparanoia overcome you as you return to\nthe grotto.",
+      "For some reason, you feel as though you just\ndanced with death."
+   ],
+   "grotto_end":[
+      "Deciding to throw your responbilities and\nobligations thrown to the wind, you live out\nthe rest of your days in the forest.",
+      "FIN - I tried, but what else can change me?\n\n\n*Continue to go back to Menu*"
    ],
    "creekStart":[
       "The sound of running water begins to fill\nyour ears as you spot a small\nriver cutting the forest in two.",
