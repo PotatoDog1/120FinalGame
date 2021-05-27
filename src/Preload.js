@@ -55,6 +55,9 @@ class Preload extends Phaser.Scene{
         this.load.image('sayNothing', './assets/choices/choice_sayNothing.png');
         this.load.image('sayNo', './assets/choices/choice_sayNo.png');
         this.load.image('callLater', './assets/choices/choice_callLater.png');
+        this.load.image('findWayOut', './assets/choices/choice_findWayOut.png');
+        this.load.image('giveUp', './assets/choices/choice_giveUp.png');
+        this.load.image('goBackGrotto', './assets/choices/choice_goBackGrotto.png');
 
         //json scripts
         this.load.json('json_script', 'assets/script.json'); // actual script

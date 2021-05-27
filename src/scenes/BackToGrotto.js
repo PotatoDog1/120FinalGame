@@ -66,6 +66,24 @@ class BackToGrotto extends Phaser.Scene {
 
         narrativeText = this.add.text(80, 445, scriptText.backToGrotto[0], wordConfig);
 
+        this.button_movePast = this.add.sprite(80, 490, 'movePast').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_findWayOut = this.add.sprite(80, 527, 'findWayOut').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_giveUp = this.add.sprite(80, 490, 'giveUp').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_goBackGrotto = this.add.sprite(80, 527, 'goBackGrotto').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_movePast2 =  this.add.sprite(80, 527, 'movePast').setOrigin(0,0).setInteractive({useHandCursor: true});
+
+
+        this.button_movePast.visible = false;
+        this.button_findWayOut.visible = false;
+        this.button_giveUp.visible = false;
+        this.button_goBackGrotto.visible = false;
+        this.button_movePast2.visible = false;
+
+        this.movePastRoute = false;
+        this.findWayOutRoute = false;
+        this.giveUpRoute = false;
+        this.goBackGrottoRoute = false;
+        this.movePast2Route = false;
 
         //Choices end--------------------------------------------------------
 
@@ -112,8 +130,71 @@ class BackToGrotto extends Phaser.Scene {
         if(!finishBackGNarrative[0]) {
             this.getNextLine(scriptText.backToGrotto);
         } else {
-            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                this.resetGame();
+            this.button_movePast.on('pointerdown', function (pointer) {
+                this.movePastRoute = true;      //branch flag
+                narrativeText.setText(scriptText.grotto_leave[0]);      //fix later; add emotion narrative accordingly
+                this.destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
+            }, this);
+
+            this.button_findWayOut.on('pointerdown', function(pointer) {
+                this.findWayOutRoute = true;     //branch flag
+                narrativeText.setText(scriptText.grotto_leavePartOne[0]);
+                this.destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
+            }, this);
+
+            if(!finishBackGNarrative[1]) {
+                if(this.movePastRoute) {
+                    this.getNextLine(scriptText.grotto_leave);
+                } else if (this.findWayOutRoute) {
+                    this.getNextLine(scriptText.grotto_leavePartOne);
+                }
+            } else {
+                if(this.movePastRoute) {
+                    //placeholder for bridge connection
+                    if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                        this.resetGame();
+                    }
+                } else if (this.findWayOutRoute) {
+                    this.button_giveUp.on('pointerdown', function (pointer) {
+                        this.giveUpRoute = true;      //branch flag
+                        narrativeText.setText(scriptText.grotto_end[0]);      //fix later; add emotion narrative accordingly
+                        this.destroyChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
+                    }, this);
+        
+                    this.button_goBackGrotto.on('pointerdown', function(pointer) {
+                        this.goBackGrottoRoute = true;     //branch flag
+                        narrativeText.setText(scriptText.grotto_leavePartTwo[0]);
+                        this.destroyChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
+                    }, this);
+
+                    if(!finishBackGNarrative[2]) {
+                        if(this.giveUpRoute) {
+                            this.getNextLine(scriptText.grotto_end);
+                        } else if (this.goBackGrottoRoute) {
+                            this.getNextLine(scriptText.grotto_leavePartTwo);
+                        }
+                    } else {
+                        if(this.giveUpRoute) {
+                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                this.resetGame();
+                            }
+                        } else if (this.goBackGrottoRoute) {
+                            this.button_movePast2.on('pointerdown', function (pointer) {
+                                this.movePast2Route = true;      //branch flag
+                                narrativeText.setText(scriptText.grotto_leave[0]);      //fix later; add emotion narrative accordingly
+                                this.destroyChoiceButtons(this.button_movePast2);
+                            }, this);
+
+                            if(!finishBackGNarrative[3]) {
+                                this.getNextLine(scriptText.grotto_leave);
+                            } else {
+                                if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                    this.resetGame();
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
         }
@@ -153,8 +234,22 @@ class BackToGrotto extends Phaser.Scene {
             }
 
             //display choices
-            if(finishBackGNarrative[0] && this.pickingChoice()) {
-                this.showChoiceButtons();
+            if(finishBackGNarrative[0]) {
+                if(this.pickingChoice(this.movePastRoute, this.findWayOutRoute)) {
+                    this.showChoiceButtons(this.button_movePast, this.button_findWayOut);
+                }
+            }
+            
+            if(finishBackGNarrative[1]) {
+                if(this.pickingChoice(this.giveUpRoute, this.goBackGrottoRoute) && this.findWayOutRoute) {
+                    this.showChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
+                }
+            }
+            
+            if(finishBackGNarrative[2]) {
+                if(this.pickingChoice(this.movePast2Route) && this.goBackGrottoRoute) {
+                    this.showChoiceButtons(this.button_movePast2);
+                }
             }
 
         }
@@ -186,14 +281,6 @@ class BackToGrotto extends Phaser.Scene {
     }
 
     checkItemNarrative(target) {
-        /* will update when we have the next item
-        if(target === scriptText.pickUpShoe){           //need to update every time we add an new item
-            console.log("found an item")
-            return true;
-        } else {
-            return false;
-        }
-        */
        return false;
     }
 

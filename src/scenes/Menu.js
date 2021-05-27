@@ -31,20 +31,25 @@ class Menu extends Phaser.Scene {
                 //console.log("finishNarrative[" + i + "] is " + finishNarrative[i]);
             }
 
+            hasItem[0] = true;          //it's the shoe
+            finishItemNarrative[0] = true;      //shoe narrative
+            
+            this.scene.start('grottoScene');
+        }
+
+        if(Phaser.Input.Keyboard.JustDown(keyR)) {
+            for(var i = 0; i < 6; i++) {      //to loop through the narrative flag array and reset them all to false
+                finishNarrative[i] = true;
+                //console.log("finishNarrative[" + i + "] is " + finishNarrative[i]);
+            }
+
             for(var i = 0; i < finishGrottoNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
-                finishGrottoNarrative[i] = false;
+                finishGrottoNarrative[i] = true;
             }
 
             hasItem[0] = true;          //it's the shoe
             finishItemNarrative[0] = true;      //shoe narrative
             
-            finishGrottoIndex = 0;
-            finishNarrativeIndex = 6;     //to reset narrative to the beginning flag
-            nextLine = 1;           //to reset narrative to the beginning line
-            this.scene.start('grottoScene');
-        }
-
-        if(Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.start('backToGrottoScene');
         }
 
