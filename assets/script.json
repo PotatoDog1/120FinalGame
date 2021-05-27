@@ -67,14 +67,17 @@
    ],
    "grotto_apologeticWife":[
       "She stares at you for a moment before\nnodding her head.",
-      "\"We were talking about Adalade. You said\nyou finally got her into that preschool, right?\nThe one next to the Dennys?\""
+      "\"We were talking about Adalade. You said\nyou finally got her into that preschool, right?\nThe one next to the Dennys?\"",
+      "What do you want to say?"
    ],
-   "grotto_wifeLifePreschool":[
+   "grotto_lieToWife":[
       "\"Oh. Really?\"\nShe seems surprised.",
       "\"Do you think you can take her then?\nOn your way to work?\""
    ],
-   "wifeNoPreschool":[
-      "She nods in understanding.\nYou know the look.\nYou've seen it before.\nThe hint of disappointment.\nThe attempt to hide it.\nIt's routine."
+   "grotto_wifeNoPreschool":[
+      "She nods in understanding. You know the look.\nYou've seen it before.",
+      "The hint of disappointment.\nThe attempt to hide it. \nIt's routine.",
+      "How will you respond?"
    ],
    "backToGrotto":[
       "A strong gust of wind forces you\nback to the grotto.",

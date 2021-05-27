@@ -84,7 +84,13 @@ class Grotto extends Phaser.Scene {
         this.button_imSorry = this.add.sprite(80, 527, 'imSorry').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_talkingDots2 = this.add.sprite(80, 490, 'talkingDots').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_signUp = this.add.sprite(80, 527, 'signUp').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_continueIgnore = this.add.sprite(80, 567, 'continueIgnore').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_yeah = this.add.sprite(80, 490, 'yeah').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_talkingDots3 = this.add.sprite(80, 527, 'talkingDots').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_noImSorry = this.add.sprite(80, 567, 'noImSorry').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_sayNothing = this.add.sprite(80, 527, 'sayNothing').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_no = this.add.sprite(80, 567, 'sayNo').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_callLater = this.add.sprite(80, 490, 'callLater').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_talkingDots4 = this.add.sprite(80, 527, 'talkingDots').setOrigin(0,0).setInteractive({useHandCursor: true});
 
         this.button_finally.visible = false;
         this.button_investigate.visible = false;
@@ -101,7 +107,13 @@ class Grotto extends Phaser.Scene {
         this.button_imSorry.visible = false;
         this.button_talkingDots2.visible = false;
         this.button_signUp.visible = false;
-        this.button_continueIgnore.visible = false;
+        this.button_yeah.visible = false;
+        this.button_talkingDots3.visible = false;
+        this.button_noImSorry.visible = false;
+        this.button_sayNothing.visible = false;
+        this.button_no.visible = false;
+        this.button_callLater.visible = false;
+        this.button_talkingDots4.visible = false;
 
 
         this.finallyRoute = false;
@@ -113,7 +125,13 @@ class Grotto extends Phaser.Scene {
         this.imSorryRoute = false;
         this.talkingDots2Route = false;
         this.signUpRoute = false;
-        this.continueIgnoreRoute = false;
+        this.yeahRoute = false;
+        this.talkingDots3Route = false;
+        this.noImSorryRoute = false;
+        this.sayNothingRoute = false;
+        this.noRoute = false;
+        this.callLaterRoute = false;
+        this.talkingDots4Route = false;
 
         //investigate route check
         this.punchRoute = false;
@@ -248,7 +266,148 @@ class Grotto extends Phaser.Scene {
                             this.getNextLine(scriptText.grotto_apologeticWife);
                         }
                     } else {
+                        if(this.talkingDotsRoute) {
+                            this.button_talkingDots2.on('pointerdown', function (pointer) {
+                                this.talkingDots2Route = true;      //branch flag
+                                narrativeText.setText("Is this what you want?");
+                                this.destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
+                                if(!this.grottoTransition) {
+                                    this.fog_left.visible = true;
+                                    this.fog_right.visible = true;
+                                    this.endTransition_left.play();
+                                    this.endTransition_right.play();
+                                    this.grottoTransition = true;
+                                }
+                                
+                            }, this);
+            
+                            this.button_signUp.on('pointerdown', function(pointer) {
+                                this.signUpRoute = true;     //branch flag
+                                narrativeText.setText("Is this what you want?");
+                                this.destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
+                                if(!this.grottoTransition) {
+                                    this.fog_left.visible = true;
+                                    this.fog_right.visible = true;
+                                    this.endTransition_left.play();
+                                    this.endTransition_right.play();
+                                    this.grottoTransition = true;
+                                }
+                            }, this);
 
+                        } else if (this.imSorryRoute) {
+
+                            this.button_yeah.on('pointerdown', function (pointer) {
+                                this.yeahRoute = true;      //branch flag
+                                narrativeText.setText(scriptText.grotto_lieToWife[0]);
+                                this.destroyChoiceButtons(this.button_yeah, this.button_talkingDots3, this.button_noImSorry);
+                            }, this);
+            
+                            this.button_talkingDots3.on('pointerdown', function(pointer) {
+                                this.talkingDots3Route = true;     //branch flag
+                                narrativeText.setText(scriptText.grotto_wifeSilence[0]);
+                                this.destroyChoiceButtons(this.button_yeah, this.button_talkingDots3, this.button_noImSorry);
+                            }, this);
+
+                            this.button_noImSorry.on('pointerdown', function(pointer) {
+                                this.noImSorryRoute = true;     //branch flag
+                                narrativeText.setText(scriptText.grotto_wifeNoPreschool[0]);
+                                this.destroyChoiceButtons(this.button_yeah, this.button_talkingDots3, this.button_noImSorry);
+                            }, this);
+
+                            if(!finishGrottoNarrative[3]) {
+                                if(this.yeahRoute) {
+                                    this.getNextLine(scriptText.grotto_lieToWife);
+                                } else if (this.talkingDots3Route) {
+                                    this.getNextLine(scriptText.grotto_wifeSilence);
+                                } else if (this.noImSorryRoute) {
+                                    this.getNextLine(scriptText.grotto_wifeNoPreschool);
+                                }
+                            } else {
+                                if(this.yeahRoute) {
+                                    this.button_sayNothing.on('pointerdown', function (pointer) {
+                                        this.sayNothingRoute = true;      //branch flag
+                                        narrativeText.setText("Is this what you want?");
+                                        this.destroyChoiceButtons(this.button_sayNothing, this.button_no);
+                                        if(!this.grottoTransition) {
+                                            this.fog_left.visible = true;
+                                            this.fog_right.visible = true;
+                                            this.endTransition_left.play();
+                                            this.endTransition_right.play();
+                                            this.grottoTransition = true;
+                                        }
+                                        
+                                    }, this);
+                    
+                                    this.button_no.on('pointerdown', function(pointer) {
+                                        this.noRoute = true;     //branch flag
+                                        narrativeText.setText("Is this what you want?");
+                                        this.destroyChoiceButtons(this.button_sayNothing, this.button_no);
+                                        if(!this.grottoTransition) {
+                                            this.fog_left.visible = true;
+                                            this.fog_right.visible = true;
+                                            this.endTransition_left.play();
+                                            this.endTransition_right.play();
+                                            this.grottoTransition = true;
+                                        }
+                                    }, this);
+
+                                } else if (this.talkingDots3Route) {
+                                    this.button_talkingDots2.on('pointerdown', function (pointer) {
+                                        this.talkingDots2Route = true;      //branch flag
+                                        narrativeText.setText("Is this what you want?");
+                                        this.destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
+                                        if(!this.grottoTransition) {
+                                            this.fog_left.visible = true;
+                                            this.fog_right.visible = true;
+                                            this.endTransition_left.play();
+                                            this.endTransition_right.play();
+                                            this.grottoTransition = true;
+                                        }    
+                                    }, this);
+                    
+                                    this.button_signUp.on('pointerdown', function(pointer) {
+                                        this.signUpRoute = true;     //branch flag
+                                        narrativeText.setText("Is this what you want?");
+                                        this.destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
+                                        if(!this.grottoTransition) {
+                                            this.fog_left.visible = true;
+                                            this.fog_right.visible = true;
+                                            this.endTransition_left.play();
+                                            this.endTransition_right.play();
+                                            this.grottoTransition = true;
+                                        }
+                                    }, this);
+        
+                                } else if (this.noImSorryRoute) {
+                                    this.button_callLater.on('pointerdown', function (pointer) {
+                                        this.callLaterRoute = true;      //branch flag
+                                        narrativeText.setText("Is this what you want?");
+                                        this.destroyChoiceButtons(this.button_callLater, this.button_talkingDots4);
+                                        if(!this.grottoTransition) {
+                                            this.fog_left.visible = true;
+                                            this.fog_right.visible = true;
+                                            this.endTransition_left.play();
+                                            this.endTransition_right.play();
+                                            this.grottoTransition = true;
+                                        }    
+                                    }, this);
+                    
+                                    this.button_talkingDots4.on('pointerdown', function(pointer) {
+                                        this.talkingDots4Route = true;     //branch flag
+                                        narrativeText.setText("Is this what you want?");
+                                        this.destroyChoiceButtons(this.button_callLater, this.button_talkingDots4);
+                                        if(!this.grottoTransition) {
+                                            this.fog_left.visible = true;
+                                            this.fog_right.visible = true;
+                                            this.endTransition_left.play();
+                                            this.endTransition_right.play();
+                                            this.grottoTransition = true;
+                                        }
+                                    }, this);
+                                }
+                            }
+
+                        }
                     }
 
                 } else if(this.investigateRoute) {
@@ -263,13 +422,20 @@ class Grotto extends Phaser.Scene {
     
                     this.button_sit.on('pointerdown', function(pointer) {
                         this.sitRoute = true;     //branch flag
-                        narrativeText.setText(scriptText.grotto_sit[0]);
+                        //narrativeText.setText(scriptText.grotto_sit[0]);
                         this.destroyChoiceButtons(this.button_punch, this.button_sit, this.button_move);
+                        if(!this.grottoTransition) {
+                            this.fog_left.visible = true;
+                            this.fog_right.visible = true;
+                            this.endTransition_left.play();
+                            this.endTransition_right.play();
+                            this.grottoTransition = true;
+                        }
                     }, this);
 
-                    this.button_move.on('pointerdown', function(pointer) {
+                    this.button_move.on('pointerdown', function(pointer) {          //fix this
                         this.moveRoute = true;     //branch flag
-                        narrativeText.setText(scriptText.grotto_leave[0]);
+                        //narrativeText.setText(scriptText.grotto_leave[0]);
                         this.destroyChoiceButtons(this.button_punch, this.button_sit, this.button_move);
                     }, this);
 
@@ -398,7 +564,7 @@ class Grotto extends Phaser.Scene {
             }
 
             if(finishGrottoNarrative[1]){
-                if(this.pickingChoice(this.talkingDotsRoute, this.imSorryRoute, this.ignoreHerRoute) && this.finallyRoute) {
+                if(this.pickingChoice(this.talkingDotsRoute, this.imSorryRoute) && this.finallyRoute) {
                     this.showChoiceButtons(this.button_talkingDots, this.button_imSorry);
                 }
 
@@ -408,18 +574,33 @@ class Grotto extends Phaser.Scene {
             }
 
             if(finishGrottoNarrative[2]){
-                if(this.pickingChoice(this.talkingDots2Route, this.signUpRoute, this.continueIgnoreRoute) && this.talkingDotsRoute) {
-                    this.showChoiceButtons(this.button_talkingDots2, this.button_signUp, this.button_continueIgnore);
+                if(this.pickingChoice(this.talkingDots2Route, this.signUpRoute) && this.talkingDotsRoute) {
+                    this.showChoiceButtons(this.button_talkingDots2, this.button_signUp);
                 }
+
+                if(this.pickingChoice(this.yeahRoute, this.talkingDots3Route, this.noImSorryRoute) && this.imSorryRoute) {
+                    this.showChoiceButtons(this.button_yeah, this.button_talkingDots3, this.button_noImSorry);
+                }
+
                 if(this.sitRoute) {
                     this.showChoiceButtons(this.button_youPickHerUp, this.button_shit);
                 }
             }
 
-            if(finishGrottoNarrative[3] && this.pickingChoice(this.breatheRoute, this.yell1Route) && (this.youPickHerUpRoute || this.shitRoute)) {
-                this.showChoiceButtons(this.button_breathe, this.button_yell1);
-            }
+            if(finishGrottoNarrative[3]) {
+                if(this.pickingChoice(this.sayNothingRoute, this.noRoute) && this.yeahRoute) {
+                    this.showChoiceButtons(this.button_sayNothing, this.button_no);
+                }
 
+                if(this.pickingChoice(this.talkingDots2Route, this.signUpRoute) && this.talkingDots3Route) {
+                    this.showChoiceButtons(this.button_talkingDots2, this.button_signUp);
+                }
+
+                if(this.pickingChoice(this.callLaterRoute, this.talkingDots4Route) && this.noImSorryRoute) {
+                    this.showChoiceButtons(this.button_callLater, this.button_talkingDots4);
+                }
+
+            }
         }
 
     }
@@ -449,15 +630,14 @@ class Grotto extends Phaser.Scene {
     }
 
     checkItemNarrative(target) {
-        /* will update when we have the next item
+
         if(target === scriptText.pickUpShoe){           //need to update every time we add an new item
             console.log("found an item")
             return true;
         } else {
             return false;
         }
-        */
-       return false;
+
     }
 
     pickingChoice(choice1, choice2, choice3) {
