@@ -422,15 +422,8 @@ class Grotto extends Phaser.Scene {
     
                     this.button_sit.on('pointerdown', function(pointer) {
                         this.sitRoute = true;     //branch flag
-                        //narrativeText.setText(scriptText.grotto_sit[0]);
+                        narrativeText.setText(scriptText.grotto_sit[0]);
                         this.destroyChoiceButtons(this.button_punch, this.button_sit, this.button_move);
-                        if(!this.grottoTransition) {
-                            this.fog_left.visible = true;
-                            this.fog_right.visible = true;
-                            this.endTransition_left.play();
-                            this.endTransition_right.play();
-                            this.grottoTransition = true;
-                        }
                     }, this);
 
                     this.button_move.on('pointerdown', function(pointer) {          //fix this
@@ -590,6 +583,10 @@ class Grotto extends Phaser.Scene {
             if(finishGrottoNarrative[3]) {
                 if(this.pickingChoice(this.sayNothingRoute, this.noRoute) && this.yeahRoute) {
                     this.showChoiceButtons(this.button_sayNothing, this.button_no);
+                }
+
+                if(this.pickingChoice(this.breatheRoute, this.yell1Route) && (this.youPickHerUpRoute || this.shitRoute)) {
+                    this.showChoiceButtons(this.button_breathe, this.button_yell1);
                 }
 
                 if(this.pickingChoice(this.talkingDots2Route, this.signUpRoute) && this.talkingDots3Route) {
