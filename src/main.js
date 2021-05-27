@@ -15,7 +15,7 @@
     width: 640,
     height: 640,
     autoCenter: true,
-    scene: [Preload, Menu, Crossroad, Grotto, BackToGrotto]
+    scene: [Preload, Menu, Crossroad, Grotto, BackToGrotto, Bridge]
 }
 
 let game = new Phaser.Game(config);
@@ -40,6 +40,7 @@ let keyQ;
 let keyW;
 let keyE;
 let keyR;
+let keyT;
 let keySpace;
 
 //define script variables for getNextLine()
@@ -53,14 +54,17 @@ let finishNarrative = [false, false, false, false, false, false, false, false]; 
     //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave, pocket, pocketYes/No, grotto, movePast]
 let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
 
-//grotto branch check----------------------------------------------------------
+//grotto branch check----------------------------------------------------------------------
 let finishGrottoNarrative = [false, false, false, false, false, false, false, false, false, false];
 let finishGrottoIndex = 0;
 
-//backToGrotto branch check----------------------------------------------------
+//backToGrotto branch check----------------------------------------------------------------
 let finishBackGNarrative = [false, false, false, false];
 let finishBackGIndex = 0;
 
+//bridge branch check----------------------------------------------------------------------
+let finishBridgeNarrative = [false, false];
+let finishBridgeIndex = 0;
 
 //item check - will be updated when items besides shoe got added to the game
 let hasItem = [false];
