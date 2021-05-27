@@ -50,9 +50,9 @@ let nextLine = 1;
 let firstTimer = true;
 
 //main narrative branch check--------------------------------------------------------------
-let finishNarrative = [false, false, false, false, false, false, false, false];      //the length of this array will corresond to the number of flags/choices players can make
-    //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave, pocket, pocketYes/No, grotto, movePast]
-let finishNarrativeIndex = 0;     //corresponds to the finishNarrative array
+let finishCrossroadNarrative = [false, false, false, false, false, false, false];      //the length of this array will corresond to the number of flags/choices players can make
+    //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave, pocket, pocketYes/No, grotto]
+let finishCrossroadIndex = 0;     //corresponds to the finishNarrative array
 
 //grotto branch check----------------------------------------------------------------------
 let finishGrottoNarrative = [false, false, false, false, false, false, false, false, false, false];

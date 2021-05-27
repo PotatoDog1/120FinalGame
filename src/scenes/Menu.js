@@ -28,9 +28,9 @@ class Menu extends Phaser.Scene {
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyE)) {
-            for(var i = 0; i < 6; i++) {      //to loop through the narrative flag array and reset them all to false
-                finishNarrative[i] = true;
-                //console.log("finishNarrative[" + i + "] is " + finishNarrative[i]);
+            for(var i = 0; i < finishCrossroadNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+                finishCrossroadNarrative[i] = true;
+                //console.log("finishCrossroadNarrative[" + i + "] is " + finishCrossroadNarrative[i]);
             }
 
             hasItem[0] = true;          //it's the shoe
@@ -40,9 +40,9 @@ class Menu extends Phaser.Scene {
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyR)) {
-            for(var i = 0; i < 6; i++) {      //to loop through the narrative flag array and reset them all to false
-                finishNarrative[i] = true;
-                //console.log("finishNarrative[" + i + "] is " + finishNarrative[i]);
+            for(var i = 0; i < finishCrossroadNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+                finishCrossroadNarrative[i] = true;
+                //console.log("finishCrossroadNarrative[" + i + "] is " + finishCrossroadNarrative[i]);
             }
 
             for(var i = 0; i < finishGrottoNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
@@ -56,9 +56,9 @@ class Menu extends Phaser.Scene {
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyT)) {
-            for(var i = 0; i < 6; i++) {      //to loop through the narrative flag array and reset them all to false
-                finishNarrative[i] = true;
-                //console.log("finishNarrative[" + i + "] is " + finishNarrative[i]);
+            for(var i = 0; i < finishCrossroadNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+                finishCrossroadNarrative[i] = true;
+                //console.log("finishCrossroadNarrative[" + i + "] is " + finishCrossroadNarrative[i]);
             }
 
             for(var i = 0; i < finishGrottoNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false

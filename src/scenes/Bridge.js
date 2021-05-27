@@ -286,9 +286,9 @@ class Bridge extends Phaser.Scene {
     }
 
     resetGame() {
-        for(var i = 0; i < finishNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
-            finishNarrative[i] = false;
-            //console.log("looping through finishNarrative. Finished " + i + " time, " + i + " is " + finishNarrative[i]);
+        for(var i = 0; i < finishCrossroadNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+            finishCrossroadNarrative[i] = false;
+            //console.log("looping through finishCrossroadNarrative. Finished " + i + " time, " + i + " is " + finishCrossroadNarrative[i]);
         }
 
         for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
@@ -311,7 +311,7 @@ class Bridge extends Phaser.Scene {
             finishBridgeNarrative[i] = false;
         }
 
-        finishNarrativeIndex = 0;     //to reset narrative to the beginning flag
+        finishCrossroadIndex = 0;     //to reset narrative to the beginning flag
         finishGrottoIndex = 0;
         finishBackGIndex = 0;
         finishBridgeIndex = 0;
