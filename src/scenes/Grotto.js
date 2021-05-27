@@ -603,9 +603,9 @@ class Grotto extends Phaser.Scene {
     }
 
     resetGame() {
-        for(var i = 0; i < finishNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
-            finishNarrative[i] = false;
-            //console.log("looping through finishNarrative. Finished " + i + " time, " + i + " is " + finishNarrative[i]);
+        for(var i = 0; i < finishCrossroadNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+            finishCrossroadNarrative[i] = false;
+            //console.log("looping through finishCrossroadNarrative. Finished " + i + " time, " + i + " is " + finishCrossroadNarrative[i]);
         }
 
         for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
@@ -620,7 +620,7 @@ class Grotto extends Phaser.Scene {
             finishGrottoNarrative[i] = false;
         }
 
-        finishNarrativeIndex = 0;     //to reset narrative to the beginning flag
+        finishCrossroadIndex = 0;     //to reset narrative to the beginning flag
         finishGrottoIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
         main_bgm.stop();        //to stop game bgm when they come back to menu

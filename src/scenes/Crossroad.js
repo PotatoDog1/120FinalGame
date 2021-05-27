@@ -185,7 +185,7 @@ class Crossroad extends Phaser.Scene {
 
     update() {
 
-        if(!finishNarrative[0]) {     //enter first narrative flag check to start the game; these are to stop it from updating the narrative text to the corresponding flag all the time
+        if(!finishCrossroadNarrative[0]) {     //enter first narrative flag check to start the game; these are to stop it from updating the narrative text to the corresponding flag all the time
             this.getNextLine(scriptText.crossroad);
         } else {                //finish first part narrative and reach choices
             if(hasItem[0]){     //if players pick up the item(shoe)
@@ -219,7 +219,7 @@ class Crossroad extends Phaser.Scene {
                 }
             }
 
-            if(!finishNarrative[2]){      //enter second narrative flag check
+            if(!finishCrossroadNarrative[2]){      //enter second narrative flag check
                 if(this.continueRoute) {
                     this.getNextLine(scriptText.crossroad_continue);
                 } else if (this.leaveRoute) {
@@ -241,7 +241,7 @@ class Crossroad extends Phaser.Scene {
                         this.destroyChoiceButtons(this.button_continue2, this.button_leave2);
                     }, this);
 
-                    if(!finishNarrative[3]){
+                    if(!finishCrossroadNarrative[3]){
                         if(this.continueRoute2) {
                             this.getNextLine(scriptText.crossroad_fog);
                         } else if (this.leaveRoute2) {
@@ -255,7 +255,7 @@ class Crossroad extends Phaser.Scene {
                                 this.checkPocketNarrative = true;
                             }
 
-                            if(this.checkPocket == true && !finishNarrative[4]){            //after players click on pocket
+                            if(this.checkPocket == true && !finishCrossroadNarrative[4]){            //after players click on pocket
                                 this.bag.setAngle(0);
                                 this.getNextLine(scriptText.pocket);
                             } else {
@@ -271,7 +271,7 @@ class Crossroad extends Phaser.Scene {
                                     this.destroyChoiceButtons(this.button_yes, this.button_no);
                                 }, this);
 
-                                if(!finishNarrative[5]){
+                                if(!finishCrossroadNarrative[5]){
                                     if(this.yesRoute) {
                                         this.getNextLine(scriptText.pocket_yes);
                                     } else if (this.noRoute) {
@@ -314,14 +314,14 @@ class Crossroad extends Phaser.Scene {
 
         if(Phaser.Input.Keyboard.JustDown(keyE)) {
             for(var i = 0; i < 6; i++) {      //to loop through the narrative flag array and reset them all to false
-                finishNarrative[i] = true;
-                //console.log("finishNarrative[" + i + "] is " + finishNarrative[i]);
+                finishCrossroadNarrative[i] = true;
+                //console.log("finishCrossroadNarrative[" + i + "] is " + finishCrossroadNarrative[i]);
             }
 
             hasItem[0] = true;          //it's the shoe
             finishItemNarrative[0] = true;      //shoe narrative
 
-            finishNarrativeIndex = 6;     //to reset narrative to the beginning flag
+            finishCrosswordIndex = 6;     //to reset narrative to the beginning flag
             nextLine = 1;           //to reset narrative to the beginning line
             main_bgm.stop();        //to stop game bgm when they come back to menu
             this.scene.start('grottoScene');
@@ -342,7 +342,7 @@ class Crossroad extends Phaser.Scene {
         }
 
         //to add the shoe object
-        if(!finishNarrative[0] && nextLine == 4 && !hasItem[0]){                        
+        if(!finishCrossroadNarrative[0] && nextLine == 4 && !hasItem[0]){                        
             this.shoe.visible = true;
             this.shoe.input.draggable = false;    // so players won't be able to drag it until a certain scene
         }
@@ -351,23 +351,23 @@ class Crossroad extends Phaser.Scene {
         if (nextLine == target.length){
 
             if(!this.checkItemNarrative(target)){       //if it's a flag narrative
-                finishNarrative[finishNarrativeIndex] = true;
-                finishNarrativeIndex++;
+                finishCrossroadNarrative[finishCrossroadIndex] = true;
+                finishCrossroadIndex++;
             }
 
             //reset to the beginning of the line
             nextLine = 1;
 
             //to display choices, probably need to do it for every branch
-            if(finishNarrative[0] && this.pickingChoice(this.leaveRoute, this.continueRoute) && hasItem[0]) { 
+            if(finishCrossroadNarrative[0] && this.pickingChoice(this.leaveRoute, this.continueRoute) && hasItem[0]) { 
                 this.button_continue.visible = true;
                 this.button_leave.visible = true;
             } 
-            if(finishNarrative[2] && this.pickingChoice(this.leaveRoute2, this.continueRoute2) && this.continueRoute){
+            if(finishCrossroadNarrative[2] && this.pickingChoice(this.leaveRoute2, this.continueRoute2) && this.continueRoute){
                 this.button_continue2.visible = true;
                 this.button_leave2.visible = true;
             }
-            if(finishNarrative[4] && this.pickingChoice(this.yesRoute, this.noRoute) && this.continueRoute) {
+            if(finishCrossroadNarrative[4] && this.pickingChoice(this.yesRoute, this.noRoute) && this.continueRoute) {
                 this.button_yes.visible = true;
                 this.button_no.visible = true;
             }
@@ -385,7 +385,7 @@ class Crossroad extends Phaser.Scene {
         target.setPosition(target.input.dragStartX, target.input.dragStartY);
     }
 
-    //checks if target is an item narrative or not;to prevent item narrative texts from messing up the finishNarrative/flag array
+    //checks if target is an item narrative or not;to prevent item narrative texts from messing up the finishCrossroadNarrative/flag array
     checkItemNarrative(target) {
         /* will update when we have the next item
         if(target === scriptText.pickUpShoe){           //need to update every time we add an new item
@@ -418,9 +418,9 @@ class Crossroad extends Phaser.Scene {
 
     //Resets the condition of EVERYTHING
     resetGame() {
-        for(var i = 0; i < finishNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
-            finishNarrative[i] = false;
-            //console.log("looping through finishNarrative. Finished " + i + " time, " + i + " is " + finishNarrative[i]);
+        for(var i = 0; i < finishCrossroadNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
+            finishCrossroadNarrative[i] = false;
+            //console.log("looping through finishCrossroadNarrative. Finished " + i + " time, " + i + " is " + finishCrossroadNarrative[i]);
         }
 
         for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
@@ -431,7 +431,7 @@ class Crossroad extends Phaser.Scene {
             finishItemNarrative[i] = false;
         }
 
-        finishNarrativeIndex = 0;     //to reset narrative to the beginning flag
+        finishCrossroadIndex = 0;     //to reset narrative to the beginning flag
         nextLine = 1;           //to reset narrative to the beginning line
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');

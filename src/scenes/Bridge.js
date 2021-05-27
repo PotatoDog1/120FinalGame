@@ -1,6 +1,6 @@
-class BackToGrotto extends Phaser.Scene {
+class Bridge extends Phaser.Scene {
     constructor() {
-        super("backToGrottoScene");
+        super("bridgeScene");
     }
 
     create() {
@@ -64,26 +64,16 @@ class BackToGrotto extends Phaser.Scene {
 
         //Choices related----------------------------------------------------
 
-        narrativeText = this.add.text(80, 445, scriptText.backToGrotto[0], wordConfig);
+        narrativeText = this.add.text(80, 445, scriptText.bridgeStart[0], wordConfig);
 
         this.button_movePast = this.add.sprite(80, 490, 'movePast').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_findWayOut = this.add.sprite(80, 527, 'findWayOut').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_giveUp = this.add.sprite(80, 490, 'giveUp').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_goBackGrotto = this.add.sprite(80, 527, 'goBackGrotto').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_movePast2 =  this.add.sprite(80, 527, 'movePast').setOrigin(0,0).setInteractive({useHandCursor: true});
 
 
         this.button_movePast.visible = false;
-        this.button_findWayOut.visible = false;
-        this.button_giveUp.visible = false;
-        this.button_goBackGrotto.visible = false;
-        this.button_movePast2.visible = false;
+
 
         this.movePastRoute = false;
-        this.findWayOutRoute = false;
-        this.giveUpRoute = false;
-        this.goBackGrottoRoute = false;
-        this.movePast2Route = false;
+
 
         //Choices end--------------------------------------------------------
 
@@ -127,8 +117,8 @@ class BackToGrotto extends Phaser.Scene {
 
     update() {
 
-        if(!finishBackGNarrative[0]) {
-            this.getNextLine(scriptText.backToGrotto);
+        if(!finishBridgeNarrative[0]) {
+            this.getNextLine(scriptText.bridgeStart);
         } else {
             this.button_movePast.on('pointerdown', function (pointer) {
                 this.movePastRoute = true;      //branch flag
@@ -142,7 +132,7 @@ class BackToGrotto extends Phaser.Scene {
                 this.destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
             }, this);
 
-            if(!finishBackGNarrative[1]) {
+            if(!finishBridgeNarrative[1]) {
                 if(this.movePastRoute) {
                     this.getNextLine(scriptText.grotto_leave);
                 } else if (this.findWayOutRoute) {
@@ -167,7 +157,7 @@ class BackToGrotto extends Phaser.Scene {
                         this.destroyChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
                     }, this);
 
-                    if(!finishBackGNarrative[2]) {
+                    if(!finishBridgeNarrative[2]) {
                         if(this.giveUpRoute) {
                             this.getNextLine(scriptText.grotto_end);
                         } else if (this.goBackGrottoRoute) {
@@ -185,7 +175,7 @@ class BackToGrotto extends Phaser.Scene {
                                 this.destroyChoiceButtons(this.button_movePast2);
                             }, this);
 
-                            if(!finishBackGNarrative[3]) {
+                            if(!finishBridgeNarrative[3]) {
                                 if(this.movePast2Route) {
                                     this.getNextLine(scriptText.grotto_leave);
                                 }
@@ -231,24 +221,24 @@ class BackToGrotto extends Phaser.Scene {
             firstTimer = true;
 
             if(!this.checkItemNarrative(target)){       //if it's a flag narrative
-                finishBackGNarrative[finishBackGIndex] = true;
-                finishBackGIndex++;
+                finishBridgeNarrative[finishBridgeIndex] = true;
+                finishBridgeIndex++;
             }
 
             //display choices
-            if(finishBackGNarrative[0]) {
+            if(finishBridgeNarrative[0]) {
                 if(this.pickingChoice(this.movePastRoute, this.findWayOutRoute)) {
                     this.showChoiceButtons(this.button_movePast, this.button_findWayOut);
                 }
             }
             
-            if(finishBackGNarrative[1]) {
+            if(finishBridgeNarrative[1]) {
                 if(this.pickingChoice(this.giveUpRoute, this.goBackGrottoRoute) && this.findWayOutRoute) {
                     this.showChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
                 }
             }
             
-            if(finishBackGNarrative[2]) {
+            if(finishBridgeNarrative[2]) {
                 if(this.pickingChoice(this.movePast2Route) && this.goBackGrottoRoute) {
                     this.showChoiceButtons(this.button_movePast2);
                 }
@@ -317,9 +307,14 @@ class BackToGrotto extends Phaser.Scene {
             finishBackGNarrative[i] = false;
         }
 
+        for(var i = 0; i < finishBridgeNarrative.length; i++) {
+            finishBridgeNarrative[i] = false;
+        }
+
         finishCrossroadIndex = 0;     //to reset narrative to the beginning flag
         finishGrottoIndex = 0;
         finishBackGIndex = 0;
+        finishBridgeIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');
