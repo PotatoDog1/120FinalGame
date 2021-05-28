@@ -16,7 +16,7 @@ class Menu extends Phaser.Scene {
         this.instructionText.setFontStyle('bold');
         this.instructionText.setFontSize(18);
         this.instructionText2 = this.add.text(30, game.config.height/1.2, 
-            'Menu debug keys:\nPress [Q] to go back to Menu\nPress [E] to go to Grotto Scene\nPress [R] to go to backToGrotto Scene\nPress [T] to go to Bridge Scene', menuConfig);
+            'Menu debug keys:\nPress [Q] to go back to Menu\nPress [E] to go to Grotto Scene\nPress [R] to go to backToGrotto Scene\nPress [T] to go to beforeBridge Scene', menuConfig);
         this.instructionText2.setFontSize(14);
 
     }
@@ -73,7 +73,7 @@ class Menu extends Phaser.Scene {
             hasItem[0] = true;          //it's the shoe
             finishItemNarrative[0] = true;      //shoe narrative
             
-            this.scene.start('bridgeScene');
+            this.scene.start('beforeBridgeScene');
         }
 
     }

@@ -15,7 +15,7 @@
     width: 640,
     height: 640,
     autoCenter: true,
-    scene: [Preload, Menu, Crossroad, Grotto, BackToGrotto, Bridge, Tower]
+    scene: [Preload, Menu, Crossroad, Grotto, BackToGrotto, BeforeBridge, Bridge, Tower]
 }
 
 let game = new Phaser.Game(config);
@@ -61,6 +61,10 @@ let finishGrottoIndex = 0;
 //backToGrotto branch check----------------------------------------------------------------
 let finishBackGNarrative = [false, false, false, false];
 let finishBackGIndex = 0;
+
+//beforeBridge branch check----------------------------------------------------------------
+let finishBeforeBNarrative = [false, false, false, false, false];
+let finishBeforeBIndex = 0;
 
 //bridge branch check----------------------------------------------------------------------
 let finishBridgeNarrative = [false, false, false, false, false, false, false, false, false, false];
