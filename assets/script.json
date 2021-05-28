@@ -124,15 +124,21 @@
       "Deciding to throw your responbilities and\nobligations thrown to the wind, you live out\nthe rest of your days in the forest.",
       "FIN - I tried, but what else can change me?\n\n\n*Continue to go back to Menu*"
    ],
-   "bridgeStart":[
-      "The sound of running water begins to fill\nyour ears as you spot a small\nriver cutting the forest in two.",
-      "A bridge connects the ten foot gap\nbetween you and the land opposite the river.",
-      "It's wooden floorboards sway and rattle gently with the wind.",
-      "This bridge hasn't been maintained in some time.\nDroplets of water drip from its wood, as though it has just been misted.",
-      "It beckons you to cross the chasm.\nAs you peer below, over the edge, you quickly note the distance to be fifteen feet, give or take a foot.",
-      "It would not be a pleasant fall."
+   "bridge_start":[
+      "The sound of running water begins to fill\nyour ears as you spot a small river\ncutting the forest in two.",
+      "A bridge connects the ten foot gap between\nyou and the land opposite the river.",
+      "It's wooden floorboards sway and rattle\ngently with the wind.",
+      "This bridge hasn't been maintained in some\ntime. Droplets of water drip from its wood,\nas though it has just been misted.",
+      "It beckons you to cross the chasm.\nAs you peer below, over the edge, you\nquickly note the distance to be fifteen\nfeet, give or take a foot.",
+      "It would not be a pleasant fall.\n\nYou may want to inspect the bridge\nbefore continue ahead.",
+      "What do you want to do?"
    ],
-   "cussAtWorld":[
+   "bridge_inspectBridge":[
+      "You inspect the bridge from a safe distance.\nWhile it can most certainly hold your weight,\nit wouldn't be for long.",
+      "As it turns out, abandoned bridges lose\ntheir integrity.",
+      "What else do you want to do?"
+   ],
+   "bridge_cussAtWorld":[
       "Your wife stands, staring at you.\nUnflinching.\nHer gaze stern and focused.",
       "You are in your garage,\nsunlight flooding in from the open door that\nallows a view into the empty street.",
       "\"Is that all?\"She asks you.\nThe tone is piercing."
@@ -173,24 +179,45 @@
       "The highway offers little respite as you pass person after person,\ntheir cars becoming blurs on the wayside.",
       "An exit, one that, to your knowledge,\nhas just finished construction, appears up ahead."
    ],
-   "bridgeCrossing":[
-      "You approach the bridge, placing your hands on its posts,\neach of which are staked deep into the earth.",
+   "bridge_crossing":[
+      "You approach the bridge, placing your hands\non its posts, each of which are staked deep\ninto the earth.",
       "It beckons you to cross.",
-      "You step forward, the wooden floorboards creaking beneath you.\nThe bridge holds your weight.\nYou allow yourself a breath of relief.",
-      "A gust of wind forces you to steel your grip.\nYou feel your hands tighten around the rope handles\n of the bridge as it rattles with the breeze."
+      "You step forward, the wooden floorboards\ncreaking beneath you. The bridge holds your\nweight. You allow yourself a breath of relief.",
+      "A gust of wind forces you to steel your grip.\nYou feel your hands tighten around the rope\nhandles of the bridge as it rattles with\nthe breeze.",
+      "What are you going to do?"
    ],
-   "walkAcrossBridge":[
-      "You take your steps slowly,\ncareful to not step on any portions of clearly rotted wood.",
-      "The bridge rattles as you step,\nsome of the floorboards shifting slightly beneath your weight.",
-      "Before long, you have found yourself\non the other side of the river, the forest covered in fog behind you.",
-      "A breeze sways the treetops.\nThe soft sound of leaves brushing against leaves fills the air.",
-      "The tower, ever so close,\nstands fortified in the ground.\nIt appears your journey is nearing an end."
+   "bridge_waitOutTheWind":[
+      "The air buffets the old construction, forcing\nyou to tighten your grip to the rope handles\neven more, the wooden floorboards swinging\nand drifting with the wind.",
+      "After some time, the wind recedes again.\nThe insides of your hands, etched with the\nmarkings of the rope, sting slightly from the\ntightness of your grip.",
+      "Perhaps it would've been best to go across\nbefore the wind picked up. The tower stands\nin the distance ahead of you.",
+      "Your hands clammy and antsy, the cold air\nforcing a sniffle.",
+      "Despite it all, it appears your journey\nis nearing an end."
    ],
-   "takeABreakAtBridge":[
-      "You feel calmer.\nThe tightness in your chest mellows slightly as you take a breath.\nThe forest offers a moment of brevity and peace.",
-      "The air is cold against your nose, forcing a sniffle.",
-      "A squirrel passing underfoot catches your attention\nbefore disappearing high into one of the trees.",
-      "You are alone, but at least there's company."
+   "bridge_continueFoward":[
+      "You take your steps slowly, careful to not\nstep on any portions of clearly rotted wood.",
+      "The bridge rattles as you step, some of the\nfloorboards shifting slightly beneath your weight.",
+      "Before long, you have found yourself on the\nother side of the river, the forest covered in\nfog behind you.",
+      "A breeze sways the treetops. The soft sound\nof leaves brushing against leaves fills the air.",
+      "The tower, ever so close, stands fortified\nin the ground. It appears your journey is\nnearing an end.",
+      "You want to..."
+   ],
+   "bridge_runAcrossBridge":[
+      "You plant your feet as your sprint across\nthe bridge, the floorboards cracking and flying\ninto the water beneath you as you do.",
+      "The bridge cries as it creaks, practically\nunrecognizable from its previous state. It is\nno longer crossable for any future explorers.",
+      "You feel your body fume with emotion, almost\noverwhelmingly so. The forest, obstacle after\nobstacle, is still no match for your brute force.",
+      "As you take a moment to collect yourself,\nyou spot the tower once more. It stands tall,\nmuch closer than previously though.",
+      "It appears your journey is nearing an end."
+   ],
+   "bridge_calm":[
+      "You feel calmer. The tightness in your chest\nmellows slightly as you take a breath.",
+      "The forest offers a moment of brevity and\npeace. The air is cold against your nose,\nforcing a sniffle.",
+      "A squirrel passing underfoot catches your\nattention before disappearing high into one\nof the trees. You are alone, but at least\nthere's company.",
+      "You have finally reached the tower."
+   ],
+   "tower_base":[
+      "You stare up at the tower, yet even as you squint\nyour eyes you are unable to see the top.",
+      "A small doorway stands in between you and\nthe stairs that are surely inside.",
+      "The tower itself, made of mossy stone and overun\nwith foliage, appears weary with age."
    ],
    "goodEnding":[
       "You begin the ascent of the spiral staircase, small windows adorning the its sides,\nallowing you glimpses into the outside world as you climb.",

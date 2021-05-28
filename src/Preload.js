@@ -22,6 +22,10 @@ class Preload extends Phaser.Scene{
         this.load.image('grotto', './assets/grottoTemp.png');
         this.load.image('livingRoom', './assets/livingRoom_shrinked.png');
 
+        //bridge art assets
+        this.load.image('bridge', './assets/bridge_v2.png');
+        this.load.image('item_bridge', './assets/item_bridge.png');
+
         //area to define non droppable zone
         this.load.image('noDrop', './assets/nonDropZone.png');
 
@@ -29,13 +33,15 @@ class Preload extends Phaser.Scene{
         this.load.audio('bgm_1', './assets/bgm_1.mp3');
         this.load.audio('sfx_pencil', './assets/pencilscratch2.mp3');
 
-        //choice images
+        //crossroad choice images
         this.load.image('continue', './assets/choices/choice_continue.png');   
         this.load.image('leave', './assets/choices/choice_leave.png');  
         this.load.image('continue2', './assets/choices/choice_continue2.png');   
         this.load.image('leave2', './assets/choices/choice_leave2.png'); 
         this.load.image('yes', './assets/choices/choice_yes.png'); 
         this.load.image('no', './assets/choices/choice_no.png'); 
+
+        //grotto choice images
         this.load.image('finally', './assets/choices/choice_finally.png'); 
         this.load.image('investigate', './assets/choices/choice_investigate.png');
         this.load.image('movePast', './assets/choices/choice_movePast.png');
@@ -55,9 +61,22 @@ class Preload extends Phaser.Scene{
         this.load.image('sayNothing', './assets/choices/choice_sayNothing.png');
         this.load.image('sayNo', './assets/choices/choice_sayNo.png');
         this.load.image('callLater', './assets/choices/choice_callLater.png');
+
+        //backToGrotto choice images
         this.load.image('findWayOut', './assets/choices/choice_findWayOut.png');
         this.load.image('giveUp', './assets/choices/choice_giveUp.png');
         this.load.image('goBackGrotto', './assets/choices/choice_goBackGrotto.png');
+        this.load.image('waitWind', './assets/choices/choice_waitWind.png');
+        this.load.image('continueForward', './assets/choices/choice_continueForward.png');
+        this.load.image('runAcrossBridge', './assets/choices/choice_runAcrossBridge.png');
+        this.load.image('breatheCalm', './assets/choices/choice_breatheCalm.png');
+        this.load.image('pause', './assets/choices/choice_pause.png');
+        this.load.image('calmDown', './assets/choices/choice_calmDown.png');
+        this.load.image('continueTower', './assets/choices/choice_continueTower.png');
+
+        //bridge choice images
+        this.load.image('crossBridge', './assets/choices/choice_crossBridge.png');
+        this.load.image('cuss', './assets/choices/choice_cuss.png');
 
         //json scripts
         this.load.json('json_script', 'assets/script.json'); // actual script

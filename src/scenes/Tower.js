@@ -1,6 +1,6 @@
-class Bridge extends Phaser.Scene {
+class Tower extends Phaser.Scene {
     constructor() {
-        super("bridgeScene");
+        super("towerScene");
     }
 
     create() {
@@ -89,7 +89,7 @@ class Bridge extends Phaser.Scene {
 
         //Choices related----------------------------------------------------
 
-        narrativeText = this.add.text(80, 445, scriptText.bridge_start[0], wordConfig);
+        narrativeText = this.add.text(80, 445, scriptText.tower_base[0], wordConfig);
 
         this.button_crossBridge = this.add.sprite(80, 490, 'crossBridge').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_cuss = this.add.sprite(80, 527, 'cuss').setOrigin(0,0).setInteractive({useHandCursor: true});
@@ -118,6 +118,7 @@ class Bridge extends Phaser.Scene {
         this.continueForwardRoute = false;
         this.runAcrossBridgeRoute = false;
         this.breatheCalmRoute = false;
+        this.continueTowerRoute = false;
         this.pauseRoute = false;
         this.calmDownRoute = false;
 
@@ -138,8 +139,8 @@ class Bridge extends Phaser.Scene {
             duration: 1500,
             x: -521,
             onComplete: function() {
-                //this.fog_left.destroy();
-                this.fog_left.visible = false;
+                this.fog_left.destroy();
+                //this.fog_left.visible = false;
             },
             onCompleteScope: this
         });
@@ -153,46 +154,19 @@ class Bridge extends Phaser.Scene {
             duration: 1500,
             x: 640,
             onComplete: function() {
-                //this.fog_right.destroy();
-                this.fog_right.visible = false;
+                this.fog_right.destroy();
+                //this.fog_right.visible = false;
             },
             onCompleteScope: this
         });
-
-        //end transition-------------------------------------------------
-        this.endTransition_left = this.tweens.add({
-            targets: this.fog_left,
-            delay: 1500,
-            ease: 'Sine.easeOut',
-            duration: 1500,
-            x: 0
-        });
-        this.endTransition_left.pause();
-        
-        this.endTransition_right = this.tweens.add({
-            targets: this.fog_right,
-            delay: 1500,
-            ease: 'Sine.easeOut',
-            duration: 1500,
-            x: 165,
-            completeDelay: 1000,
-            onComplete: function() {
-                main_bgm.stop(); 
-                this.scene.start('towerScene');
-            },
-            onCompleteScope: this
-        });
-        this.endTransition_right.pause();
-        
-        this.grottoTransition = false;
 
 
     }
 
     update() {
 
-        if(!finishBridgeNarrative[0]) {
-            this.getNextLine(scriptText.bridge_start);
+        if(!finishBridgeNarrative[0]) {         //fix later; add narrative accordingly with the emotion variables
+            this.getNextLine(scriptText.tower_base);
         } else {
             if(!this.checkItemBridge && this.pickingChoice(this.crossBridgeRoute, this.cussRoute)) {            //if players haven't done anything yet
                 this.checkItemBridgeNarrative = true;
@@ -254,56 +228,11 @@ class Bridge extends Phaser.Scene {
                 else {
                     if(this.waitWindRoute) {
                         this.button_breatheCalm.on('pointerdown', function (pointer) {
-                            this.breatheCalmRoute = true;      //branch flag
-                            narrativeText.setText(scriptText.bridge_calm[0]); 
-                            this.destroyChoiceButtons(this.button_breatheCalm);
+                            this.waitWindRoute = true;      //branch flag
+                            narrativeText.setText(scriptText.bridge_waitOutTheWind[0]); 
+                            this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
                         }, this);
-
-                        if(!finishBridgeNarrative[3]) {
-                            if(this.breatheCalmRoute) {
-                                this.getNextLine(scriptText.bridge_calm);
-                            }
-                        } else {
-                            this.goNextScene();
-                        }
-
-                    } else if (this.continueForwardRoute) {
-                        this.button_continueTower.on('pointerdown', function (pointer) {
-                            narrativeText.setText("You move towards the direction that the\ntower stands."); 
-                            this.destroyChoiceButtons(this.button_continueTower, this.button_pause);
-                            this.goNextScene();
-                        }, this);
-
-                        this.button_pause.on('pointerdown', function (pointer) {
-                            this.pauseRoute = true;      //branch flag
-                            narrativeText.setText(scriptText.bridge_calm[0]); 
-                            this.destroyChoiceButtons(this.button_continueTower, this.button_pause);
-                        }, this);
-
-                        if(!finishBridgeNarrative[3]) {
-                            if(this.pauseRoute) {
-                                this.getNextLine(scriptText.bridge_calm);
-                            }
-                        } else {
-                            this.goNextScene();
-                        }
-                    } else if (this.runAcrossBridgeRoute) {
-                        this.button_calmDown.on('pointerdown', function (pointer) {
-                            this.calmDownRoute = true;      //branch flag
-                            narrativeText.setText(scriptText.bridge_calm[0]); 
-                            this.destroyChoiceButtons(this.button_calmDown);
-                        }, this);
-
-                        if(!finishBridgeNarrative[3]) {
-                            if(this.calmDownRoute) {
-                                this.getNextLine(scriptText.bridge_calm);
-                            }
-                        } else {
-                            this.goNextScene();
-                        }
                     }
-
-
                 }
             }
 
@@ -374,7 +303,8 @@ class Bridge extends Phaser.Scene {
                 if(this.pickingChoice(this.breatheCalmRoute) && this.runAcrossBridgeRoute) {
                     this.showChoiceButtons(this.button_calmDown);
                 }
-            }            
+            }
+            
 
         }
 
@@ -423,16 +353,6 @@ class Bridge extends Phaser.Scene {
             return !choice1 && !choice2;
         }
 
-    }
-
-    goNextScene() {
-        if(!this.grottoTransition) {
-            this.fog_left.visible = true;
-            this.fog_right.visible = true;
-            this.endTransition_left.play();
-            this.endTransition_right.play();
-            this.grottoTransition = true;
-        }
     }
 
     resetGame() {
