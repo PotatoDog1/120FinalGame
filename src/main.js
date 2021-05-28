@@ -15,7 +15,7 @@
     width: 640,
     height: 640,
     autoCenter: true,
-    scene: [Preload, Menu, Crossroad, Grotto, BackToGrotto, Bridge]
+    scene: [Preload, Menu, Crossroad, Grotto, BackToGrotto, Bridge, Tower]
 }
 
 let game = new Phaser.Game(config);
@@ -63,7 +63,7 @@ let finishBackGNarrative = [false, false, false, false];
 let finishBackGIndex = 0;
 
 //bridge branch check----------------------------------------------------------------------
-let finishBridgeNarrative = [false, false];
+let finishBridgeNarrative = [false, false, false, false, false, false, false, false, false, false];
 let finishBridgeIndex = 0;
 
 //item check - will be updated when items besides shoe got added to the game
@@ -71,6 +71,12 @@ let hasItem = [false];
     //notes:  [shoe]
 let finishItemNarrative = [false];
     //notes:              [XXXXX]
+
+//interactive object check--------------------------------------------------------------
+let interactiveNarrative = [false];
+    //notes:               [bridge]
+let interactiveIndex = 0;
+
 
 //tween Scale variable
 const SCALE = 0.5;
