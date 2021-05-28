@@ -211,8 +211,8 @@
    "bridge_calm":[
       "You feel calmer. The tightness in your chest\nmellows slightly as you take a breath.",
       "The forest offers a moment of brevity and\npeace. The air is cold against your nose,\nforcing a sniffle.",
-      "A squirrel passing underfoot catches your\nattention before disappearing high into one\nof the trees.",
-      "You are alone, but at least there's company."
+      "A squirrel passing underfoot catches your\nattention before disappearing high into one\nof the trees. You are alone, but at least\nthere's company.",
+      "You have finally reached the tower."
    ],
    "tower_base":[
       "You stare up at the tower, yet even as you squint\nyour eyes you are unable to see the top.",
