@@ -17,7 +17,7 @@ class Bridge extends Phaser.Scene {
         //add UI temp art assets
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
         this.add.image(0, 400, 'bg_notepad').setOrigin(0,0);
-        this.placeImage = this.add.image(0, 0, 'grotto').setOrigin(0, 0);
+        this.placeImage = this.add.image(0, 0, 'bridge').setOrigin(0, 0).setScale(0.4);
         this.portrait = this.add.image(515, 160, 'portrait').setScale(1.15);
         
         //breathing portrait animation
@@ -36,6 +36,17 @@ class Bridge extends Phaser.Scene {
 
         //narrative 
         scriptText = this.cache.json.get('json_script');
+
+        //interactive objects
+        this.item_bridge = this.add.sprite(210, 255, 'item_bridge').setScale(0.4).setInteractive();
+        this.item_bridge.on('pointerover', function(pointer) {
+            this.setScale(0.43);
+        });
+
+        this.item_bridge.on('pointerout', function(pointer) {
+            this.setScale(0.4);
+        })
+
 
         //Inventory related ----------------------------------------------------
 
@@ -232,17 +243,6 @@ class Bridge extends Phaser.Scene {
                 }
             }
             
-            if(finishBridgeNarrative[1]) {
-                if(this.pickingChoice(this.giveUpRoute, this.goBackGrottoRoute) && this.findWayOutRoute) {
-                    this.showChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
-                }
-            }
-            
-            if(finishBridgeNarrative[2]) {
-                if(this.pickingChoice(this.movePast2Route) && this.goBackGrottoRoute) {
-                    this.showChoiceButtons(this.button_movePast2);
-                }
-            }
 
         }
 

@@ -125,12 +125,17 @@
       "FIN - I tried, but what else can change me?\n\n\n*Continue to go back to Menu*"
    ],
    "bridgeStart":[
-      "The sound of running water begins to fill\nyour ears as you spot a small\nriver cutting the forest in two.",
-      "A bridge connects the ten foot gap\nbetween you and the land opposite the river.",
-      "It's wooden floorboards sway and rattle gently with the wind.",
-      "This bridge hasn't been maintained in some time.\nDroplets of water drip from its wood, as though it has just been misted.",
-      "It beckons you to cross the chasm.\nAs you peer below, over the edge, you quickly note the distance to be fifteen feet, give or take a foot.",
-      "It would not be a pleasant fall."
+      "The sound of running water begins to fill\nyour ears as you spot a small river\ncutting the forest in two.",
+      "A bridge connects the ten foot gap between you\nand the land opposite the river.",
+      "It's wooden floorboards sway and rattle\ngently with the wind.",
+      "This bridge hasn't been maintained in some time.\nDroplets of water drip from its wood, as\nthough it has just been misted.",
+      "It beckons you to cross the chasm.\nAs you peer below, over the edge, you\nquickly note the distance to be fifteen feet,\ngive or take a foot.",
+      "It would not be a pleasant fall.\nYou would like to inspect the bridge\nbefore continue ahead.",
+      "What do you want to do?"
+   ],
+   "inspectBridge":[
+      "You inspect the bridge from a safe distance.\nWhile it can most certainly hold your weight,\nit wouldn't be for long.",
+      "As it turns out, abandoned bridges lose\ntheir integrity."
    ],
    "cussAtWorld":[
       "Your wife stands, staring at you.\nUnflinching.\nHer gaze stern and focused.",
