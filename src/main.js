@@ -41,6 +41,8 @@ let keyW;
 let keyE;
 let keyR;
 let keyT;
+let keyY;
+let keyU;
 let keySpace;
 
 //define script variables for getNextLine()

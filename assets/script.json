@@ -141,9 +141,10 @@
    "bridge_cussAtWorld":[
       "Your wife stands, staring at you.\nUnflinching.\nHer gaze stern and focused.",
       "You are in your garage,\nsunlight flooding in from the open door that\nallows a view into the empty street.",
-      "\"Is that all?\"She asks you.\nThe tone is piercing."
+      "\"Is that all?\" She asks you.\nThe tone is piercing.",
+      "How do you want to respond?"
    ],
-   "yesIsThatAll":[
+   "bridge_imSorry":[
       "Her expression recoils slightly,\ncaught off-guard by your answer.",
       "\"Well in that case, I'm done here.\nYou need to figure your shit out,\nbecause you can't just be cussing at me like that.\"",
       "\"I deserve better. I'm here for you, but I'm not here to be your punching bag.\"",
@@ -151,7 +152,10 @@
       "\"You know what? I...Just. Nevermind. Figure your shit out, okay?\" She asks,\nturning and leaving the garage.",
       "Your car sits expectantly in the room."
    ],
-   "confirmYellAtWife":[
+   "bridge_confirm":[
+      "...",
+      "....",
+      ".....",
       "Are you sure?"
    ],
    "noIsThatAll":[
@@ -165,7 +169,7 @@
       "For the first time, you are alone.",
       "Your car sits expectantly in the room."
    ],
-   "sayNothingIsThatAll":[
+   "bridge_sayNothing":[
       "\"You can't keep doing this.\"\n She sighs.",
       "\"You can't just explode and then stay silent\nas though that solves the problem.\nI do not deserve this.\"",
       "She speaks,\n\"Get your shit together, alright?\nI said I'd be there for you, but I'm not here to be your punching bag.",

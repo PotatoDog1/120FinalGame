@@ -66,6 +66,14 @@ class Preload extends Phaser.Scene{
         this.load.image('findWayOut', './assets/choices/choice_findWayOut.png');
         this.load.image('giveUp', './assets/choices/choice_giveUp.png');
         this.load.image('goBackGrotto', './assets/choices/choice_goBackGrotto.png');
+
+        //beforeBridge choice images
+        this.load.image('continueArgue', './assets/choices/choice_continueArgue.png');
+        this.load.image('imSorry2', './assets/choices/choice_imSorry2.png');
+
+        //bridge choice images
+        this.load.image('crossBridge', './assets/choices/choice_crossBridge.png');
+        this.load.image('cuss', './assets/choices/choice_cuss.png');
         this.load.image('waitWind', './assets/choices/choice_waitWind.png');
         this.load.image('continueForward', './assets/choices/choice_continueForward.png');
         this.load.image('runAcrossBridge', './assets/choices/choice_runAcrossBridge.png');
@@ -73,10 +81,6 @@ class Preload extends Phaser.Scene{
         this.load.image('pause', './assets/choices/choice_pause.png');
         this.load.image('calmDown', './assets/choices/choice_calmDown.png');
         this.load.image('continueTower', './assets/choices/choice_continueTower.png');
-
-        //bridge choice images
-        this.load.image('crossBridge', './assets/choices/choice_crossBridge.png');
-        this.load.image('cuss', './assets/choices/choice_cuss.png');
 
         //json scripts
         this.load.json('json_script', 'assets/script.json'); // actual script
