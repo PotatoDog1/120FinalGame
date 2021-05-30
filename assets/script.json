@@ -141,43 +141,46 @@
    "bridge_cussAtWorld":[
       "Your wife stands, staring at you.\nUnflinching.\nHer gaze stern and focused.",
       "You are in your garage,\nsunlight flooding in from the open door that\nallows a view into the empty street.",
-      "\"Is that all?\"She asks you.\nThe tone is piercing."
+      "\"Is that all?\" She asks you.\nThe tone is piercing.",
+      "How do you want to respond?"
    ],
-   "yesIsThatAll":[
-      "Her expression recoils slightly,\ncaught off-guard by your answer.",
-      "\"Well in that case, I'm done here.\nYou need to figure your shit out,\nbecause you can't just be cussing at me like that.\"",
-      "\"I deserve better. I'm here for you, but I'm not here to be your punching bag.\"",
-      "She sighs.\nThis is a conversation she's had many times over.",
-      "\"You know what? I...Just. Nevermind. Figure your shit out, okay?\" She asks,\nturning and leaving the garage.",
+   "bridge_imSorry":[
+      "Her expression recoils slightly, caught\noff-guard by your answer.",
+      "\"Well in that case, I'm done here. You need to\nfigure your shit out, because you can't just\nbe cussing at me like that.\"",
+      "\"I deserve better. I'm here for you, but\nI'm not here to be your punching bag.\"",
+      "She sighs. This is a conversation she's had\nmany times over.",
+      "\"You know what? I... Just. Nevermind.\nFigure your shit out, okay?\" She asks,\nturning and leaving the garage.",
       "Your car sits expectantly in the room."
    ],
-   "confirmYellAtWife":[
+   "bridge_confirm":[
+      "...",
+      "....",
       "Are you sure?"
    ],
-   "noIsThatAll":[
-      "The moment you begin to speak, your wife interrupts you.",
-      "\"No? What the fuck do you mean no?\n Do you honestly think I'm just going to fucking sit here while you yell at me\n in my own garage?",
-      "\"Do you think I have the TIME to do that?\nFor YOU of all people? You've got to be joke, right?\"",
-      "She laughs.",
-      "\"Oh, this is rich. I'll tell you what,\nyou can tell your friends you got to stroke your little ego\none last time before I left you.\"",
-      "\"I'm sure that'll fix the gaping hole in your heart.\"",
-      "The door slams as she leaves.",
+   "bridge_argueYes":[
+      "The moment you begin to speak, your wife\ninterrupts you.",
+      "\"No? What the fuck do you mean no? Do you\nhonestly think I'm just going to fucking sit\nhere while you yell at me in my own garage?",
+      "\"Do you think I have the TIME to do that?\nFor YOU of all people? You've got to be joke,\nright?\" She laughs.",
+      "\"Oh, this is rich. I'll tell you what, you can tell\nyour friends you got to stroke your little ego\none last time before I left you.\"",
+      "\"I'm sure that'll fix the gaping hole in\nyour heart.\" The door slams as she leaves.",
       "For the first time, you are alone.",
       "Your car sits expectantly in the room."
    ],
-   "sayNothingIsThatAll":[
+   "bridge_sayNothing":[
       "\"You can't keep doing this.\"\n She sighs.",
-      "\"You can't just explode and then stay silent\nas though that solves the problem.\nI do not deserve this.\"",
-      "She speaks,\n\"Get your shit together, alright?\nI said I'd be there for you, but I'm not here to be your punching bag.",
-      "\"Not talking to me doesn't solve the problem.\n Bottling up doesn't solve the problem.\"",
-      "A deep exhale escapes from her nose\nas she turns to leave.",
-      "\"And Adalade doesn't deserve this either. Figure your shit out.\"",
+      "\"You can't just explode and then stay silent\nas though that solves the problem. I do not\ndeserve this.\"",
+      "She speaks, \"Get your shit together, alright?\nI said I'd be there for you, but I'm not here\nto be your punching bag.",
+      "\"Not talking to me doesn't solve the problem.\nBottling up doesn't solve the problem.\"",
+      "A deep exhale escapes from her nose as\nshe turns to leave.",
+      "\"And Adalade doesn't deserve this either.\nFigure your shit out.\"",
       "Your car sits expectantly in the room."
    ],
-   "theSceneBeforeTheGameStarts":[
+   "bridge_takeCar":[
       "Without hesitation, you enter your vehicle,\nslamming the reverse as you exit your home.",
-      "The highway offers little respite as you pass person after person,\ntheir cars becoming blurs on the wayside.",
-      "An exit, one that, to your knowledge,\nhas just finished construction, appears up ahead."
+      "The highway offers little respite as you\npass person after person, their cars\nbecoming blurs on the wayside.",
+      "An exit, one that, to your knowledge, has just\nfinished construction, appears up ahead.",
+      "You barrel your vehicle into the exit.\nNotably, you are the only one to take it.",
+      "The familiar stretch of highway is soon\nexchanged for large redwoods in the distance,\na single large tower catching your eye.\nIt lies straight ahead of you."
    ],
    "bridge_crossing":[
       "You approach the bridge, placing your hands\non its posts, each of which are staked deep\ninto the earth.",
