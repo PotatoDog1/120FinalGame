@@ -168,7 +168,11 @@ class Tower extends Phaser.Scene {
                     this.getNextLine(scriptText.badEnding);
                 }
             } else {
-
+                if(this.goodEndRoute || this.badEndRoute) {
+                    if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                        this.resetGame();
+                    }
+                }
 
             }
 
