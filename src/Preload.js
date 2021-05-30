@@ -70,6 +70,10 @@ class Preload extends Phaser.Scene{
         //beforeBridge choice images
         this.load.image('continueArgue', './assets/choices/choice_continueArgue.png');
         this.load.image('imSorry2', './assets/choices/choice_imSorry2.png');
+        this.load.image('argueYes', './assets/choices/choice_argueYes.png');
+        this.load.image('argueNo', './assets/choices/choice_argueNo.png');
+        this.load.image('takeCar', './assets/choices/choice_takeCar.png');
+        
 
         //bridge choice images
         this.load.image('crossBridge', './assets/choices/choice_crossBridge.png');

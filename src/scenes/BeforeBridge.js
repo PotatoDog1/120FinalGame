@@ -96,12 +96,22 @@ class BeforeBridge extends Phaser.Scene {
         this.button_talkingDots = this.add.sprite(80, 490, 'talkingDots').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_continueArgue = this.add.sprite(80, 527, 'continueArgue').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_imSorry = this.add.sprite(80, 567, 'imSorry2').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_takeCar1 = this.add.sprite(80, 490, 'takeCar').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_argueYes = this.add.sprite(80, 490, 'argueYes').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_argueNo = this.add.sprite(80, 527, 'argueNo').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_takeCar2 = this.add.sprite(80, 490, 'takeCar').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_takeCar3 = this.add.sprite(80, 490, 'takeCar').setOrigin(0,0).setInteractive({useHandCursor: true});
 
         this.button_crossBridge.visible = false;
         this.button_cuss.visible = false;
         this.button_talkingDots.visible = false;
         this.button_continueArgue.visible = false;
         this.button_imSorry.visible = false;
+        this.button_takeCar1.visible = false;
+        this.button_argueYes.visible = false;
+        this.button_argueNo.visible = false;
+        this.button_takeCar2.visible = false;
+        this.button_takeCar3.visible = false;
 
 
         this.crossBridgeRoute = false;
@@ -109,8 +119,9 @@ class BeforeBridge extends Phaser.Scene {
         this.talkingDotsRoute = false;
         this.continueArgueRoute = false;
         this.imSorryRoute = false;
-
-
+        this.takeCarRoute = false;
+        this.argueYesRoute = false;
+        this.argueNoRoute = false;
 
         //Choices end--------------------------------------------------------
 
@@ -239,6 +250,82 @@ class BeforeBridge extends Phaser.Scene {
                         } else if (this.imSorryRoute) {
                             this.getNextLine(scriptText.bridge_imSorry);
                         }
+                    } else {
+                        if(this.talkingDotsRoute) {
+                            this.button_takeCar1.on('pointerdown', function(pointer) {
+                                this.takeCarRoute = true;     //branch flag
+                                narrativeText.setText(scriptText.bridge_takeCar[0]);
+                                this.destroyChoiceButtons(this.button_takeCar1);
+                            }, this);
+
+                            if(!finishBeforeBNarrative[3]) {
+                                if(this.takeCarRoute) {
+                                    this.getNextLine(scriptText.bridge_takeCar);
+                                }
+                            } else {
+                                if(this.takeCarRoute) {
+                                    narrativeText.setText("It hurts, isn't it?");
+                                    this.goNextScene();
+                                }
+                            }
+        
+                        } else if (this.continueArgueRoute) {
+                            this.button_argueYes.on('pointerdown', function(pointer) {
+                                this.argueYesRoute = true;     //branch flag
+                                narrativeText.setText(scriptText.bridge_argueYes[0]);
+                                this.destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
+                            }, this);
+
+                            this.button_argueNo.on('pointerdown', function(pointer) {
+                                this.argueNoRoute = true;     //branch flag
+                                narrativeText.setText(scriptText.bridge_sayNothing[0]);
+                                this.destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
+                            }, this);
+
+                            if(!finishBeforeBNarrative[3]) {
+                                if(this.argueYesRoute) {
+                                    this.getNextLine(scriptText.bridge_argueYes);
+                                } else if (this.argueNoRoute) {
+                                    this.getNextLine(scriptText.bridge_sayNothing);
+                                }
+                            } else {
+                                
+                                this.button_takeCar2.on('pointerdown', function(pointer) {
+                                    this.takeCarRoute = true;     //branch flag
+                                    narrativeText.setText(scriptText.bridge_takeCar[0]);
+                                    this.destroyChoiceButtons(this.button_takeCar2);
+                                }, this);
+
+                                if(!finishBeforeBNarrative[4]) {
+                                    if(this.takeCarRoute) {
+                                        this.getNextLine(scriptText.bridge_takeCar);
+                                    }
+                                } else {
+                                    if(this.takeCarRoute) {
+                                        narrativeText.setText("It hurts, isn't it?");
+                                        this.goNextScene();
+                                    }
+                                }
+                            
+                            }
+                        } else if (this.imSorryRoute) {
+                            this.button_takeCar3.on('pointerdown', function(pointer) {
+                                this.takeCarRoute = true;     //branch flag
+                                narrativeText.setText(scriptText.bridge_takeCar[0]);
+                                this.destroyChoiceButtons(this.button_takeCar3);
+                            }, this);
+
+                            if(!finishBeforeBNarrative[3]) {
+                                if(this.takeCarRoute) {
+                                    this.getNextLine(scriptText.bridge_takeCar);
+                                }
+                            } else {
+                                if(this.takeCarRoute) {
+                                    narrativeText.setText("It hurts, isn't it?");
+                                    this.goNextScene();
+                                }
+                            }
+                        }
                     }
 
                 }
@@ -300,8 +387,26 @@ class BeforeBridge extends Phaser.Scene {
             }
 
             if(finishBeforeBNarrative[2]) {
+                if(this.pickingChoice(this.takeCarRoute) && this.talkingDotsRoute) {
+                    this.showChoiceButtons(this.button_takeCar1);
+                }
 
-            }            
+                if(this.pickingChoice(this.argueYesRoute, this.argueNoRoute) && this.continueArgueRoute) {
+                    this.showChoiceButtons(this.button_argueYes, this.button_argueNo);
+                }
+
+                if(this.pickingChoice(this.takeCarRoute) && this.imSorryRoute) {
+                    this.showChoiceButtons(this.button_takeCar3);
+                }
+
+            }    
+            
+            if(finishBeforeBNarrative[3]) {
+                if(this.pickingChoice(this.takeCarRoute) && this.talkingDotsRoute) {
+                    this.showChoiceButtons(this.button_takeCar2);
+                }
+
+            }
 
         }
 
