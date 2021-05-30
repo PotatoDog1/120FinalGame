@@ -72,6 +72,10 @@ let finishBeforeBIndex = 0;
 let finishBridgeNarrative = [false, false, false, false, false, false, false, false, false, false];
 let finishBridgeIndex = 0;
 
+//tower branch check-----------------------------------------------------------------------
+let finishTowerNarrative = [false, false];
+let finishTowerIndex = 0;
+
 //item check - will be updated when items besides shoe got added to the game
 let hasItem = [false];
     //notes:  [shoe]

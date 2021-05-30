@@ -165,75 +165,15 @@ class Tower extends Phaser.Scene {
 
     update() {
 
-        if(!finishBridgeNarrative[0]) {         //fix later; add narrative accordingly with the emotion variables
+        if(!finishTowerNarrative[0]) {         //fix later; add narrative accordingly with the emotion variables
             this.getNextLine(scriptText.tower_base);
         } else {
             if(!this.checkItemBridge && this.pickingChoice(this.crossBridgeRoute, this.cussRoute)) {            //if players haven't done anything yet
                 this.checkItemBridgeNarrative = true;
             }
 
-            if(this.checkItemBridge && !finishBridgeNarrative[1]) {
+            if(this.checkItemBridge && !finishTowerNarrative[1]) {
                 this.getNextLine(scriptText.bridge_inspectBridge);
-            }
-
-            this.button_crossBridge.on('pointerdown', function (pointer) {
-                this.crossBridgeRoute = true;      //branch flag
-                narrativeText.setText(scriptText.bridge_crossing[0]); 
-                this.destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
-            }, this);
-
-            this.button_cuss.on('pointerdown', function(pointer) {
-                this.cussRoute = true;     //branch flag
-                narrativeText.setText(scriptText.bridge_cussAtWorld[0]);
-                this.destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
-            }, this);
-
-            if(!finishBridgeNarrative[1]) {
-                if(this.crossBridgeRoute) {
-                    this.getNextLine(scriptText.bridge_crossing);
-                } else if (this.cussRoute) {
-                    this.getNextLine(scriptText.bridge_cussAtWorld);
-                }
-            } else {
-                if(this.crossBridgeRoute) {
-                    this.button_waitWind.on('pointerdown', function (pointer) {
-                        this.waitWindRoute = true;      //branch flag
-                        narrativeText.setText(scriptText.bridge_waitOutTheWind[0]); 
-                        this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-                    }, this);
-        
-                    this.button_continueForward.on('pointerdown', function(pointer) {
-                        this.continueForwardRoute = true;     //branch flag
-                        narrativeText.setText(scriptText.bridge_continueFoward[0]);
-                        this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-                    }, this);
-
-                    this.button_runAcrossBridge.on('pointerdown', function(pointer) {
-                        this.runAcrossBridgeRoute = true;     //branch flag
-                        narrativeText.setText(scriptText.bridge_runAcrossBridge[0]);
-                        this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-                    }, this);
-        
-                }
-
-                if(!finishBridgeNarrative[2]) {
-                    if(this.waitWindRoute) {
-                        this.getNextLine(scriptText.bridge_waitOutTheWind);
-                    } else if (this.continueForwardRoute) {
-                        this.getNextLine(scriptText.bridge_continueFoward);
-                    } else if (this.runAcrossBridgeRoute) {
-                        this.getNextLine(scriptText.bridge_runAcrossBridge);
-                    }
-                }
-                else {
-                    if(this.waitWindRoute) {
-                        this.button_breatheCalm.on('pointerdown', function (pointer) {
-                            this.waitWindRoute = true;      //branch flag
-                            narrativeText.setText(scriptText.bridge_waitOutTheWind[0]); 
-                            this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-                        }, this);
-                    }
-                }
             }
 
         }
@@ -271,7 +211,7 @@ class Tower extends Phaser.Scene {
             firstTimer = true;
 
             if(!this.checkItemNarrative(target)) {       //if it's a flag narrative
-                finishBridgeNarrative[finishBridgeIndex] = true;
+                finishTowerNarrative[finishBridgeIndex] = true;
                 finishBridgeIndex++;
             } else if (this.checkInteractiveNarrative(target)) {
                 interactveNarrartive[i] = true;
@@ -279,19 +219,19 @@ class Tower extends Phaser.Scene {
             }
 
             //display choices
-            if(finishBridgeNarrative[0]) {
+            if(finishTowerNarrative[0]) {
                 if(this.pickingChoice(this.crossBridgeRoute, this.cussRoute)) {
                     this.showChoiceButtons(this.button_crossBridge, this.button_cuss);
                 }
             }
 
-            if(finishBridgeNarrative[1]) {
+            if(finishTowerNarrative[1]) {
                 if(this.pickingChoice(this.waitWindRoute, this.continueForwardRoute, this.runAcrossBridgeRoute) && this.crossBridgeRoute) {
                     this.showChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
                 }
             }
 
-            if(finishBridgeNarrative[2]) {
+            if(finishTowerNarrative[2]) {
                 if(this.pickingChoice(this.breatheCalmRoute) && this.waitWindRoute) {
                     this.showChoiceButtons(this.button_breatheCalm);
                 }
@@ -381,6 +321,10 @@ class Tower extends Phaser.Scene {
             finishBridgeNarrative[i] = false;
         }
 
+        for(var i = 0; i < finishTowerNarrative.length; i++) {
+            finishTowerNarrative[i] = false;
+        }
+
         for(var i = 0; i < interactiveNarrative.length; i++) {
             interactiveNarrative[i] = false;
         }
@@ -389,6 +333,7 @@ class Tower extends Phaser.Scene {
         finishGrottoIndex = 0;
         finishBackGIndex = 0;
         finishBridgeIndex = 0;
+        finishTowerIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');
