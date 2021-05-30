@@ -91,36 +91,14 @@ class Tower extends Phaser.Scene {
 
         narrativeText = this.add.text(80, 445, scriptText.tower_base[0], wordConfig);
 
-        this.button_crossBridge = this.add.sprite(80, 490, 'crossBridge').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_cuss = this.add.sprite(80, 527, 'cuss').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_waitWind = this.add.sprite(80, 490, 'waitWind').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_continueForward = this.add.sprite(80, 527, 'continueForward').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_runAcrossBridge = this.add.sprite(80, 567, 'runAcrossBridge').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_breatheCalm = this.add.sprite(80, 527, 'breatheCalm').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_continueTower = this.add.sprite(80, 490, 'continueTower').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_pause = this.add.sprite(80, 527, 'pause').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_calmDown = this.add.sprite(80, 490, 'calmDown').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_openDoor = this.add.sprite(80, 527, 'openDoor').setOrigin(0,0).setInteractive({useHandCursor: true});
 
-        this.button_crossBridge.visible = false;
-        this.button_cuss.visible = false;
-        this.button_waitWind.visible = false;
-        this.button_continueForward.visible = false;
-        this.button_runAcrossBridge.visible = false;
-        this.button_breatheCalm.visible = false;
-        this.button_continueTower.visible = false;
-        this.button_pause.visible = false;
-        this.button_calmDown.visible = false;
+        this.button_openDoor.visible = false;
 
 
-        this.crossBridgeRoute = false;
-        this.cussRoute = false;
-        this.waitWindRoute = false;
-        this.continueForwardRoute = false;
-        this.runAcrossBridgeRoute = false;
-        this.breatheCalmRoute = false;
-        this.continueTowerRoute = false;
-        this.pauseRoute = false;
-        this.calmDownRoute = false;
+        this.goodEndRoute = false;
+        this.badEndRoute = false;
+
 
 
         //Choices end--------------------------------------------------------
@@ -165,75 +143,33 @@ class Tower extends Phaser.Scene {
 
     update() {
 
-        if(!finishBridgeNarrative[0]) {         //fix later; add narrative accordingly with the emotion variables
+        if(!finishTowerNarrative[0]) {         //fix later; add narrative accordingly with the emotion variables
             this.getNextLine(scriptText.tower_base);
         } else {
             if(!this.checkItemBridge && this.pickingChoice(this.crossBridgeRoute, this.cussRoute)) {            //if players haven't done anything yet
                 this.checkItemBridgeNarrative = true;
             }
 
-            if(this.checkItemBridge && !finishBridgeNarrative[1]) {
+            if(this.checkItemBridge && !finishTowerNarrative[1]) {
                 this.getNextLine(scriptText.bridge_inspectBridge);
             }
 
-            this.button_crossBridge.on('pointerdown', function (pointer) {
-                this.crossBridgeRoute = true;      //branch flag
-                narrativeText.setText(scriptText.bridge_crossing[0]); 
-                this.destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
+            this.button_openDoor.on('pointerdown', function (pointer) {
+                this.goodEndRoute = true;      //branch flag
+                narrativeText.setText(scriptText.goodEnding[0]); 
+                this.destroyChoiceButtons(this.button_openDoor);
             }, this);
 
-            this.button_cuss.on('pointerdown', function(pointer) {
-                this.cussRoute = true;     //branch flag
-                narrativeText.setText(scriptText.bridge_cussAtWorld[0]);
-                this.destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
-            }, this);
 
-            if(!finishBridgeNarrative[1]) {
-                if(this.crossBridgeRoute) {
-                    this.getNextLine(scriptText.bridge_crossing);
-                } else if (this.cussRoute) {
-                    this.getNextLine(scriptText.bridge_cussAtWorld);
+            if(!finishTowerNarrative[1]) {
+                if(this.goodEndRoute) {
+                    this.getNextLine(scriptText.goodEnding);
+                } else if (this.badEndRoute) {
+                    this.getNextLine(scriptText.badEnding);
                 }
             } else {
-                if(this.crossBridgeRoute) {
-                    this.button_waitWind.on('pointerdown', function (pointer) {
-                        this.waitWindRoute = true;      //branch flag
-                        narrativeText.setText(scriptText.bridge_waitOutTheWind[0]); 
-                        this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-                    }, this);
-        
-                    this.button_continueForward.on('pointerdown', function(pointer) {
-                        this.continueForwardRoute = true;     //branch flag
-                        narrativeText.setText(scriptText.bridge_continueFoward[0]);
-                        this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-                    }, this);
 
-                    this.button_runAcrossBridge.on('pointerdown', function(pointer) {
-                        this.runAcrossBridgeRoute = true;     //branch flag
-                        narrativeText.setText(scriptText.bridge_runAcrossBridge[0]);
-                        this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-                    }, this);
-        
-                }
 
-                if(!finishBridgeNarrative[2]) {
-                    if(this.waitWindRoute) {
-                        this.getNextLine(scriptText.bridge_waitOutTheWind);
-                    } else if (this.continueForwardRoute) {
-                        this.getNextLine(scriptText.bridge_continueFoward);
-                    } else if (this.runAcrossBridgeRoute) {
-                        this.getNextLine(scriptText.bridge_runAcrossBridge);
-                    }
-                }
-                else {
-                    if(this.waitWindRoute) {
-                        this.button_breatheCalm.on('pointerdown', function (pointer) {
-                            this.waitWindRoute = true;      //branch flag
-                            narrativeText.setText(scriptText.bridge_waitOutTheWind[0]); 
-                            this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-                        }, this);
-                    }
-                }
             }
 
         }
@@ -271,40 +207,19 @@ class Tower extends Phaser.Scene {
             firstTimer = true;
 
             if(!this.checkItemNarrative(target)) {       //if it's a flag narrative
-                finishBridgeNarrative[finishBridgeIndex] = true;
-                finishBridgeIndex++;
+                finishTowerNarrative[finishTowerIndex] = true;
+                finishTowerIndex++;
             } else if (this.checkInteractiveNarrative(target)) {
                 interactveNarrartive[i] = true;
                 interactiveIndex++;
             }
 
             //display choices
-            if(finishBridgeNarrative[0]) {
-                if(this.pickingChoice(this.crossBridgeRoute, this.cussRoute)) {
-                    this.showChoiceButtons(this.button_crossBridge, this.button_cuss);
+            if(finishTowerNarrative[0]) {
+                if(this.pickingChoice(this.goodEndRoute, this.badEndRoute)) {
+                    this.showChoiceButtons(this.button_openDoor);
                 }
             }
-
-            if(finishBridgeNarrative[1]) {
-                if(this.pickingChoice(this.waitWindRoute, this.continueForwardRoute, this.runAcrossBridgeRoute) && this.crossBridgeRoute) {
-                    this.showChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-                }
-            }
-
-            if(finishBridgeNarrative[2]) {
-                if(this.pickingChoice(this.breatheCalmRoute) && this.waitWindRoute) {
-                    this.showChoiceButtons(this.button_breatheCalm);
-                }
-                
-                if(this.pickingChoice(this.continueTowerRoute, this.pauseRoute) && this.continueForwardRoute) {
-                    this.showChoiceButtons(this.button_continueTower, this.button_pause);
-                }
-
-                if(this.pickingChoice(this.breatheCalmRoute) && this.runAcrossBridgeRoute) {
-                    this.showChoiceButtons(this.button_calmDown);
-                }
-            }
-            
 
         }
 
@@ -381,6 +296,10 @@ class Tower extends Phaser.Scene {
             finishBridgeNarrative[i] = false;
         }
 
+        for(var i = 0; i < finishTowerNarrative.length; i++) {
+            finishTowerNarrative[i] = false;
+        }
+
         for(var i = 0; i < interactiveNarrative.length; i++) {
             interactiveNarrative[i] = false;
         }
@@ -389,6 +308,7 @@ class Tower extends Phaser.Scene {
         finishGrottoIndex = 0;
         finishBackGIndex = 0;
         finishBridgeIndex = 0;
+        finishTowerIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');
