@@ -74,7 +74,6 @@ class Preload extends Phaser.Scene{
         this.load.image('argueNo', './assets/choices/choice_argueNo.png');
         this.load.image('takeCar', './assets/choices/choice_takeCar.png');
         
-
         //bridge choice images
         this.load.image('crossBridge', './assets/choices/choice_crossBridge.png');
         this.load.image('cuss', './assets/choices/choice_cuss.png');
@@ -85,6 +84,9 @@ class Preload extends Phaser.Scene{
         this.load.image('pause', './assets/choices/choice_pause.png');
         this.load.image('calmDown', './assets/choices/choice_calmDown.png');
         this.load.image('continueTower', './assets/choices/choice_continueTower.png');
+
+        //tower choice images
+        this.load.image('openDoor', './assets/choices/choice_openDoor.png');
 
         //json scripts
         this.load.json('json_script', 'assets/script.json'); // actual script

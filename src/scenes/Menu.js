@@ -126,10 +126,10 @@ class Menu extends Phaser.Scene {
                 finishBridgeNarrative[i] = true;
             }
 
-            hasItem[0] = true;          //it's the shoe
+            hasItem[0] = true;                  //it's the shoe
             finishItemNarrative[0] = true;      //shoe narrative
             
-            this.scene.start('bridgeScene');
+            this.scene.start('towerScene');
         }
 
     }

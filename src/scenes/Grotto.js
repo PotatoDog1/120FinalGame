@@ -185,7 +185,7 @@ class Grotto extends Phaser.Scene {
             targets: this.fog_left,
             delay: 1500,
             ease: 'Sine.easeOut',
-            duration: 1500,
+            duration: 1300,
             x: 0
         });
         this.endTransition_left.pause();
@@ -194,12 +194,16 @@ class Grotto extends Phaser.Scene {
             targets: this.fog_right,
             delay: 1500,
             ease: 'Sine.easeOut',
-            duration: 1500,
+            duration: 1300,
             x: 165,
             completeDelay: 1000,
             onComplete: function() {
                 main_bgm.stop(); 
-                this.scene.start('backToGrottoScene');
+                if(this.punchRoute || this.moveRoute || this.movePastRoute) {
+                    this.scene.start('beforeBridgeScene');
+                } else {
+                    this.scene.start('backToGrottoScene');
+                }
             },
             onCompleteScope: this
         });
@@ -271,7 +275,7 @@ class Grotto extends Phaser.Scene {
                                 this.talkingDots2Route = true;      //branch flag
                                 narrativeText.setText("Is this what you want?");
                                 this.destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
-                                this.goBackToGrotto();
+                                this.goNextScene();
                                 
                             }, this);
             
@@ -279,7 +283,7 @@ class Grotto extends Phaser.Scene {
                                 this.signUpRoute = true;     //branch flag
                                 narrativeText.setText("Is this what you want?");
                                 this.destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
-                                this.goBackToGrotto();
+                                this.goNextScene();
                             }, this);
 
                         } else if (this.imSorryRoute) {
@@ -316,7 +320,7 @@ class Grotto extends Phaser.Scene {
                                         this.sayNothingRoute = true;      //branch flag
                                         narrativeText.setText("Is this what you want?");
                                         this.destroyChoiceButtons(this.button_sayNothing, this.button_no);
-                                        this.goBackToGrotto();
+                                        this.goNextScene();
                                         
                                     }, this);
                     
@@ -324,7 +328,7 @@ class Grotto extends Phaser.Scene {
                                         this.noRoute = true;     //branch flag
                                         narrativeText.setText("Is this what you want?");
                                         this.destroyChoiceButtons(this.button_sayNothing, this.button_no);
-                                        this.goBackToGrotto();
+                                        this.goNextScene();
                                     }, this);
 
                                 } else if (this.talkingDots3Route) {
@@ -332,14 +336,14 @@ class Grotto extends Phaser.Scene {
                                         this.talkingDots2Route = true;      //branch flag
                                         narrativeText.setText("Is this what you want?");
                                         this.destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
-                                        this.goBackToGrotto(); 
+                                        this.goNextScene(); 
                                     }, this);
                     
                                     this.button_signUp.on('pointerdown', function(pointer) {
                                         this.signUpRoute = true;     //branch flag
                                         narrativeText.setText("Is this what you want?");
                                         this.destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
-                                        this.goBackToGrotto();
+                                        this.goNextScene();
                                     }, this);
         
                                 } else if (this.noImSorryRoute) {
@@ -347,14 +351,14 @@ class Grotto extends Phaser.Scene {
                                         this.callLaterRoute = true;      //branch flag
                                         narrativeText.setText("Is this what you want?");
                                         this.destroyChoiceButtons(this.button_callLater, this.button_talkingDots4);
-                                        this.goBackToGrotto(); 
+                                        this.goNextScene(); 
                                     }, this);
                     
                                     this.button_talkingDots4.on('pointerdown', function(pointer) {
                                         this.talkingDots4Route = true;     //branch flag
                                         narrativeText.setText("Is this what you want?");
                                         this.destroyChoiceButtons(this.button_callLater, this.button_talkingDots4);
-                                        this.goBackToGrotto();
+                                        this.goNextScene();
                                     }, this);
                                 }
                             }
@@ -398,9 +402,8 @@ class Grotto extends Phaser.Scene {
                             if(!finishGrottoNarrative[3]) {
                                 this.getNextLine(scriptText.grotto_leave, true);
                             } else {
-                                //placeholder for bridge connection
                                 if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                                    this.resetGame();
+                                    this.goNextScene();
                                 }
                             }
                         } else if(this.sitRoute) {
@@ -441,22 +444,20 @@ class Grotto extends Phaser.Scene {
                                         this.getNextLine(scriptText.grotto_yellAtWife);
                                     }
                                 } else {
-                                    this.goBackToGrotto();
+                                    this.goNextScene();
                                 }
                             }
 
                         } else if(this.moveRoute) {
-                            //placeholder for bridge connection
                             if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                                this.resetGame();
+                                this.goNextScene();
                             }
                         }
                     }
 
                 } else if(this.movePastRoute) {
-                    //placeholder for bridge connection
                     if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                        this.resetGame();
+                        this.goNextScene();
                     }
                 }
             }
@@ -592,7 +593,7 @@ class Grotto extends Phaser.Scene {
 
     }
 
-    goBackToGrotto() {
+    goNextScene() {
         if(!this.grottoTransition) {
             this.fog_left.visible = true;
             this.fog_right.visible = true;
