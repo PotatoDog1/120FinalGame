@@ -8,7 +8,7 @@ class Preload extends Phaser.Scene{
         //crossroad temp art assets
         this.load.image('frame', './assets/temp_frame.png');
         this.load.image('bg_notepad', './assets/notepad.png');
-        this.load.image('crossroad', './assets/temp_crossroad.png');
+        this.load.image('crossroad', './assets/temp_crossroads.png');
         this.load.image('portrait', './assets/portrait_shrinked.png');
         this.load.image('tower', './assets/towerTemp.png');
         this.load.image('shoe', './assets/shoe.png');
