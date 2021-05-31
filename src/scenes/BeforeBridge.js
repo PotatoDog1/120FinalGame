@@ -410,7 +410,8 @@ class BeforeBridge extends Phaser.Scene {
             }    
             
             if(finishBeforeBNarrative[3]) {
-                if(this.pickingChoice(this.takeCarRoute) && this.talkingDotsRoute) {
+                console.log("I'm in it");
+                if(this.pickingChoice(this.takeCarRoute) && (this.argueYesRoute || this.argueNoRoute)) {
                     this.showChoiceButtons(this.button_takeCar2);
                 }
 
