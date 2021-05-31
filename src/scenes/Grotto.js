@@ -273,6 +273,7 @@ class Grotto extends Phaser.Scene {
                         if(this.talkingDotsRoute) {
                             this.button_talkingDots2.on('pointerdown', function (pointer) {
                                 this.talkingDots2Route = true;      //branch flag
+                                stifled += 1;
                                 narrativeText.setText("Is this what you want?");
                                 this.destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
                                 this.goNextScene();
@@ -318,6 +319,7 @@ class Grotto extends Phaser.Scene {
                                 if(this.yeahRoute) {
                                     this.button_sayNothing.on('pointerdown', function (pointer) {
                                         this.sayNothingRoute = true;      //branch flag
+                                        stifled += 1;
                                         narrativeText.setText("Is this what you want?");
                                         this.destroyChoiceButtons(this.button_sayNothing, this.button_no);
                                         this.goNextScene();
@@ -331,7 +333,7 @@ class Grotto extends Phaser.Scene {
                                         this.goNextScene();
                                     }, this);
 
-                                } else if (this.talkingDots3Route) {
+                                } else if (this.talkingDots3Route) {        //fix later; maybe need to redirect it??
                                     this.button_talkingDots2.on('pointerdown', function (pointer) {
                                         this.talkingDots2Route = true;      //branch flag
                                         narrativeText.setText("Is this what you want?");
@@ -357,6 +359,7 @@ class Grotto extends Phaser.Scene {
                                     this.button_talkingDots4.on('pointerdown', function(pointer) {
                                         this.talkingDots4Route = true;     //branch flag
                                         narrativeText.setText("Is this what you want?");
+                                        stifled += 1;
                                         this.destroyChoiceButtons(this.button_callLater, this.button_talkingDots4);
                                         this.goNextScene();
                                     }, this);
@@ -371,6 +374,7 @@ class Grotto extends Phaser.Scene {
                     this.button_punch.on('pointerdown', function (pointer) {
                         this.punchRoute = true;      //branch flag
                         this.cameras.main.shake(200, 0.005);
+                        anger += 1;
                         narrativeText.setText(scriptText.grotto_punchTree[0]);
                         this.destroyChoiceButtons(this.button_punch, this.button_sit);
                         this.button_move.visible = false;
@@ -426,6 +430,7 @@ class Grotto extends Phaser.Scene {
                             } else {
                                 this.button_breathe.on('pointerdown', function (pointer) {
                                     this.breatheRoute = true;      //branch flag
+                                    stifled += 1;
                                     narrativeText.setText(scriptText.grotto_breathingExercise[0]);
                                     this.destroyChoiceButtons(this.button_breathe, this.button_yell1);
                                 }, this);
@@ -433,6 +438,7 @@ class Grotto extends Phaser.Scene {
                                 this.button_yell1.on('pointerdown', function(pointer) {
                                     this.cameras.main.shake(350, 0.01);
                                     this.yell1Route = true;     //branch flag
+                                    anger += 2;
                                     narrativeText.setText(scriptText.grotto_yellAtWife[0]);
                                     this.destroyChoiceButtons(this.button_breathe, this.button_yell1);
                                 }, this);

@@ -169,6 +169,7 @@ class Bridge extends Phaser.Scene {
 
             this.button_waitWind.on('pointerdown', function (pointer) {
                 this.waitWindRoute = true;      //branch flag
+                stifled += 1;
                 narrativeText.setText(scriptText.bridge_waitOutTheWind[0]); 
                 this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
             }, this);
@@ -181,6 +182,7 @@ class Bridge extends Phaser.Scene {
 
             this.button_runAcrossBridge.on('pointerdown', function(pointer) {
                 this.runAcrossBridgeRoute = true;     //branch flag
+                anger += 1;
                 narrativeText.setText(scriptText.bridge_runAcrossBridge[0]);
                 this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
             }, this);
@@ -197,6 +199,14 @@ class Bridge extends Phaser.Scene {
                 if(this.waitWindRoute) {
                     this.button_breatheCalm.on('pointerdown', function (pointer) {
                         this.breatheCalmRoute = true;      //branch flag
+                        if(anger > 0) {
+                            anger -= 1;
+                        }
+
+                        if(stifled > 0) {
+                            stifled -= 1;
+                        }
+
                         narrativeText.setText(scriptText.bridge_calm[0]); 
                         this.destroyChoiceButtons(this.button_breatheCalm);
                     }, this);
@@ -218,6 +228,14 @@ class Bridge extends Phaser.Scene {
 
                     this.button_pause.on('pointerdown', function (pointer) {
                         this.pauseRoute = true;      //branch flag
+                        if(anger > 0) {
+                            anger -= 1;
+                        }
+
+                        if(stifled > 0) {
+                            stifled -= 1;
+                        }
+
                         narrativeText.setText(scriptText.bridge_calm[0]); 
                         this.destroyChoiceButtons(this.button_continueTower, this.button_pause);
                     }, this);
@@ -232,6 +250,14 @@ class Bridge extends Phaser.Scene {
                 } else if (this.runAcrossBridgeRoute) {
                     this.button_calmDown.on('pointerdown', function (pointer) {
                         this.calmDownRoute = true;      //branch flag
+                        if(anger > 0) {
+                            anger -= 1;
+                        }
+
+                        if(stifled > 0) {
+                            stifled -= 1;
+                        }
+                        
                         narrativeText.setText(scriptText.bridge_calm[0]); 
                         this.destroyChoiceButtons(this.button_calmDown);
                     }, this);

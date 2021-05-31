@@ -57,7 +57,7 @@ class BeforeBridge extends Phaser.Scene {
                 this.button_crossBridge.visible = false;
                 this.button_cuss.visible = false;
                 this.checkItemBridge = true;
-                this.checkItemBridgeNarrative = false;
+
             }
         }, this);
 
@@ -200,7 +200,7 @@ class BeforeBridge extends Phaser.Scene {
                 this.checkItemBridgeNarrative = true;
             }
 
-            if(this.checkItemBridge && !finishBeforeBNarrative[1]) {
+            if(this.checkItemBridge && this.checkItemBridgeNarrative) {
                 this.getNextLine(scriptText.bridge_inspectBridge);
             }
 
@@ -226,12 +226,14 @@ class BeforeBridge extends Phaser.Scene {
                 if(this.cussRoute) {
                     this.button_talkingDots.on('pointerdown', function(pointer) {
                         this.talkingDotsRoute = true;     //branch flag
+                        stifled += 1;
                         narrativeText.setText(scriptText.bridge_sayNothing[0]);
                         this.destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
                     }, this);
 
                     this.button_continueArgue.on('pointerdown', function(pointer) {
                         this.continueArgueRoute = true;     //branch flag
+                        anger += 1;
                         narrativeText.setText(scriptText.bridge_confirm[0]);
                         this.destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
                     }, this);
@@ -272,12 +274,14 @@ class BeforeBridge extends Phaser.Scene {
                         } else if (this.continueArgueRoute) {
                             this.button_argueYes.on('pointerdown', function(pointer) {
                                 this.argueYesRoute = true;     //branch flag
+                                anger += 5;
                                 narrativeText.setText(scriptText.bridge_argueYes[0]);
                                 this.destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
                             }, this);
 
                             this.button_argueNo.on('pointerdown', function(pointer) {
                                 this.argueNoRoute = true;     //branch flag
+                                stifled += 1;
                                 narrativeText.setText(scriptText.bridge_sayNothing[0]);
                                 this.destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
                             }, this);
@@ -365,12 +369,16 @@ class BeforeBridge extends Phaser.Scene {
             nextLine = 1;
             firstTimer = true;
 
-            if(!this.checkItemNarrative(target)) {       //if it's a flag narrative
+            if(this.checkItemNarrative(target)) {       //if it's a flag narrative
+                finishItemNarrative[0] = true;
+            } else if (this.checkInteractiveNarrative(target)) {
+                interactiveNarrative[interactiveIndex] = true;
+                interactiveIndex++;
+                this.checkItemBridgeNarrative = false;      //to never let the bridge text to show up again
+                this.item_bridge.removeInteractive();
+            } else {
                 finishBeforeBNarrative[finishBeforeBIndex] = true;
                 finishBeforeBIndex++;
-            } else if (this.checkInteractiveNarrative(target)) {
-                interactveNarrartive[i] = true;
-                interactiveIndex++;
             }
 
             //display choices

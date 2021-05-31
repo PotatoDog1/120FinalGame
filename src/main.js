@@ -51,6 +51,10 @@ let narrativeText;
 let nextLine = 1;
 let firstTimer = true;
 
+//emotion variables
+let anger = 0;
+let stifled = 0;
+
 //main narrative branch check--------------------------------------------------------------
 let finishCrossroadNarrative = [false, false, false, false, false, false, false];      //the length of this array will corresond to the number of flags/choices players can make
     //notes:          [crossroad, pickUpShoe, continue/leave, fog/leave, pocket, pocketYes/No, grotto]
