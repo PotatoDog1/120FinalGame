@@ -65,7 +65,7 @@ let finishGrottoNarrative = [false, false, false, false, false, false, false, fa
 let finishGrottoIndex = 0;
 
 //backToGrotto branch check----------------------------------------------------------------
-let finishBackGNarrative = [false, false, false, false];
+let finishBackGNarrative = [false, false, false, false, false];
 let finishBackGIndex = 0;
 
 //beforeBridge branch check----------------------------------------------------------------

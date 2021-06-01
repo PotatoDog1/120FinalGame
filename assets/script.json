@@ -107,6 +107,15 @@
       "You didn't. She got out of school two hours\nago. You've been sitting on this couch since\nyou woke up.",
       "How are you going to respond?"
    ],
+   "grotto_leave_angry2":[
+      "Your hands open and close as your walk, your\nbreathing heavy and deliberate. Sweat drips\nfrom your forehead down to your brow.\nYou breath heavily through your nose."
+   ],
+   "grotto_leave_stifled1":[
+      "You continue to drift forward, leaving your\npast behind you. For some reason, you feel\nas though a part of you is missing."
+   ],
+   "grotto_leave_stifled2":[
+      "The forest grasps as you continue forward,\nthe icy tendrils of memory frozen as you\npass them."
+   ],
    "grotto_leave":[
       "You leave the grotto in the past, turning to\ncontnue your pursuit of the distant tower,\nits spires reaching far into the gray\novercast above.",
       "The sounds of the fauna echo throughout\nthe region."
