@@ -655,6 +655,8 @@ class Grotto extends Phaser.Scene {
         finishCrossroadIndex = 0;     //to reset narrative to the beginning flag
         finishGrottoIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
+        anger = 0;
+        stifled = 0;
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');
     }

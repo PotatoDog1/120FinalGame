@@ -53,7 +53,6 @@ class Menu extends Phaser.Scene {
 
             hasItem[0] = true;          //it's the shoe
             finishItemNarrative[0] = true;      //shoe narrative
-            
             this.scene.start('backToGrottoScene');
         }
 
@@ -128,7 +127,6 @@ class Menu extends Phaser.Scene {
 
             hasItem[0] = true;                  //it's the shoe
             finishItemNarrative[0] = true;      //shoe narrative
-            
             this.scene.start('towerScene');
         }
 

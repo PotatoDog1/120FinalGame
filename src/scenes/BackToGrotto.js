@@ -72,13 +72,13 @@ class BackToGrotto extends Phaser.Scene {
         this.button_goBackGrotto = this.add.sprite(80, 527, 'goBackGrotto').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_movePast2 =  this.add.sprite(80, 527, 'movePast').setOrigin(0,0).setInteractive({useHandCursor: true});
 
-
         this.button_movePast.visible = false;
         this.button_findWayOut.visible = false;
         this.button_giveUp.visible = false;
         this.button_goBackGrotto.visible = false;
         this.button_movePast2.visible = false;
 
+        
         this.movePastRoute = false;
         this.findWayOutRoute = false;
         this.giveUpRoute = false;
@@ -158,7 +158,15 @@ class BackToGrotto extends Phaser.Scene {
         } else {
             this.button_movePast.on('pointerdown', function (pointer) {
                 this.movePastRoute = true;      //branch flag
-                narrativeText.setText(scriptText.grotto_leave[0]);      //fix later; add emotion narrative accordingly
+                if (anger == 2) {
+                    narrativeText.setText(scriptText.grotto_leave_angry2[0]);
+                } else if(stifled == 1) {
+                    narrativeText.setText(scriptText.grotto_leave_stifled1[0]);
+                } else if(stifled == 2) {
+                    narrativeText.setText(scriptText.grotto_leave_stifled2[0]);
+                } else {
+                    narrativeText.setText(scriptText.grotto_leave[0]);
+                }
                 this.destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
             }, this);
 
@@ -170,7 +178,12 @@ class BackToGrotto extends Phaser.Scene {
 
             if(!finishBackGNarrative[1]) {
                 if(this.movePastRoute) {
-                    this.getNextLine(scriptText.grotto_leave);
+                    if(anger > 0 || stifled > 0) {
+                        this.getNextLine(scriptText.grotto_leave, true);
+                    } else {
+                        this.getNextLine(scriptText.grotto_leave);
+                    }
+                    
                 } else if (this.findWayOutRoute) {
                     this.getNextLine(scriptText.grotto_leavePartOne);
                 }
@@ -207,13 +220,25 @@ class BackToGrotto extends Phaser.Scene {
                         } else if (this.goBackGrottoRoute) {
                             this.button_movePast2.on('pointerdown', function (pointer) {
                                 this.movePast2Route = true;      //branch flag
-                                narrativeText.setText(scriptText.grotto_leave[0]);      //fix later; add emotion narrative accordingly
+                                if (anger == 2) {
+                                    narrativeText.setText(scriptText.grotto_leave_angry2[0]);
+                                } else if(stifled == 1) {
+                                    narrativeText.setText(scriptText.grotto_leave_stifled1[0]);
+                                } else if(stifled == 2) {
+                                    narrativeText.setText(scriptText.grotto_leave_stifled2[0]);
+                                } else {
+                                    narrativeText.setText(scriptText.grotto_leave[0]);
+                                }
                                 this.destroyChoiceButtons(this.button_movePast2);
                             }, this);
 
                             if(!finishBackGNarrative[3]) {
                                 if(this.movePast2Route) {
-                                    this.getNextLine(scriptText.grotto_leave);
+                                    if(anger > 0 || stifled > 0) {
+                                        this.getNextLine(scriptText.grotto_leave, true);
+                                    } else {
+                                        this.getNextLine(scriptText.grotto_leave);
+                                    }
                                 }
                             } else {
                                 if(Phaser.Input.Keyboard.JustDown(keySpace)) {
@@ -357,6 +382,8 @@ class BackToGrotto extends Phaser.Scene {
         finishGrottoIndex = 0;
         finishBackGIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
+        anger = 0;
+        stifled = 0;
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');
     }
