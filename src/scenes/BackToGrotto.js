@@ -71,22 +71,19 @@ class BackToGrotto extends Phaser.Scene {
         this.button_giveUp = this.add.sprite(80, 490, 'giveUp').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_goBackGrotto = this.add.sprite(80, 527, 'goBackGrotto').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_movePast2 =  this.add.sprite(80, 527, 'movePast').setOrigin(0,0).setInteractive({useHandCursor: true});
-        this.button_talkingDots = this.add.sprite(80, 490, 'talkingDots').setOrigin(0,0).setInteractive({useHandCursor: true});
-
 
         this.button_movePast.visible = false;
         this.button_findWayOut.visible = false;
         this.button_giveUp.visible = false;
         this.button_goBackGrotto.visible = false;
         this.button_movePast2.visible = false;
-        this.button_talkingDots.visible = false;
 
+        
         this.movePastRoute = false;
         this.findWayOutRoute = false;
         this.giveUpRoute = false;
         this.goBackGrottoRoute = false;
         this.movePast2Route = false;
-        this.talkingDotsRoute = false;
 
         //Choices end--------------------------------------------------------
 
