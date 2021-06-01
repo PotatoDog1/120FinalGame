@@ -357,16 +357,7 @@ class Bridge extends Phaser.Scene {
             return false;
         }
     }
-
-    pickingChoice(choice1, choice2, choice3) {
-        if(choice3 != undefined) {
-            return !choice1 && !choice2 && !choice3;
-        } else if (choice3 == undefined) {
-            return !choice1 && !choice2;
-        }
-
-    }
-
+    
     goNextScene() {
         if(!this.grottoTransition) {
             this.fog_left.visible = true;
