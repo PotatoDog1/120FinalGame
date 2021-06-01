@@ -146,17 +146,18 @@ class Tower extends Phaser.Scene {
         if(!finishTowerNarrative[0]) {         //fix later; add narrative accordingly with the emotion variables
             this.getNextLine(scriptText.tower_base);
         } else {
-            if(!this.checkItemBridge && this.pickingChoice(this.crossBridgeRoute, this.cussRoute)) {            //if players haven't done anything yet
-                this.checkItemBridgeNarrative = true;
-            }
-
-            if(this.checkItemBridge && !finishTowerNarrative[1]) {
-                this.getNextLine(scriptText.bridge_inspectBridge);
-            }
 
             this.button_openDoor.on('pointerdown', function (pointer) {
-                this.goodEndRoute = true;      //branch flag
-                narrativeText.setText(scriptText.goodEnding[0]); 
+                console.log("anger is " + anger + " and stifled is " + stifled);
+                if(anger >= 2 || stifled >= 2) {
+                    this.badEndRoute = true;      //branch flag
+                    narrativeText.setText(scriptText.badEnding[0]);
+
+                } else if(anger < 2 || stifled < 2) {
+                    this.goodEndRoute = true;      //branch flag
+                    narrativeText.setText(scriptText.goodEnding[0]);
+                }
+
                 this.destroyChoiceButtons(this.button_openDoor);
             }, this);
 

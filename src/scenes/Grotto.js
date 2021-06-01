@@ -200,8 +200,10 @@ class Grotto extends Phaser.Scene {
             onComplete: function() {
                 main_bgm.stop(); 
                 if(this.punchRoute || this.moveRoute || this.movePastRoute) {
+                    console.log("anger = " + anger + " and stifled = " + stifled);
                     this.scene.start('beforeBridgeScene');
                 } else {
+                    console.log("anger = " + anger + " and stifled = " + stifled);
                     this.scene.start('backToGrottoScene');
                 }
             },
@@ -331,7 +333,7 @@ class Grotto extends Phaser.Scene {
                                         this.goNextScene();
                                     }, this);
 
-                                } else if (this.talkingDots3Route) {
+                                } else if (this.talkingDots3Route) {        //fix later; maybe need to redirect it??
                                     this.button_talkingDots2.on('pointerdown', function (pointer) {
                                         this.talkingDots2Route = true;      //branch flag
                                         narrativeText.setText("Is this what you want?");
@@ -493,10 +495,39 @@ class Grotto extends Phaser.Scene {
             nextLine = 1;
             firstTimer = true;
 
+            //variables
+            if(!finishGrottoNarrative[2] && this.punchRoute) {
+                anger += 1;
+            }
+
+            if(!finishGrottoNarrative[4]) {
+                if(this.talkingDots2Route) {
+                    stifled += 1;
+                }
+
+                if(this.sayNothingRoute) {
+                    stifled += 1;
+                }
+
+                if(this.talkingDots4Route) {
+                    stifled += 1;
+                }
+
+                if(this.breatheRoute) {
+                    stifled += 1;
+                }
+                
+                if(this.yell1Route) {
+                    anger += 2;
+                }
+            }
+
+
             if(!this.checkItemNarrative(target)){       //if it's a flag narrative
                 finishGrottoNarrative[finishGrottoIndex] = true;
                 finishGrottoIndex++;
             }
+
 
             //display choices
             if(finishGrottoNarrative[0] && this.pickingChoice(this.finallyRoute, this.investigateRoute, this.movePastRoute)) {

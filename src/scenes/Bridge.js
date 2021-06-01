@@ -151,6 +151,7 @@ class Bridge extends Phaser.Scene {
             completeDelay: 1000,
             onComplete: function() {
                 main_bgm.stop(); 
+                console.log("anger = " + anger + " and stifled = " + stifled);
                 this.scene.start('towerScene');
             },
             onCompleteScope: this
@@ -276,6 +277,40 @@ class Bridge extends Phaser.Scene {
             //reset to the beginning of the line
             nextLine = 1;
             firstTimer = true;
+
+            //variables
+            if(!finishBridgeNarrative[1]) {
+                if(this.waitWindRoute) {
+                    stifled += 1;
+                }
+
+                if(this.runAcrossBridgeRoute) {
+                    anger += 1;
+                }
+            }
+
+            if(!finishBridgeNarrative[2]) {
+                if(this.breatheCalmRoute) {
+                    if(anger > 0) {
+                        anger -= 1;
+                    }
+                    if(stifled > 0) {
+                        stifle -= 1;
+                    }
+
+                }
+
+                if(this.pauseRoute) {
+                    if(anger > 0) {
+                        anger -= 1;
+                    }
+                    if(stifled > 0) {
+                        stifle -= 1;
+                    }
+
+                }
+
+            }
 
             if(!this.checkItemNarrative(target)) {       //if it's a flag narrative
                 finishBridgeNarrative[finishBridgeIndex] = true;

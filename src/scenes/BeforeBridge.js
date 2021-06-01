@@ -57,7 +57,7 @@ class BeforeBridge extends Phaser.Scene {
                 this.button_crossBridge.visible = false;
                 this.button_cuss.visible = false;
                 this.checkItemBridge = true;
-                this.checkItemBridgeNarrative = false;
+
             }
         }, this);
 
@@ -179,6 +179,7 @@ class BeforeBridge extends Phaser.Scene {
             completeDelay: 1000,
             onComplete: function() {
                 main_bgm.stop(); 
+                console.log("anger = " + anger + " and stifled = " + stifled);
                 this.scene.start('bridgeScene');
             },
             onCompleteScope: this
@@ -200,7 +201,7 @@ class BeforeBridge extends Phaser.Scene {
                 this.checkItemBridgeNarrative = true;
             }
 
-            if(this.checkItemBridge && !finishBeforeBNarrative[1]) {
+            if(this.checkItemBridge && this.checkItemBridgeNarrative) {
                 this.getNextLine(scriptText.bridge_inspectBridge);
             }
 
@@ -264,7 +265,6 @@ class BeforeBridge extends Phaser.Scene {
                                 }
                             } else {
                                 if(this.takeCarRoute) {
-                                    narrativeText.setText("It hurts, isn't it?");
                                     this.goNextScene();
                                 }
                             }
@@ -302,7 +302,6 @@ class BeforeBridge extends Phaser.Scene {
                                     }
                                 } else {
                                     if(this.takeCarRoute) {
-                                        narrativeText.setText("It hurts, isn't it?");
                                         this.goNextScene();
                                     }
                                 }
@@ -321,7 +320,6 @@ class BeforeBridge extends Phaser.Scene {
                                 }
                             } else {
                                 if(this.takeCarRoute) {
-                                    narrativeText.setText("It hurts, isn't it?");
                                     this.goNextScene();
                                 }
                             }
@@ -355,9 +353,6 @@ class BeforeBridge extends Phaser.Scene {
 
         }
 
-        //interactive object check
-
-
         //when it reaches the end of the array
         if (nextLine == target.length){
 
@@ -365,12 +360,36 @@ class BeforeBridge extends Phaser.Scene {
             nextLine = 1;
             firstTimer = true;
 
-            if(!this.checkItemNarrative(target)) {       //if it's a flag narrative
+            //variables
+            if(!finishBeforeBNarrative[1] && this.cussRoute) {
+                stifled += 1;
+            }
+
+            if(!finishBeforeBNarrative[2] && this.continueArgueRoute) {
+                anger += 1;
+            }
+
+            if(!finishBeforeBNarrative[3]) {
+                if(this.argueNoRoute) {
+                    stifled += 1;
+                }
+
+                if(this.argueYesRoute) {
+                    anger += 5;
+                }
+                
+            }
+
+            if(this.checkItemNarrative(target)) {       //if it's a flag narrative
+                finishItemNarrative[0] = true;
+            } else if (this.checkInteractiveNarrative(target)) {
+                interactiveNarrative[interactiveIndex] = true;
+                interactiveIndex++;
+                this.checkItemBridgeNarrative = false;      //to never let the bridge text to show up again
+                this.item_bridge.removeInteractive();
+            } else {
                 finishBeforeBNarrative[finishBeforeBIndex] = true;
                 finishBeforeBIndex++;
-            } else if (this.checkInteractiveNarrative(target)) {
-                interactveNarrartive[i] = true;
-                interactiveIndex++;
             }
 
             //display choices
@@ -402,7 +421,8 @@ class BeforeBridge extends Phaser.Scene {
             }    
             
             if(finishBeforeBNarrative[3]) {
-                if(this.pickingChoice(this.takeCarRoute) && this.talkingDotsRoute) {
+                console.log("I'm in it");
+                if(this.pickingChoice(this.takeCarRoute) && (this.argueYesRoute || this.argueNoRoute)) {
                     this.showChoiceButtons(this.button_takeCar2);
                 }
 
