@@ -89,13 +89,25 @@ class Tower extends Phaser.Scene {
 
         //Choices related----------------------------------------------------
 
-        narrativeText = this.add.text(80, 445, scriptText.tower_base[0], wordConfig);
+        if(anger > 4) {
+            narrativeText = this.add.text(80, 445, scriptText.tower_base_angry4[0], wordConfig);
+        } else if (anger >= 3) {
+            narrativeText = this.add.text(80, 445, scriptText.tower_base_angry3[0], wordConfig);
+        } else if (anger <= 2 && anger > 0) {
+            narrativeText = this.add.text(80, 445, scriptText.tower_base_angry2[0], wordConfig);
+        } else if (stifled >= 3) {
+            narrativeText = this.add.text(80, 445, scriptText.tower_base_stifled3[0], wordConfig);
+        } else if (stifled <= 2 && stifled > 0) {
+            narrativeText = this.add.text(80, 445, scriptText.tower_base_stifled2[0], wordConfig);
+        }
+        //narrativeText = this.add.text(80, 445, scriptText.tower_base[0], wordConfig);
 
         this.button_openDoor = this.add.sprite(80, 527, 'openDoor').setOrigin(0,0).setInteractive({useHandCursor: true});
 
         this.button_openDoor.visible = false;
 
 
+        this.emotionText = false;
         this.goodEndRoute = false;
         this.badEndRoute = false;
 
@@ -142,43 +154,64 @@ class Tower extends Phaser.Scene {
     }
 
     update() {
-
-        if(!finishTowerNarrative[0]) {         //fix later; add narrative accordingly with the emotion variables
-            this.getNextLine(scriptText.tower_base);
+        if(!finishTowerNarrative[0]) {
+            if(anger > 4) {
+                this.emotionText = true;
+                this.getNextLine(scriptText.tower_base_angry4);
+            } else if (anger >= 3) {
+                this.emotionText = true;
+                this.getNextLine(scriptText.tower_base_angry3);
+            } else if (anger <= 2 && anger > 0) {
+                this.emotionText = true;
+                this.getNextLine(scriptText.tower_base_angry2);
+            } else if (stifled >= 3) {
+                this.emotionText = true;
+                this.getNextLine(scriptText.tower_base_stifled3);
+            } else if (stifled <= 2 && stifled > 0) {
+                this.emotionText = true;
+                this.getNextLine(scriptText.tower_base_stifled2);
+            }
         } else {
-
-            this.button_openDoor.on('pointerdown', function (pointer) {
-                console.log("anger is " + anger + " and stifled is " + stifled);
-                if(anger >= 2 || stifled >= 2) {
-                    this.badEndRoute = true;      //branch flag
-                    this.placeImage = this.add.image(0, 0, 'badend').setOrigin(0, 0);
-                    narrativeText.setText(scriptText.badEnding[0]);
-
-                } else if(anger < 2 || stifled < 2) {
-                    this.goodEndRoute = true;      //branch flag
-                    this.placeImage = this.add.image(0, 0, 'goodend').setOrigin(0, 0);
-                    narrativeText.setText(scriptText.goodEnding[0]);
-                }
-
-                this.destroyChoiceButtons(this.button_openDoor);
-            }, this);
-
-
             if(!finishTowerNarrative[1]) {
-                if(this.goodEndRoute) {
-                    this.getNextLine(scriptText.goodEnding);
-                } else if (this.badEndRoute) {
-                    this.getNextLine(scriptText.badEnding);
+                //this.getNextLine(scriptText.tower_base);
+                if(this.emotionText) {
+                    this.getNextLine(scriptText.tower_base, true);
                 }
             } else {
-                if(this.goodEndRoute || this.badEndRoute) {
-                    if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                        this.resetGame();
+    
+                this.button_openDoor.on('pointerdown', function (pointer) {
+                    console.log("anger is " + anger + " and stifled is " + stifled);
+                    if(anger >= 2 || stifled >= 2) {
+                        this.badEndRoute = true;      //branch flag
+                        this.placeImage = this.add.image(0, 0, 'badend').setOrigin(0, 0);
+                        narrativeText.setText(scriptText.badEnding[0]);
+    
+                    } else if(anger < 2 || stifled < 2) {
+                        this.goodEndRoute = true;      //branch flag
+                        this.placeImage = this.add.image(0, 0, 'goodend').setOrigin(0, 0);
+                        narrativeText.setText(scriptText.goodEnding[0]);
                     }
+    
+                    this.destroyChoiceButtons(this.button_openDoor);
+                }, this);
+    
+    
+                if(!finishTowerNarrative[2]) {
+                    if(this.goodEndRoute) {
+                        this.getNextLine(scriptText.goodEnding);
+                    } else if (this.badEndRoute) {
+                        this.getNextLine(scriptText.badEnding);
+                    }
+                } else {
+                    if(this.goodEndRoute || this.badEndRoute) {
+                        if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                            this.resetGame();
+                        }
+                    }
+    
                 }
-
+    
             }
-
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
@@ -222,7 +255,7 @@ class Tower extends Phaser.Scene {
             }
 
             //display choices
-            if(finishTowerNarrative[0]) {
+            if(finishTowerNarrative[1]) {
                 if(this.pickingChoice(this.goodEndRoute, this.badEndRoute)) {
                     this.showChoiceButtons(this.button_openDoor);
                 }

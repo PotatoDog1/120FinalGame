@@ -226,10 +226,30 @@
       "A squirrel passing underfoot catches your\nattention before disappearing high into one\nof the trees. You are alone, but at least\nthere's company.",
       "You have finally reached the tower."
    ],
+   "tower_base_angry4":[
+      "Your legs tremble as you walk, not from\nfear or anxiety but from anger.",
+      "You plant your feet as you walk, the soft sound\nof dirt surely softening the intense force\nyour knees bear as you stomp forward.\nAnger escapes from your nose as you breath."
+   ],
+   "tower_base_angry3":[
+      "Anger radiates throughout your body. Obstacle\nafter obstacle has been overcome through\nwillpower, and yet you don't feel any better.",
+      "A heavy breath escapes your nose as you\napproach the base of the tower, the fog\nsplitting as you walk forward."
+   ],
+   "tower_base_angry2":[
+      "A slight air of annoyance hangs over you as\nyou approach the tower.",
+      "It sticks to your back uncomfortably. Narrowing\nyour eyes and continuing, the soft sound\nof footsteps fills the air around you."
+   ],
+   "tower_base_stifled3":[
+      "Unflinching, you step closer to the tower, your\neyes heavy and tired.",
+      "Your journey has taken its toll on you, but now\nit is reaching its end."
+   ],
+   "tower_base_stifled2":[
+      "A pit in your chest, one that has been there for\nsome time, makes itself known as you approach\nthe tower.", 
+      "It stops you for a moment before you shake\nyour head, not allowing it to hinder your travel."
+   ],
    "tower_base":[
-      "You stare up at the tower, yet even as you squint\nyour eyes you are unable to see the top.",
+      "You stare up at the tower, yet even as you\nsquint your eyes you are unable to see\nthe top.",
       "A small doorway stands in between you and\nthe stairs that are surely inside.",
-      "The tower itself, made of mossy stone and overun\nwith foliage, appears weary with age."
+      "The tower itself, made of mossy stone and\noverun with foliage, appears weary with age."
    ],
    "goodEnding":[
       "You begin the ascent of the spiral staircase,\nsmall windows adorning the its sides, allowing\nyou glimpses into the outside world as\nyou climb.",
