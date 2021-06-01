@@ -192,7 +192,7 @@ class Tower extends Phaser.Scene {
                         narrativeText.setText(scriptText.goodEnding[0]);
                     }
     
-                    this.destroyChoiceButtons(this.button_openDoor);
+                    destroyChoiceButtons(this.button_openDoor);
                 }, this);
     
     
@@ -258,8 +258,8 @@ class Tower extends Phaser.Scene {
 
             //display choices
             if(finishTowerNarrative[1]) {
-                if(this.pickingChoice(this.goodEndRoute, this.badEndRoute)) {
-                    this.showChoiceButtons(this.button_openDoor);
+                if(pickingChoice(this.goodEndRoute, this.badEndRoute)) {
+                    showChoiceButtons(this.button_openDoor);
                 }
             }
 
@@ -267,49 +267,8 @@ class Tower extends Phaser.Scene {
 
     }
 
-    showChoiceButtons(button1, button2, button3) {
-        if(button1 != undefined){
-            button1.visible = true;
-        }
-        if(button2 != undefined){
-            button2.visible = true;
-        }
-        if(button3 != undefined){
-            button3.visible = true;
-        }
-    }
-
-    destroyChoiceButtons(button1, button2, button3) {
-        if(button1 != undefined){
-            button1.destroy();
-        }
-        if(button2 != undefined){
-            button2.destroy();
-        }
-        if(button3 != undefined){
-            button3.destroy();
-        }
-    }
-
     checkItemNarrative(target) {
        return false;
-    }
-
-    checkInteractiveNarrative(target) {
-        if(target === scriptText.bridge_inspectBridge) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    pickingChoice(choice1, choice2, choice3) {
-        if(choice3 != undefined) {
-            return !choice1 && !choice2 && !choice3;
-        } else if (choice3 == undefined) {
-            return !choice1 && !choice2;
-        }
-
     }
 
 }

@@ -171,19 +171,19 @@ class Bridge extends Phaser.Scene {
             this.button_waitWind.on('pointerdown', function (pointer) {
                 this.waitWindRoute = true;      //branch flag
                 narrativeText.setText(scriptText.bridge_waitOutTheWind[0]); 
-                this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
+                destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
             }, this);
 
             this.button_continueForward.on('pointerdown', function(pointer) {
                 this.continueForwardRoute = true;     //branch flag
                 narrativeText.setText(scriptText.bridge_continueFoward[0]);
-                this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
+                destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
             }, this);
 
             this.button_runAcrossBridge.on('pointerdown', function(pointer) {
                 this.runAcrossBridgeRoute = true;     //branch flag
                 narrativeText.setText(scriptText.bridge_runAcrossBridge[0]);
-                this.destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
+                destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
             }, this);
 
             if(!finishBridgeNarrative[1]) {
@@ -199,7 +199,7 @@ class Bridge extends Phaser.Scene {
                     this.button_breatheCalm.on('pointerdown', function (pointer) {
                         this.breatheCalmRoute = true;      //branch flag
                         narrativeText.setText(scriptText.bridge_calm[0]); 
-                        this.destroyChoiceButtons(this.button_breatheCalm);
+                        destroyChoiceButtons(this.button_breatheCalm);
                     }, this);
 
                     if(!finishBridgeNarrative[2]) {
@@ -213,14 +213,14 @@ class Bridge extends Phaser.Scene {
                 } else if (this.continueForwardRoute) {
                     this.button_continueTower.on('pointerdown', function (pointer) {
                         narrativeText.setText("You move towards the direction that the\ntower stands."); 
-                        this.destroyChoiceButtons(this.button_continueTower, this.button_pause);
+                        destroyChoiceButtons(this.button_continueTower, this.button_pause);
                         this.goNextScene();
                     }, this);
 
                     this.button_pause.on('pointerdown', function (pointer) {
                         this.pauseRoute = true;      //branch flag
                         narrativeText.setText(scriptText.bridge_calm[0]); 
-                        this.destroyChoiceButtons(this.button_continueTower, this.button_pause);
+                        destroyChoiceButtons(this.button_continueTower, this.button_pause);
                     }, this);
 
                     if(!finishBridgeNarrative[2]) {
@@ -234,7 +234,7 @@ class Bridge extends Phaser.Scene {
                     this.button_calmDown.on('pointerdown', function (pointer) {
                         this.calmDownRoute = true;      //branch flag
                         narrativeText.setText(scriptText.bridge_calm[0]); 
-                        this.destroyChoiceButtons(this.button_calmDown);
+                        destroyChoiceButtons(this.button_calmDown);
                     }, this);
 
                     if(!finishBridgeNarrative[2]) {
@@ -323,51 +323,27 @@ class Bridge extends Phaser.Scene {
 
             //display choices
             if(finishBridgeNarrative[0]) {
-                if(this.pickingChoice(this.waitWindRoute, this.continueForwardRoute, this.runAcrossBridgeRoute)) {
-                    this.showChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
+                if(pickingChoice(this.waitWindRoute, this.continueForwardRoute, this.runAcrossBridgeRoute)) {
+                    showChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
                 }
             }
 
             if(finishBridgeNarrative[1]) {
-                if(this.pickingChoice(this.breatheCalmRoute) && this.waitWindRoute) {
-                    this.showChoiceButtons(this.button_breatheCalm);
+                if(pickingChoice(this.breatheCalmRoute) && this.waitWindRoute) {
+                    showChoiceButtons(this.button_breatheCalm);
                 }
                 
-                if(this.pickingChoice(this.continueTowerRoute, this.pauseRoute) && this.continueForwardRoute) {
-                    this.showChoiceButtons(this.button_continueTower, this.button_pause);
+                if(pickingChoice(this.continueTowerRoute, this.pauseRoute) && this.continueForwardRoute) {
+                    showChoiceButtons(this.button_continueTower, this.button_pause);
                 }
 
-                if(this.pickingChoice(this.breatheCalmRoute) && this.runAcrossBridgeRoute) {
-                    this.showChoiceButtons(this.button_calmDown);
+                if(pickingChoice(this.breatheCalmRoute) && this.runAcrossBridgeRoute) {
+                    showChoiceButtons(this.button_calmDown);
                 }
             }            
 
         }
 
-    }
-
-    showChoiceButtons(button1, button2, button3) {
-        if(button1 != undefined){
-            button1.visible = true;
-        }
-        if(button2 != undefined){
-            button2.visible = true;
-        }
-        if(button3 != undefined){
-            button3.visible = true;
-        }
-    }
-
-    destroyChoiceButtons(button1, button2, button3) {
-        if(button1 != undefined){
-            button1.destroy();
-        }
-        if(button2 != undefined){
-            button2.destroy();
-        }
-        if(button3 != undefined){
-            button3.destroy();
-        }
     }
 
     checkItemNarrative(target) {

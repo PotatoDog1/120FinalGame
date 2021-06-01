@@ -200,7 +200,7 @@ class BeforeBridge extends Phaser.Scene {
             this.getNextLine(scriptText.bridge_start);
         } else {
             //interactive bridge
-            if(!this.checkItemBridge && this.pickingChoice(this.crossBridgeRoute, this.cussRoute)) {            //if players haven't done anything yet
+            if(!this.checkItemBridge && pickingChoice(this.crossBridgeRoute, this.cussRoute)) {            //if players haven't done anything yet
                 this.checkItemBridgeNarrative = true;
             }
 
@@ -211,7 +211,7 @@ class BeforeBridge extends Phaser.Scene {
             this.button_crossBridge.on('pointerdown', function (pointer) {
                 this.crossBridgeRoute = true;      //branch flag
                 narrativeText.setText("You decided to cross the bridge."); 
-                this.destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
+                destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
                 this.goNextScene();
 
             }, this);
@@ -221,7 +221,7 @@ class BeforeBridge extends Phaser.Scene {
                 this.placeImage = this.add.image(0, 0, 'garage').setOrigin(0, 0);
                 this.vignette.visible = true;
                 narrativeText.setText(scriptText.bridge_cussAtWorld[0]);
-                this.destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
+                destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
             }, this);
 
             if(!finishBeforeBNarrative[1]) {
@@ -233,19 +233,19 @@ class BeforeBridge extends Phaser.Scene {
                     this.button_talkingDots.on('pointerdown', function(pointer) {
                         this.talkingDotsRoute = true;     //branch flag
                         narrativeText.setText(scriptText.bridge_sayNothing[0]);
-                        this.destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
+                        destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
                     }, this);
 
                     this.button_continueArgue.on('pointerdown', function(pointer) {
                         this.continueArgueRoute = true;     //branch flag
                         narrativeText.setText(scriptText.bridge_confirm[0]);
-                        this.destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
+                        destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
                     }, this);
 
                     this.button_imSorry.on('pointerdown', function(pointer) {
                         this.imSorryRoute = true;     //branch flag
                         narrativeText.setText(scriptText.bridge_imSorry[0]);
-                        this.destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
+                        destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
                     }, this);
 
                     if(!finishBeforeBNarrative[2]) {
@@ -261,7 +261,7 @@ class BeforeBridge extends Phaser.Scene {
                             this.button_takeCar1.on('pointerdown', function(pointer) {
                                 this.takeCarRoute = true;     //branch flag
                                 narrativeText.setText(scriptText.bridge_takeCar[0]);
-                                this.destroyChoiceButtons(this.button_takeCar1);
+                                destroyChoiceButtons(this.button_takeCar1);
                             }, this);
 
                             if(!finishBeforeBNarrative[3]) {
@@ -278,13 +278,13 @@ class BeforeBridge extends Phaser.Scene {
                             this.button_argueYes.on('pointerdown', function(pointer) {
                                 this.argueYesRoute = true;     //branch flag
                                 narrativeText.setText(scriptText.bridge_argueYes[0]);
-                                this.destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
+                                destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
                             }, this);
 
                             this.button_argueNo.on('pointerdown', function(pointer) {
                                 this.argueNoRoute = true;     //branch flag
                                 narrativeText.setText(scriptText.bridge_sayNothing[0]);
-                                this.destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
+                                destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
                             }, this);
 
                             if(!finishBeforeBNarrative[3]) {
@@ -298,7 +298,7 @@ class BeforeBridge extends Phaser.Scene {
                                 this.button_takeCar2.on('pointerdown', function(pointer) {
                                     this.takeCarRoute = true;     //branch flag
                                     narrativeText.setText(scriptText.bridge_takeCar[0]);
-                                    this.destroyChoiceButtons(this.button_takeCar2);
+                                    destroyChoiceButtons(this.button_takeCar2);
                                 }, this);
 
                                 if(!finishBeforeBNarrative[4]) {
@@ -316,7 +316,7 @@ class BeforeBridge extends Phaser.Scene {
                             this.button_takeCar3.on('pointerdown', function(pointer) {
                                 this.takeCarRoute = true;     //branch flag
                                 narrativeText.setText(scriptText.bridge_takeCar[0]);
-                                this.destroyChoiceButtons(this.button_takeCar3);
+                                destroyChoiceButtons(this.button_takeCar3);
                             }, this);
 
                             if(!finishBeforeBNarrative[3]) {
@@ -400,66 +400,42 @@ class BeforeBridge extends Phaser.Scene {
 
             //display choices
             if(finishBeforeBNarrative[0]) {
-                if(this.pickingChoice(this.crossBridgeRoute, this.cussRoute)) {
-                    this.showChoiceButtons(this.button_crossBridge, this.button_cuss);
+                if(pickingChoice(this.crossBridgeRoute, this.cussRoute)) {
+                    showChoiceButtons(this.button_crossBridge, this.button_cuss);
                 }
             }
 
             if(finishBeforeBNarrative[1]) {
-                if(this.pickingChoice(this.talkingDotsRoute, this.continueArgueRoute, this.imSorryRoute) && this.cussRoute) {
-                    this.showChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
+                if(pickingChoice(this.talkingDotsRoute, this.continueArgueRoute, this.imSorryRoute) && this.cussRoute) {
+                    showChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
                 }
             }
 
             if(finishBeforeBNarrative[2]) {
-                if(this.pickingChoice(this.takeCarRoute) && this.talkingDotsRoute) {
-                    this.showChoiceButtons(this.button_takeCar1);
+                if(pickingChoice(this.takeCarRoute) && this.talkingDotsRoute) {
+                    showChoiceButtons(this.button_takeCar1);
                 }
 
-                if(this.pickingChoice(this.argueYesRoute, this.argueNoRoute) && this.continueArgueRoute) {
-                    this.showChoiceButtons(this.button_argueYes, this.button_argueNo);
+                if(pickingChoice(this.argueYesRoute, this.argueNoRoute) && this.continueArgueRoute) {
+                    showChoiceButtons(this.button_argueYes, this.button_argueNo);
                 }
 
-                if(this.pickingChoice(this.takeCarRoute) && this.imSorryRoute) {
-                    this.showChoiceButtons(this.button_takeCar3);
+                if(pickingChoice(this.takeCarRoute) && this.imSorryRoute) {
+                    showChoiceButtons(this.button_takeCar3);
                 }
 
             }    
             
             if(finishBeforeBNarrative[3]) {
                 console.log("I'm in it");
-                if(this.pickingChoice(this.takeCarRoute) && (this.argueYesRoute || this.argueNoRoute)) {
-                    this.showChoiceButtons(this.button_takeCar2);
+                if(pickingChoice(this.takeCarRoute) && (this.argueYesRoute || this.argueNoRoute)) {
+                    showChoiceButtons(this.button_takeCar2);
                 }
 
             }
 
         }
 
-    }
-
-    showChoiceButtons(button1, button2, button3) {
-        if(button1 != undefined){
-            button1.visible = true;
-        }
-        if(button2 != undefined){
-            button2.visible = true;
-        }
-        if(button3 != undefined){
-            button3.visible = true;
-        }
-    }
-
-    destroyChoiceButtons(button1, button2, button3) {
-        if(button1 != undefined){
-            button1.destroy();
-        }
-        if(button2 != undefined){
-            button2.destroy();
-        }
-        if(button3 != undefined){
-            button3.destroy();
-        }
     }
 
     checkItemNarrative(target) {

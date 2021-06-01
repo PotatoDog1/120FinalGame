@@ -167,13 +167,13 @@ class BackToGrotto extends Phaser.Scene {
                 } else {
                     narrativeText.setText(scriptText.grotto_leave[0]);
                 }
-                this.destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
+                destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
             }, this);
 
             this.button_findWayOut.on('pointerdown', function(pointer) {
                 this.findWayOutRoute = true;     //branch flag
                 narrativeText.setText(scriptText.grotto_leavePartOne[0]);
-                this.destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
+                destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
             }, this);
 
             if(!finishBackGNarrative[1]) {
@@ -197,13 +197,13 @@ class BackToGrotto extends Phaser.Scene {
                     this.button_giveUp.on('pointerdown', function (pointer) {
                         this.giveUpRoute = true;      //branch flag
                         narrativeText.setText(scriptText.grotto_end[0]);      //fix later; add emotion narrative accordingly
-                        this.destroyChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
+                        destroyChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
                     }, this);
         
                     this.button_goBackGrotto.on('pointerdown', function(pointer) {
                         this.goBackGrottoRoute = true;     //branch flag
                         narrativeText.setText(scriptText.grotto_leavePartTwo[0]);
-                        this.destroyChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
+                        destroyChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
                     }, this);
 
                     if(!finishBackGNarrative[2]) {
@@ -230,7 +230,7 @@ class BackToGrotto extends Phaser.Scene {
                                 } else {
                                     narrativeText.setText(scriptText.grotto_leave[0]);
                                 }
-                                this.destroyChoiceButtons(this.button_movePast2);
+                                destroyChoiceButtons(this.button_movePast2);
                             }, this);
 
                             if(!finishBackGNarrative[3]) {
@@ -291,49 +291,25 @@ class BackToGrotto extends Phaser.Scene {
 
             //display choices
             if(finishBackGNarrative[0]) {
-                if(this.pickingChoice(this.movePastRoute, this.findWayOutRoute)) {
-                    this.showChoiceButtons(this.button_movePast, this.button_findWayOut);
+                if(pickingChoice(this.movePastRoute, this.findWayOutRoute)) {
+                    showChoiceButtons(this.button_movePast, this.button_findWayOut);
                 }
             }
             
             if(finishBackGNarrative[1]) {
-                if(this.pickingChoice(this.giveUpRoute, this.goBackGrottoRoute) && this.findWayOutRoute) {
-                    this.showChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
+                if(pickingChoice(this.giveUpRoute, this.goBackGrottoRoute) && this.findWayOutRoute) {
+                    showChoiceButtons(this.button_giveUp, this.button_goBackGrotto);
                 }
             }
             
             if(finishBackGNarrative[2]) {
-                if(this.pickingChoice(this.movePast2Route) && this.goBackGrottoRoute) {
-                    this.showChoiceButtons(this.button_movePast2);
+                if(pickingChoice(this.movePast2Route) && this.goBackGrottoRoute) {
+                    showChoiceButtons(this.button_movePast2);
                 }
             }
 
         }
 
-    }
-
-    showChoiceButtons(button1, button2, button3) {
-        if(button1 != undefined){
-            button1.visible = true;
-        }
-        if(button2 != undefined){
-            button2.visible = true;
-        }
-        if(button3 != undefined){
-            button3.visible = true;
-        }
-    }
-
-    destroyChoiceButtons(button1, button2, button3) {
-        if(button1 != undefined){
-            button1.destroy();
-        }
-        if(button2 != undefined){
-            button2.destroy();
-        }
-        if(button3 != undefined){
-            button3.destroy();
-        }
     }
 
     checkItemNarrative(target) {

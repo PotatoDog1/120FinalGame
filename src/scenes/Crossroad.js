@@ -194,23 +194,23 @@ class Crossroad extends Phaser.Scene {
                     this.button_leave.visible = false;
                     this.getNextLine(scriptText.pickUpShoe);
                 }
-            } else if(!hasItem[0] && this.pickingChoice(this.leaveRoute, this.continueRoute)){
+            } else if(!hasItem[0] && pickingChoice(this.leaveRoute, this.continueRoute)){
                 this.shoe.input.draggable = true;
             } 
 
-            if(this.pickingChoice(this.leaveRoute, this.continueRoute)){     //Makes sure players can't go back to the beginning of this flag
+            if(pickingChoice(this.leaveRoute, this.continueRoute)){     //Makes sure players can't go back to the beginning of this flag
                                
                 this.button_continue.on('pointerdown', function (pointer) {
                     this.continueRoute = true;      //branch flag
                     narrativeText.setText(scriptText.crossroad_continue[0]);
-                    this.destroyChoiceButtons(this.button_continue, this.button_leave);
+                    destroyChoiceButtons(this.button_continue, this.button_leave);
                     this.placeImage = this.add.image(0, 0, 'tower').setOrigin(0, 0);
                 }, this);
 
                 this.button_leave.on('pointerdown', function(pointer) {
                     this.leaveRoute = true;     //branch flag
                     narrativeText.setText(scriptText.crossroad_leave[0]);
-                    this.destroyChoiceButtons(this.button_continue, this.button_leave);
+                    destroyChoiceButtons(this.button_continue, this.button_leave);
                 }, this);
                 
             } else {
@@ -231,14 +231,14 @@ class Crossroad extends Phaser.Scene {
                     this.button_continue2.on('pointerdown', function (pointer) {
                         this.continueRoute2 = true;      //branch flag
                         narrativeText.setText(scriptText.crossroad_fog[0]);
-                        this.destroyChoiceButtons(this.button_continue2, this.button_leave2);
+                        destroyChoiceButtons(this.button_continue2, this.button_leave2);
                         this.placeImage = this.add.image(0, 0, 'towerFog').setOrigin(0, 0);
                     }, this);
     
                     this.button_leave2.on('pointerdown', function(pointer) {
                         this.leaveRoute2 = true;     //branch flag
                         narrativeText.setText(scriptText.crossroad_leave[0]);
-                        this.destroyChoiceButtons(this.button_continue2, this.button_leave2);
+                        destroyChoiceButtons(this.button_continue2, this.button_leave2);
                     }, this);
 
                     if(!finishCrossroadNarrative[3]){
@@ -262,13 +262,13 @@ class Crossroad extends Phaser.Scene {
                                 this.button_yes.on('pointerdown', function (pointer) {
                                     this.yesRoute = true;      //branch flag
                                     narrativeText.setText(scriptText.pocket_yes[0]);
-                                    this.destroyChoiceButtons(this.button_yes, this.button_no);
+                                    destroyChoiceButtons(this.button_yes, this.button_no);
                                 }, this);
                 
                                 this.button_no.on('pointerdown', function(pointer) {
                                     this.noRoute = true;     //branch flag
                                     narrativeText.setText(scriptText.pocket_no[0]);
-                                    this.destroyChoiceButtons(this.button_yes, this.button_no);
+                                    destroyChoiceButtons(this.button_yes, this.button_no);
                                 }, this);
 
                                 if(!finishCrossroadNarrative[5]){
@@ -362,17 +362,14 @@ class Crossroad extends Phaser.Scene {
             nextLine = 1;
 
             //to display choices, probably need to do it for every branch
-            if(finishCrossroadNarrative[0] && this.pickingChoice(this.leaveRoute, this.continueRoute) && hasItem[0]) { 
-                this.button_continue.visible = true;
-                this.button_leave.visible = true;
+            if(finishCrossroadNarrative[0] && pickingChoice(this.leaveRoute, this.continueRoute) && hasItem[0]) { 
+                showChoiceButtons(this.button_continue, this.button_leave);
             } 
-            if(finishCrossroadNarrative[2] && this.pickingChoice(this.leaveRoute2, this.continueRoute2) && this.continueRoute){
-                this.button_continue2.visible = true;
-                this.button_leave2.visible = true;
+            if(finishCrossroadNarrative[2] && pickingChoice(this.leaveRoute2, this.continueRoute2) && this.continueRoute){
+                showChoiceButtons(this.button_continue2, this.button_leave2);
             }
-            if(finishCrossroadNarrative[4] && this.pickingChoice(this.yesRoute, this.noRoute) && this.continueRoute) {
-                this.button_yes.visible = true;
-                this.button_no.visible = true;
+            if(finishCrossroadNarrative[4] && pickingChoice(this.yesRoute, this.noRoute) && this.continueRoute) {
+                showChoiceButtons(this.button_yes, this.button_no);
             }
 
             //check  if player gets an item/read an item narrative; need to update this everytime
@@ -406,16 +403,4 @@ class Crossroad extends Phaser.Scene {
         return !choice1 && !choice2;
     }
 
-    //destroys choice buttons in one function
-    destroyChoiceButtons(button1, button2, button3) {
-        if(button1 != undefined){
-            button1.destroy();
-        }
-        if(button2 != undefined){
-            button2.destroy();
-        }
-        if(button3 != undefined){
-            button3.destroy();
-        }
-    }
 }

@@ -100,6 +100,38 @@ const SCALE = 0.5;
 let main_bgm;
 let sfx_pencil;
 
+function showChoiceButtons(button1, button2, button3) {
+    if(button1 != undefined){
+        button1.visible = true;
+    }
+    if(button2 != undefined){
+        button2.visible = true;
+    }
+    if(button3 != undefined){
+        button3.visible = true;
+    }
+}
+
+function destroyChoiceButtons(button1, button2, button3) {
+    if(button1 != undefined){
+        button1.destroy();
+    }
+    if(button2 != undefined){
+        button2.destroy();
+    }
+    if(button3 != undefined){
+        button3.destroy();
+    }
+}
+
+function pickingChoice(choice1, choice2, choice3) {
+    if(choice3 != undefined) {
+        return !choice1 && !choice2 && !choice3;
+    } else if (choice3 == undefined) {
+        return !choice1 && !choice2;
+    }
+}
+
 function resetArray(target) {
     for(var i = 0; i < target.length; i++) {       //to loop through the itemNarrative array and reset them to false
         target[i] = false;
