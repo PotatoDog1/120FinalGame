@@ -148,14 +148,16 @@ class Tower extends Phaser.Scene {
         } else {
 
             this.button_openDoor.on('pointerdown', function (pointer) {
-                if(anger < 2 || stifled < 2) {
+                console.log("anger is " + anger + " and stifled is " + stifled);
+                if(anger >= 2 || stifled >= 2) {
+                    this.badEndRoute = true;      //branch flag
+                    narrativeText.setText(scriptText.badEnding[0]);
+
+                } else if(anger < 2 || stifled < 2) {
                     this.goodEndRoute = true;      //branch flag
                     narrativeText.setText(scriptText.goodEnding[0]);
                 }
-                if(anger >= 2 || stifled >= 2) {
-                    this.badEndRoute = true;      //branch flag
-                    narrativeText.setText(scriptText.goodEnding[0]);
-                }
+
                 this.destroyChoiceButtons(this.button_openDoor);
             }, this);
 

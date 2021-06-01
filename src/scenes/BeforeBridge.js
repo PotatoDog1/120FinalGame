@@ -179,6 +179,7 @@ class BeforeBridge extends Phaser.Scene {
             completeDelay: 1000,
             onComplete: function() {
                 main_bgm.stop(); 
+                console.log("anger = " + anger + " and stifled = " + stifled);
                 this.scene.start('bridgeScene');
             },
             onCompleteScope: this
@@ -226,14 +227,12 @@ class BeforeBridge extends Phaser.Scene {
                 if(this.cussRoute) {
                     this.button_talkingDots.on('pointerdown', function(pointer) {
                         this.talkingDotsRoute = true;     //branch flag
-                        stifled += 1;
                         narrativeText.setText(scriptText.bridge_sayNothing[0]);
                         this.destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
                     }, this);
 
                     this.button_continueArgue.on('pointerdown', function(pointer) {
                         this.continueArgueRoute = true;     //branch flag
-                        anger += 1;
                         narrativeText.setText(scriptText.bridge_confirm[0]);
                         this.destroyChoiceButtons(this.button_talkingDots, this.button_continueArgue, this.button_imSorry);
                     }, this);
@@ -266,7 +265,6 @@ class BeforeBridge extends Phaser.Scene {
                                 }
                             } else {
                                 if(this.takeCarRoute) {
-                                    narrativeText.setText("It hurts, isn't it?");
                                     this.goNextScene();
                                 }
                             }
@@ -274,14 +272,12 @@ class BeforeBridge extends Phaser.Scene {
                         } else if (this.continueArgueRoute) {
                             this.button_argueYes.on('pointerdown', function(pointer) {
                                 this.argueYesRoute = true;     //branch flag
-                                anger += 5;
                                 narrativeText.setText(scriptText.bridge_argueYes[0]);
                                 this.destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
                             }, this);
 
                             this.button_argueNo.on('pointerdown', function(pointer) {
                                 this.argueNoRoute = true;     //branch flag
-                                stifled += 1;
                                 narrativeText.setText(scriptText.bridge_sayNothing[0]);
                                 this.destroyChoiceButtons(this.button_argueYes, this.button_argueNo);
                             }, this);
@@ -306,7 +302,6 @@ class BeforeBridge extends Phaser.Scene {
                                     }
                                 } else {
                                     if(this.takeCarRoute) {
-                                        narrativeText.setText("It hurts, isn't it?");
                                         this.goNextScene();
                                     }
                                 }
@@ -325,7 +320,6 @@ class BeforeBridge extends Phaser.Scene {
                                 }
                             } else {
                                 if(this.takeCarRoute) {
-                                    narrativeText.setText("It hurts, isn't it?");
                                     this.goNextScene();
                                 }
                             }
@@ -359,15 +353,32 @@ class BeforeBridge extends Phaser.Scene {
 
         }
 
-        //interactive object check
-
-
         //when it reaches the end of the array
         if (nextLine == target.length){
 
             //reset to the beginning of the line
             nextLine = 1;
             firstTimer = true;
+
+            //variables
+            if(!finishBeforeBNarrative[1] && this.cussRoute) {
+                stifled += 1;
+            }
+
+            if(!finishBeforeBNarrative[2] && this.continueArgueRoute) {
+                anger += 1;
+            }
+
+            if(!finishBeforeBNarrative[3]) {
+                if(this.argueNoRoute) {
+                    stifled += 1;
+                }
+
+                if(this.argueYesRoute) {
+                    anger += 5;
+                }
+                
+            }
 
             if(this.checkItemNarrative(target)) {       //if it's a flag narrative
                 finishItemNarrative[0] = true;

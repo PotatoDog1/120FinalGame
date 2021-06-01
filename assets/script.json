@@ -179,7 +179,8 @@
       "The highway offers little respite as you\npass person after person, their cars\nbecoming blurs on the wayside.",
       "An exit, one that, to your knowledge, has just\nfinished construction, appears up ahead.",
       "You barrel your vehicle into the exit.\nNotably, you are the only one to take it.",
-      "The familiar stretch of highway is soon\nexchanged for large redwoods in the distance,\na single large tower catching your eye.\nIt lies straight ahead of you."
+      "The familiar stretch of highway is soon\nexchanged for large redwoods in the distance,\na single large tower catching your eye.\nIt lies straight ahead of you.",
+      "It hurts, isn't it?"
    ],
    "bridge_crossing":[
       "You approach the bridge, placing your hands\non its posts, each of which are staked deep\ninto the earth.",
@@ -236,14 +237,15 @@
    ],
    "badEnding":[
       "You begin the ascent of the spiral staircase,\nsmall windows adorning the its sides,\nallowing you glimpses into the outside world as you climb.",
-      "Your legs are heavy, weary from the journey.\nThe fog outside seems to completely engulf the base of the tower.",
+      "Your legs are heavy, weary from the journey.\nThe fog outside seems to completely engulf\nthe base of the tower.",
       "In other words, below you is a sea of fog,\nthe gray of the clouds staionary above you.",
-      "You climb for what seems like ages, soon finding that the top of this\ntower has long since been destroyed.",
+      "You climb for what seems like ages, soon\nfinding that the top of this tower has long\nsince been destroyed.",
       "Or perhaps, it was never completed.",
-      "It stands half-constructed. As you peer below,\nyou find that the ground is a great distance below you.",
-      "Looking up, the forest and its surroundings remain drenched in fog.",
-      "The coast gently waves in the distance,\na singular lighthouse planting on a rock formation in the water\nspins its focused light in a familiar rhythm.",
-      "Ever so faintly, you hear the sound of waves crashing on rock.",
-      "he forest offers you this view,\nhowever, a waning sun in the distance,\nducking under the horizon, indicates that it is not to last."
+      "It stands half-constructed. As you peer below,\nyou find that the ground is a great distance\nbelow you.",
+      "Looking up, the forest and its surroundings\nremain drenched in fog.",
+      "The coast gently waves in the distance, a singular\nlighthouse planting on a rock formation in the\nwater spins its focused light in a familiar rhythm.",
+      "Ever so faintly, you hear the sound of waves\ncrashing on rock.",
+      "The forest offers you this view, however,\na waning sun in the distance, ducking under\nthe horizon, indicates that it is not to last.",
+      "Bad End - Something is missing, huh?\n\n\nThank you for playing!"
    ]
 }
