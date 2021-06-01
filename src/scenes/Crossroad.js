@@ -295,21 +295,24 @@ class Crossroad extends Phaser.Scene {
 
                         } else if(this.leaveRoute2) {
                             if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                                this.resetGame();
+                                resetGame();
+                                this.scene.start('menuScene');
                             }
                         }
                     }
 
                 } else if (this.leaveRoute) {
                     if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                        this.resetGame();
+                        resetGame();
+                        this.scene.start('menuScene');
                     }
                 }
             }
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
-            this.resetGame();
+            resetGame();
+            this.scene.start('menuScene');
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyE)) {
@@ -415,27 +418,4 @@ class Crossroad extends Phaser.Scene {
             button3.destroy();
         }
     }
-
-    //Resets the condition of EVERYTHING
-    resetGame() {
-        for(var i = 0; i < finishCrossroadNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
-            finishCrossroadNarrative[i] = false;
-            //console.log("looping through finishCrossroadNarrative. Finished " + i + " time, " + i + " is " + finishCrossroadNarrative[i]);
-        }
-
-        for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
-            hasItem[i] = false;
-        }
-
-        for(var i = 0; i < finishItemNarrative.length; i++) {       //to loop through the itemNarrative array and reset them to false
-            finishItemNarrative[i] = false;
-        }
-
-        finishCrossroadIndex = 0;     //to reset narrative to the beginning flag
-        nextLine = 1;           //to reset narrative to the beginning line
-        main_bgm.stop();        //to stop game bgm when they come back to menu
-        this.scene.start('menuScene');
-    }
-
-
 }

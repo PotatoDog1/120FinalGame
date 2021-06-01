@@ -205,7 +205,8 @@ class Tower extends Phaser.Scene {
                 } else {
                     if(this.goodEndRoute || this.badEndRoute) {
                         if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                            this.resetGame();
+                            resetGame();
+                            this.scene.start('menuScene');
                         }
                     }
     
@@ -215,7 +216,8 @@ class Tower extends Phaser.Scene {
         }
 
         if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
-            this.resetGame();
+            resetGame();
+            this.scene.start('menuScene');
         }
 
     }
@@ -308,52 +310,6 @@ class Tower extends Phaser.Scene {
             return !choice1 && !choice2;
         }
 
-    }
-
-    resetGame() {
-        for(var i = 0; i < finishCrossroadNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
-            finishCrossroadNarrative[i] = false;
-            //console.log("looping through finishCrossroadNarrative. Finished " + i + " time, " + i + " is " + finishCrossroadNarrative[i]);
-        }
-
-        for(var i = 0; i < hasItem.length; i++) {       //to loop through the item array and reset them
-            hasItem[i] = false;
-        }
-
-        for(var i = 0; i < finishItemNarrative.length; i++) {       //to loop through the itemNarrative array and reset them to false
-            finishItemNarrative[i] = false;
-        }
-
-        for(var i = 0; i < finishGrottoNarrative.length; i++) {      //to loop through the narrative flag array and reset them all to false
-            finishGrottoNarrative[i] = false;
-        }
-
-        for(var i = 0; i < finishBackGNarrative.length; i++) {      
-            finishBackGNarrative[i] = false;
-        }
-
-        for(var i = 0; i < finishBridgeNarrative.length; i++) {
-            finishBridgeNarrative[i] = false;
-        }
-
-        for(var i = 0; i < finishTowerNarrative.length; i++) {
-            finishTowerNarrative[i] = false;
-        }
-
-        for(var i = 0; i < interactiveNarrative.length; i++) {
-            interactiveNarrative[i] = false;
-        }
-
-        finishCrossroadIndex = 0;     //to reset narrative to the beginning flag
-        finishGrottoIndex = 0;
-        finishBackGIndex = 0;
-        finishBridgeIndex = 0;
-        finishTowerIndex = 0;
-        nextLine = 1;           //to reset narrative to the beginning line
-        anger = 0;
-        stifled = 0;
-        main_bgm.stop();        //to stop game bgm when they come back to menu
-        this.scene.start('menuScene');
     }
 
 }

@@ -99,3 +99,34 @@ const SCALE = 0.5;
 //define sound
 let main_bgm;
 let sfx_pencil;
+
+function resetArray(target) {
+    for(var i = 0; i < target.length; i++) {       //to loop through the itemNarrative array and reset them to false
+        target[i] = false;
+    }
+}
+
+function resetGame() {
+
+    resetArray(finishCrossroadNarrative); 
+    resetArray(hasItem); 
+    resetArray(finishItemNarrative); 
+    resetArray(finishGrottoNarrative);
+    resetArray(finishBackGNarrative);
+    resetArray(finishBeforeBNarrative);
+    resetArray(finishBridgeNarrative);
+    resetArray(finishTowerNarrative);
+    resetArray(interactiveNarrative);
+
+    finishCrossroadIndex = 0;     //to reset narrative to the beginning flag
+    finishGrottoIndex = 0;
+    finishBackGIndex = 0;
+    finishBeforeBIndex = 0;
+    finishBridgeIndex = 0;
+    finishTowerIndex = 0;
+    nextLine = 1;           //to reset narrative to the beginning line
+    anger = 0;
+    stifled = 0;
+    main_bgm.stop();        //to stop game bgm when they come back to menu
+
+}
