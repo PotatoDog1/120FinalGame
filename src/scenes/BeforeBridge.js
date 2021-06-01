@@ -19,6 +19,9 @@ class BeforeBridge extends Phaser.Scene {
         this.add.image(0, 400, 'bg_notepad').setOrigin(0,0);
         this.placeImage = this.add.image(0, 0, 'bridge').setOrigin(0, 0).setScale(0.4);
         this.portrait = this.add.image(515, 160, 'portrait').setScale(1.15);
+        this.vignette = this.add.image(0, 0, 'vignette').setOrigin(0, 0).setScale(0.97);
+        this.vignette.visible = false;
+        this.vignette.depth = 0.1;
         
         //breathing portrait animation
         this.tweens.add({
@@ -215,6 +218,8 @@ class BeforeBridge extends Phaser.Scene {
 
             this.button_cuss.on('pointerdown', function(pointer) {
                 this.cussRoute = true;     //branch flag
+                this.placeImage = this.add.image(0, 0, 'garage').setOrigin(0, 0);
+                this.vignette.visible = true;
                 narrativeText.setText(scriptText.bridge_cussAtWorld[0]);
                 this.destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
             }, this);
@@ -522,6 +527,8 @@ class BeforeBridge extends Phaser.Scene {
         finishBackGIndex = 0;
         finishBeforeBIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
+        anger = 0;
+        stifled = 0;
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');
     }

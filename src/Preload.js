@@ -25,6 +25,11 @@ class Preload extends Phaser.Scene{
         //bridge art assets
         this.load.image('bridge', './assets/bridge_v2.png');
         this.load.image('item_bridge', './assets/item_bridge.png');
+        this.load.image('garage', './assets/GarageTemp.png');
+
+        //tower art assets
+        this.load.image('goodend', './assets/goodend.png');
+        this.load.image('badend', './assets/badendFog.png');
 
         //area to define non droppable zone
         this.load.image('noDrop', './assets/nonDropZone.png');

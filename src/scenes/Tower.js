@@ -151,10 +151,12 @@ class Tower extends Phaser.Scene {
                 console.log("anger is " + anger + " and stifled is " + stifled);
                 if(anger >= 2 || stifled >= 2) {
                     this.badEndRoute = true;      //branch flag
+                    this.placeImage = this.add.image(0, 0, 'badend').setOrigin(0, 0);
                     narrativeText.setText(scriptText.badEnding[0]);
 
                 } else if(anger < 2 || stifled < 2) {
                     this.goodEndRoute = true;      //branch flag
+                    this.placeImage = this.add.image(0, 0, 'goodend').setOrigin(0, 0);
                     narrativeText.setText(scriptText.goodEnding[0]);
                 }
 
@@ -315,6 +317,8 @@ class Tower extends Phaser.Scene {
         finishBridgeIndex = 0;
         finishTowerIndex = 0;
         nextLine = 1;           //to reset narrative to the beginning line
+        anger = 0;
+        stifled = 0;
         main_bgm.stop();        //to stop game bgm when they come back to menu
         this.scene.start('menuScene');
     }
