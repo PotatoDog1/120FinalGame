@@ -265,7 +265,20 @@
       "Good End - Realization and bravery\n\n\nThank you for playing!"
    ],
    "badEnding":[
-      "You begin the ascent of the spiral staircase,\nsmall windows adorning the its sides,\nallowing you glimpses into the outside world as you climb.",
+      "You try the door. It doesn't budge.\nIt's locked.",
+      "You try the door again. It shifts slightly as\nyou feel the doorknob loosen.",
+      "You try the door one more time. Ripping the\ndoorknob from its socket, the door falls with\nit. You have failed to keep your emotions\nin check.",
+      "Within the tower is a single set of spiraling\nstairs. They climb high into the tower, so\nhigh in fact, that you are unable to see where\nthey end.",
+      "You start climbing these seemingly endless\nstairs. As you further ascend yourself,\nyou realize something is off. However, you\ndid not stop yourself from climbing.",
+      "It has been a while now. You can no longer see\nthe ground of the tower. At the same time,\nyou cannot see where the stairs end either.",
+      "The view you see through the windows has not\nchanged since you started climbing the tower.\nIt almost feels like time freezes.",
+      "Sensing that you may not reach the top of the\ntower, you began your way back to the ground.\nYet, the stairs are neverending.",
+      "You finally realize you have been trapped\nin this tower, and by this tower.",
+      "What did you do to deserve this? Perhaps,\nyou are the only one who can figure this out.",
+      "Bad End - What am I?\n\n\nThank you for playing!"
+   ],
+   "neutralEnding":[
+      "You begin the ascent of the spiral staircase,\nsmall windows adorning the its sides, allowing\nyou glimpses into the outside world as\nyou climb.",
       "Your legs are heavy, weary from the journey.\nThe fog outside seems to completely engulf\nthe base of the tower.",
       "In other words, below you is a sea of fog,\nthe gray of the clouds staionary above you.",
       "You climb for what seems like ages, soon\nfinding that the top of this tower has long\nsince been destroyed.",
@@ -275,6 +288,6 @@
       "The coast gently waves in the distance, a singular\nlighthouse planting on a rock formation in the\nwater spins its focused light in a familiar rhythm.",
       "Ever so faintly, you hear the sound of waves\ncrashing on rock.",
       "The forest offers you this view, however,\na waning sun in the distance, ducking under\nthe horizon, indicates that it is not to last.",
-      "Bad End - Something is missing, huh?\n\n\nThank you for playing!"
+      "Neutral End - Something is missing, huh?\n\n\nThank you for playing!"
    ]
 }
