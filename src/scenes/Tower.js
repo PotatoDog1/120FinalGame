@@ -109,6 +109,7 @@ class Tower extends Phaser.Scene {
 
         this.emotionText = false;
         this.goodEndRoute = false;
+        this.neutralEndRoute = false;
         this.badEndRoute = false;
 
 
@@ -180,15 +181,19 @@ class Tower extends Phaser.Scene {
             } else {
     
                 this.button_openDoor.on('pointerdown', function (pointer) {
-                    console.log("anger is " + anger + " and stifled is " + stifled);
-                    if(anger >= 2 || stifled >= 2) {
+                    //console.log("anger is " + anger + " and stifled is " + stifled);
+                    if(anger > 2 || stifled > 2) {
                         this.badEndRoute = true;      //branch flag
-                        this.placeImage = this.add.image(0, 0, 'badend').setOrigin(0, 0);
+                        this.placeImage = this.add.image(0, 0, 'stairs').setOrigin(0, 0);
                         narrativeText.setText(scriptText.badEnding[0]);
     
-                    } else if(anger < 2 || stifled < 2) {
+                    } else if (anger <= 2 && anger > 0 && stifled <= 2 && stifled > 0){
+                        this.neutralEndRoute = true;
+                        //here to add the fog/neutral end image; you can see how I did it right above^
+                        narrativeText.setText(scriptText.neutralEnding[0]);
+                    } else if (anger == 0 && stifled == 0) {
                         this.goodEndRoute = true;      //branch flag
-                        this.placeImage = this.add.image(0, 0, 'goodend').setOrigin(0, 0);
+                        //here to add the good end image
                         narrativeText.setText(scriptText.goodEnding[0]);
                     }
     
@@ -197,13 +202,15 @@ class Tower extends Phaser.Scene {
     
     
                 if(!finishTowerNarrative[2]) {
-                    if(this.goodEndRoute) {
-                        this.getNextLine(scriptText.goodEnding);
-                    } else if (this.badEndRoute) {
+                    if(this.badEndRoute) {
                         this.getNextLine(scriptText.badEnding);
+                    } else if (this.neutralEndRoute) {
+                        this.getNextLine(scriptText.neutralEnding);
+                    } else if (this.goodEndRoute) {
+                        this.getNextLine(scriptText.goodEnding);
                     }
                 } else {
-                    if(this.goodEndRoute || this.badEndRoute) {
+                    if(this.goodEndRoute || this.badEndRoute || this.neutralEndRoute) {
                         if(Phaser.Input.Keyboard.JustDown(keySpace)) {
                             resetGame();
                             this.scene.start('menuScene');
@@ -258,7 +265,7 @@ class Tower extends Phaser.Scene {
 
             //display choices
             if(finishTowerNarrative[1]) {
-                if(pickingChoice(this.goodEndRoute, this.badEndRoute)) {
+                if(pickingChoice(this.goodEndRoute, this.badEndRoute, this.neutralEndRoute)) {
                     showChoiceButtons(this.button_openDoor);
                 }
             }
