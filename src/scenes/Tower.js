@@ -99,8 +99,10 @@ class Tower extends Phaser.Scene {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_stifled3[0], wordConfig);
         } else if (stifled <= 2 && stifled > 0) {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_stifled2[0], wordConfig);
+        } else if (stifled == 0 && anger == 0) {
+            narrativeText = this.add.text(80, 445, "You have finally reached your destination.", wordConfig);
         }
-        //narrativeText = this.add.text(80, 445, scriptText.tower_base[0], wordConfig);
+        //
 
         this.button_openDoor = this.add.sprite(80, 527, 'openDoor').setOrigin(0,0).setInteractive({useHandCursor: true});
 
@@ -171,6 +173,11 @@ class Tower extends Phaser.Scene {
             } else if (stifled <= 2 && stifled > 0) {
                 this.emotionText = true;
                 this.getNextLine(scriptText.tower_base_stifled2);
+            } else if (stifled == 0 && anger == 0) {
+                this.emotionText = true;
+                finishTowerNarrative[finishTowerIndex] = true;
+                finishTowerIndex++;
+                console.log(finishTowerIndex);
             }
         } else {
             if(!finishTowerNarrative[1]) {
@@ -189,11 +196,11 @@ class Tower extends Phaser.Scene {
     
                     } else if (anger <= 2 && anger > 0 && stifled <= 2 && stifled > 0){
                         this.neutralEndRoute = true;
-                        this.placeImage = this.add.image(0, 0, 'badend').setOrigin(0,0);
+                        this.placeImage = this.add.image(0, 0, 'neutralend').setOrigin(0,0).setScale(0.96);
                         narrativeText.setText(scriptText.neutralEnding[0]);
                     } else if (anger == 0 && stifled == 0) {
                         this.goodEndRoute = true;      //branch flag
-                        this.placeImage = this.add.image(0, 0, 'goodend').setOrigin(0,0);
+                        this.placeImage = this.add.image(0, 0, 'goodend').setOrigin(0,0).setScale(0.96);
                         narrativeText.setText(scriptText.goodEnding[0]);
                     }
     
