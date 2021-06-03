@@ -189,11 +189,11 @@ class Tower extends Phaser.Scene {
     
                     } else if (anger <= 2 && anger > 0 && stifled <= 2 && stifled > 0){
                         this.neutralEndRoute = true;
-                        //here to add the fog/neutral end image; you can see how I did it right above^
+                        this.placeImage = this.add.image(0, 0, 'badend').setOrigin(0,0);
                         narrativeText.setText(scriptText.neutralEnding[0]);
                     } else if (anger == 0 && stifled == 0) {
                         this.goodEndRoute = true;      //branch flag
-                        //here to add the good end image
+                        this.placeImage = this.add.image(0, 0, 'goodend').setOrigin(0,0);
                         narrativeText.setText(scriptText.goodEnding[0]);
                     }
     
