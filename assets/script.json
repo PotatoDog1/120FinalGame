@@ -90,12 +90,14 @@
    ],
    "grotto_yellAtWife":[
       "You yell as she leaves. Suddenly out of breath,\nyou find yourself heaving for air.",
-      "Anger builds within you."
+      "Anger builds within you.",
+      ""
    ],
    "grotto_breathingExercise":[
       "You take a breath.\nYou remember how to do this, right?",
       "It's the box breathing method.\nYou know, 4-4-4-4?",
-      "You spend sixteen seconds breathing.\nYes, exactly sixteen."
+      "You spend sixteen seconds breathing.\nYes, exactly sixteen.",
+      ""
    ],
    "grotto_punchTree":[
       "You punch the tree.\nIt deserved it probably.\nYour hand stings with disapproval.",

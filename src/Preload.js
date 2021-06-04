@@ -5,6 +5,9 @@ class Preload extends Phaser.Scene{
 
     preload() {
 
+        //fade image
+        this.load.image('fade', './assets/fade.png');
+
         //crossroad temp art assets
         this.load.image('frame', './assets/temp_frame.png');
         this.load.image('bg_notepad', './assets/notepad.png');
@@ -28,7 +31,7 @@ class Preload extends Phaser.Scene{
         this.load.image('garage', './assets/GarageTemp.png');
 
         //tower art assets
-        this.load.image('stairs', './assets/stairsTemp.png');
+        this.load.image('stairs', './assets/stairs.png');
         this.load.image('goodend', './assets/goodend.png');
         this.load.image('neutralend', './assets/neutralend.png');
 
