@@ -162,9 +162,13 @@ class Grotto extends Phaser.Scene {
             ease: 'Sine.easeOut',
             duration: 1500,
             x: -521,
+            onStart: function () {
+                keySpace.enabled = false;
+            },
+            onStartScope: this,
             onComplete: function() {
-                //this.fog_left.destroy();
                 this.fog_left.visible = false;
+                keySpace.enabled = true;
             },
             onCompleteScope: this
         });
@@ -178,7 +182,6 @@ class Grotto extends Phaser.Scene {
             duration: 1500,
             x: 640,
             onComplete: function() {
-                //this.fog_right.destroy();
                 this.fog_right.visible = false;
             },
             onCompleteScope: this

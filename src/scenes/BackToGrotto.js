@@ -12,6 +12,9 @@ class BackToGrotto extends Phaser.Scene {
             targets: this.fade,
             alpha: 0,
             duration: 2000,
+            onStart: function() {
+                keySpace.enabled = false;
+            },
             onComplete: function() {
                 keySpace.enabled = true;
             }
@@ -107,38 +110,10 @@ class BackToGrotto extends Phaser.Scene {
         this.fog_left = this.add.sprite(-521, 0, 'fog_left').setOrigin(0, 0);
         this.fog_left.depth = 2;
         this.fog_left.visible = false;
-        /*
-        this.transition_left = this.tweens.add({
-            targets: this.fog_left,
-            delay: 300,
-            ease: 'Sine.easeOut',
-            duration: 1500,
-            x: -521,
-            onComplete: function() {
-                //this.fog_left.destroy();
-                this.fog_left.visible = false;
-            },
-            onCompleteScope: this
-        });
-        */
         
         this.fog_right = this.add.sprite(640, 0, 'fog_right').setOrigin(0, 0);
         this.fog_right.depth = 2;
         this.fog_right.visible = false;
-        /*
-        this.transition_right = this.tweens.add({
-            targets: this.fog_right,
-            delay: 300,
-            ease: 'Sine.easeOut',
-            duration: 1500,
-            x: 640,
-            onComplete: function() {
-                //this.fog_right.destroy();
-                this.fog_right.visible = false;
-            },
-            onCompleteScope: this
-        });
-        */
 
         //end transition-------------------------------------------------
         this.endTransition_left = this.tweens.add({
