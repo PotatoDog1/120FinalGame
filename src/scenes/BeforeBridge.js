@@ -22,6 +22,9 @@ class BeforeBridge extends Phaser.Scene {
         this.vignette = this.add.image(0, 0, 'vignette').setOrigin(0, 0).setScale(0.97);
         this.vignette.visible = false;
         this.vignette.depth = 0.1;
+        this.fade = this.add.sprite(0, 0, 'fade').setOrigin(0,0);
+        this.fade.depth = 3;
+        this.fade.alpha = 0;
         
         //breathing portrait animation
         this.tweens.add({
@@ -218,10 +221,31 @@ class BeforeBridge extends Phaser.Scene {
 
             this.button_cuss.on('pointerdown', function(pointer) {
                 this.cussRoute = true;     //branch flag
-                this.placeImage = this.add.image(0, 0, 'garage').setOrigin(0, 0);
-                this.vignette.visible = true;
-                narrativeText.setText(scriptText.bridge_cussAtWorld[0]);
-                destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
+                this.tweens.add({
+                    targets: this.fade,
+                    alpha: 1,
+                    duration: 1500,
+                    onStart: function() {
+                        keySpace.enabled = false;
+                    },
+                    onStartScope: this,
+                    onComplete: function() {
+                        this.placeImage = this.add.image(0, 0, 'garage').setOrigin(0, 0);
+                        this.vignette.visible = true;
+                        narrativeText.setText(scriptText.bridge_cussAtWorld[0]);
+                        destroyChoiceButtons(this.button_crossBridge, this.button_cuss);
+                        this.tweens.add({
+                            targets: this.fade,
+                            alpha: 0,
+                            duration: 1500,
+                            onComplete: function() {
+                                keySpace.enabled = true;
+                            },
+                            onCompleteScope: this
+                        });
+                    },
+                    onCompleteScope: this
+                });
             }, this);
 
             if(!finishBeforeBNarrative[1]) {
@@ -270,6 +294,7 @@ class BeforeBridge extends Phaser.Scene {
                                 }
                             } else {
                                 if(this.takeCarRoute) {
+                                    this.goBackReality();
                                     this.goNextScene();
                                 }
                             }
@@ -307,6 +332,7 @@ class BeforeBridge extends Phaser.Scene {
                                     }
                                 } else {
                                     if(this.takeCarRoute) {
+                                        this.goBackReality();
                                         this.goNextScene();
                                     }
                                 }
@@ -325,6 +351,7 @@ class BeforeBridge extends Phaser.Scene {
                                 }
                             } else {
                                 if(this.takeCarRoute) {
+                                    this.goBackReality();
                                     this.goNextScene();
                                 }
                             }
@@ -458,6 +485,24 @@ class BeforeBridge extends Phaser.Scene {
             this.endTransition_right.play();
             this.grottoTransition = true;
         }
+    }
+
+    goBackReality() {
+        //narrativeText.setText("Is this what you want?");
+        keySpace.enabled = false;
+        beforeBridgeMemory = true;
+        this.tweens.add({
+            targets: this.fade,
+            alpha: 1,
+            duration: 1500,
+            delay: 800,
+            /*
+            onComplete: function() {
+                this.scene.start('backToGrottoScene');
+            },
+            */
+            onCompleteScope: this
+        });       
     }
 
 }

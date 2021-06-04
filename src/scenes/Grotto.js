@@ -628,7 +628,6 @@ class Grotto extends Phaser.Scene {
 
     goBackGrotto() {
         narrativeText.setText("Is this what you want?");
-        destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
         keySpace.enabled = false;
 
         this.tweens.add({

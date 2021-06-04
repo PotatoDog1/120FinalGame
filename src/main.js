@@ -92,9 +92,11 @@ let interactiveNarrative = [false];
     //notes:               [bridge]
 let interactiveIndex = 0;
 
-
 //tween Scale variable
 const SCALE = 0.5;
+
+//fade variable
+let beforeBridgeMemory = false;
 
 //define sound
 let main_bgm;
@@ -159,6 +161,7 @@ function resetGame() {
     nextLine = 1;           //to reset narrative to the beginning line
     anger = 0;
     stifled = 0;
+    beforeBridgeMemory = false;
     main_bgm.stop();        //to stop game bgm when they come back to menu
 
 }

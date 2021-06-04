@@ -5,6 +5,20 @@ class Bridge extends Phaser.Scene {
 
     create() {
 
+        if(beforeBridgeMemory) {
+            this.fade = this.add.sprite(0, 0, 'fade').setOrigin(0,0);
+            this.fade.depth = 3;
+    
+            this.tweens.add({
+                targets: this.fade,
+                alpha: 0,
+                duration: 2000,
+                onComplete: function() {
+                    keySpace.enabled = true;
+                }
+            });  
+        }
+
         //define keys
         keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
