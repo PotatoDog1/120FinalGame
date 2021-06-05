@@ -11,7 +11,7 @@ class BackToGrotto extends Phaser.Scene {
         this.tweens.add({
             targets: this.fade,
             alpha: 0,
-            duration: 2000,
+            duration: 1000,
             onStart: function() {
                 keySpace.enabled = false;
             },

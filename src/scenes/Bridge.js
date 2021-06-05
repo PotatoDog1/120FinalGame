@@ -300,10 +300,12 @@ class Bridge extends Phaser.Scene {
             if(!finishBridgeNarrative[1]) {
                 if(this.waitWindRoute) {
                     stifled += 1;
+                    console.log("added 1 to stifled!");
                 }
 
                 if(this.runAcrossBridgeRoute) {
                     anger += 1;
+                    console.log("added 1 to anger!");
                 }
             }
 
@@ -311,9 +313,11 @@ class Bridge extends Phaser.Scene {
                 if(this.breatheCalmRoute) {
                     if(anger > 0) {
                         anger -= 1;
+                        console.log("minus 1 anger");
                     }
                     if(stifled > 0) {
                         stifled -= 1;
+                        console.log("minus 1 stifled");
                     }
 
                 }
@@ -321,9 +325,11 @@ class Bridge extends Phaser.Scene {
                 if(this.pauseRoute) {
                     if(anger > 0) {
                         anger -= 1;
+                        console.log("minus 1 anger!!");
                     }
                     if(stifled > 0) {
                         stifled -= 1;
+                        console.log("minus 1 stifled!!");
                     }
 
                 }

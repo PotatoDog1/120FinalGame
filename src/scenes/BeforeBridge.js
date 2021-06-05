@@ -227,7 +227,7 @@ class BeforeBridge extends Phaser.Scene {
                 this.tweens.add({
                     targets: this.fade,
                     alpha: 1,
-                    duration: 1500,
+                    duration: 1000,
                     onStart: function() {
                         keySpace.enabled = false;
                     },
@@ -240,7 +240,7 @@ class BeforeBridge extends Phaser.Scene {
                         this.tweens.add({
                             targets: this.fade,
                             alpha: 0,
-                            duration: 1500,
+                            duration: 1000,
                             onComplete: function() {
                                 keySpace.enabled = true;
                             },
@@ -397,8 +397,9 @@ class BeforeBridge extends Phaser.Scene {
             firstTimer = true;
 
             //variables
-            if(!finishBeforeBNarrative[1] && this.cussRoute) {
-                stifled += 1;
+            if(!finishBeforeBNarrative[2] && this.talkingDotsRoute) {
+                stifled += 2;
+                console.log("added 2 to stifled!");
             }
 
             if(!finishBeforeBNarrative[2] && this.continueArgueRoute) {
@@ -411,7 +412,7 @@ class BeforeBridge extends Phaser.Scene {
                 }
 
                 if(this.argueYesRoute) {
-                    anger += 5;
+                    anger += 3;
                 }
                 
             }
@@ -457,7 +458,6 @@ class BeforeBridge extends Phaser.Scene {
             }    
             
             if(finishBeforeBNarrative[3]) {
-                console.log("I'm in it");
                 if(pickingChoice(this.takeCarRoute) && (this.argueYesRoute || this.argueNoRoute)) {
                     showChoiceButtons(this.button_takeCar2);
                 }
@@ -497,10 +497,10 @@ class BeforeBridge extends Phaser.Scene {
         this.tweens.add({
             targets: this.fade,
             alpha: 1,
-            duration: 1500,
+            duration: 1000,
             delay: 800,
             /*
-            onComplete: function() {
+            onComplete: function() { 
                 this.scene.start('backToGrottoScene');
             },
             */

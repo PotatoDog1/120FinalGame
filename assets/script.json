@@ -90,14 +90,13 @@
    ],
    "grotto_yellAtWife":[
       "You yell as she leaves. Suddenly out of breath,\nyou find yourself heaving for air.",
-      "Anger builds within you.",
-      ""
+      "Anger builds within you."
    ],
    "grotto_breathingExercise":[
       "You take a breath.\nYou remember how to do this, right?",
       "It's the box breathing method.\nYou know, 4-4-4-4?",
       "You spend sixteen seconds breathing.\nYes, exactly sixteen.",
-      ""
+      "You try to hold your emotion."
    ],
    "grotto_punchTree":[
       "You punch the tree.\nIt deserved it probably.\nYour hand stings with disapproval.",
@@ -133,6 +132,11 @@
    "grotto_end":[
       "Deciding to throw your responbilities and\nobligations thrown to the wind, you live out\nthe rest of your days in the forest.",
       "FIN - I tried, but what else can change me?\n\n\n*Continue to go back to Menu*"
+   ],
+   "grotto_goBackGrotto":[
+      "...",
+      "You don't know if that is what she wants\nto hear.",
+      "In fact, you don't know what is right."
    ],
    "bridge_start":[
       "The sound of running water begins to fill\nyour ears as you spot a small river\ncutting the forest in two.",

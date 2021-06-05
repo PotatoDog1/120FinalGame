@@ -147,6 +147,7 @@ class Grotto extends Phaser.Scene {
         this.yell1Route = false;
         this.dotsRoute = false;
 
+
         //Choices end--------------------------------------------------------
 
         //create frame
@@ -229,7 +230,7 @@ class Grotto extends Phaser.Scene {
                     this.tweens.add({
                         targets: this.fade,
                         alpha: 1,
-                        duration: 1500,
+                        duration: 1000,
                         onStart: function() {
                             keySpace.enabled = false;
                         },
@@ -242,7 +243,7 @@ class Grotto extends Phaser.Scene {
                             this.tweens.add({
                                 targets: this.fade,
                                 alpha: 0,
-                                duration: 1500,
+                                duration: 1000,
                                 onComplete: function() {
                                     keySpace.enabled = true;
                                 },
@@ -299,14 +300,23 @@ class Grotto extends Phaser.Scene {
                         if(this.talkingDotsRoute) {
                             this.button_talkingDots2.on('pointerdown', function (pointer) {
                                 this.talkingDots2Route = true;      //branch flag
-                               this.goBackGrotto();                      
+                                destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
+                                narrativeText.setText(scriptText.grotto_goBackGrotto[0]);                     
                             }, this);
             
                             this.button_signUp.on('pointerdown', function(pointer) {
                                 this.signUpRoute = true;     //branch flag
                                 destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
-                                this.goBackGrotto();
+                                narrativeText.setText(scriptText.grotto_goBackGrotto[0]);   
                             }, this);
+
+                            if(!finishGrottoNarrative[3]) {
+                                if(this.talkingDots2Route || this.signUpRoute) {
+                                    this.getNextLine(scriptText.grotto_goBackGrotto);
+                                }
+                            } else {
+                                this.goBackGrotto(); 
+                            }
 
                         } else if (this.imSorryRoute) {
 
@@ -341,41 +351,64 @@ class Grotto extends Phaser.Scene {
                                     this.button_sayNothing.on('pointerdown', function (pointer) {
                                         this.sayNothingRoute = true;      //branch flag
                                         destroyChoiceButtons(this.button_sayNothing, this.button_no);
-                                        this.goBackGrotto();
-                                        
+                                        narrativeText.setText(scriptText.grotto_goBackGrotto[0]); 
                                     }, this);
                     
                                     this.button_no.on('pointerdown', function(pointer) {
                                         this.noRoute = true;     //branch flag
                                         destroyChoiceButtons(this.button_sayNothing, this.button_no);
-                                        this.goBackGrotto();
+                                        narrativeText.setText(scriptText.grotto_goBackGrotto[0]); 
                                     }, this);
+
+                                    if(!finishGrottoNarrative[4]) {
+                                        if(this.sayNothingRoute || this.noRoute) {
+                                            this.getNextLine(scriptText.grotto_goBackGrotto);
+                                        }
+                                    } else {
+                                        this.goBackGrotto(); 
+                                    }
 
                                 } else if (this.talkingDots3Route) {        //fix later; maybe need to redirect it??
                                     this.button_talkingDots2.on('pointerdown', function (pointer) {
                                         this.talkingDots2Route = true;      //branch flag
                                         destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
-                                        this.goBackGrotto(); 
+                                        narrativeText.setText(scriptText.grotto_goBackGrotto[0]); 
                                     }, this);
                     
                                     this.button_signUp.on('pointerdown', function(pointer) {
                                         this.signUpRoute = true;     //branch flag
                                         destroyChoiceButtons(this.button_talkingDots2, this.button_signUp);
-                                        this.goBackGrotto();
+                                        narrativeText.setText(scriptText.grotto_goBackGrotto[0]); 
                                     }, this);
+
+                                    if(!finishGrottoNarrative[4]) {
+                                        if(this.talkingDots2Route || this.signUpRoute) {
+                                            this.getNextLine(scriptText.grotto_goBackGrotto);
+                                        }
+                                    } else {
+                                        this.goBackGrotto(); 
+                                    }
         
                                 } else if (this.noImSorryRoute) {
                                     this.button_callLater.on('pointerdown', function (pointer) {
                                         this.callLaterRoute = true;      //branch flag
                                         destroyChoiceButtons(this.button_callLater, this.button_talkingDots4);
-                                        this.goBackGrotto(); 
+                                        narrativeText.setText(scriptText.grotto_goBackGrotto[0]); 
                                     }, this);
                     
                                     this.button_talkingDots4.on('pointerdown', function(pointer) {
                                         this.talkingDots4Route = true;     //branch flag
                                         destroyChoiceButtons(this.button_callLater, this.button_talkingDots4);
-                                        this.goBackGrotto();
+                                        narrativeText.setText(scriptText.grotto_goBackGrotto[0]); 
                                     }, this);
+
+                                    if(!finishGrottoNarrative[4]) {
+                                        if(this.callLaterRoute || this.talkingDots4Route) {
+                                            this.getNextLine(scriptText.grotto_goBackGrotto);
+                                        }
+                                    } else {
+                                        this.goBackGrotto();
+                                    }
                                 }
                             }
 
@@ -539,8 +572,19 @@ class Grotto extends Phaser.Scene {
             }
 
             if(!finishGrottoNarrative[4]) {
-                if(this.talkingDots2Route) {
-                    stifled += 1;
+
+                if(this.talkingDots2Route && this.imSorryRoute) {
+                    stifled += 2;
+                    if(this.talkingDots3Route) {
+                        stifled += 1;
+                        console.log("added 3 to stifled!");
+                    }
+                } else if(this.talkingDots2Route) {
+                    stifled += 2;
+                    console.log("added 2 to stifled!");
+                    if(this.talkingDotsRoute) {
+                        stifled += 2;
+                    }
                 }
 
                 if(this.sayNothingRoute) {
@@ -550,13 +594,19 @@ class Grotto extends Phaser.Scene {
                 if(this.talkingDots4Route) {
                     stifled += 1;
                 }
-
-                if(this.breatheRoute) {
-                    stifled += 1;
-                }
                 
                 if(this.yell1Route) {
-                    anger += 2;
+                    anger += 3;
+                }
+
+            }
+
+            if(!finishGrottoNarrative[5]) {
+                if(this.talkingDots2Route && this.noImSorryRoute) {
+                    stifled += 2;
+                    if(this.talkingDots3Route) {
+                        stifled += 1;
+                    }
                 }
             }
 
@@ -630,15 +680,16 @@ class Grotto extends Phaser.Scene {
     }
 
     goBackGrotto() {
-        narrativeText.setText("Is this what you want?");
+        //narrativeText.setText("Is this what you want?");
         keySpace.enabled = false;
 
         this.tweens.add({
             targets: this.fade,
             alpha: 1,
-            duration: 1500,
+            duration: 1000,
             delay: 800,
             onComplete: function() {
+                console.log("stifled = " + stifled + " and anger = " + anger);
                 this.scene.start('backToGrottoScene');
             },
             onCompleteScope: this

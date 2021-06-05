@@ -119,6 +119,30 @@ class Preload extends Phaser.Scene{
             repeat: -1
         });
 
+        this.anims.create({
+            key: 'scribblingFaster',
+            frames: this.anims.generateFrameNames('scribble', { 
+                start: 0,
+                end: 4,
+                prefix: 'scribble',
+                zeroPad: 4    
+            }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'scribblingFastest',
+            frames: this.anims.generateFrameNames('scribble', { 
+                start: 0,
+                end: 4,
+                prefix: 'scribble',
+                zeroPad: 4    
+            }),
+            frameRate: 12,
+            repeat: -1
+        });
+
         this.scene.start("menuScene");
 
     }

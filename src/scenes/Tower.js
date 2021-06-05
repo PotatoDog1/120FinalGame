@@ -89,13 +89,13 @@ class Tower extends Phaser.Scene {
 
         //Choices related----------------------------------------------------
 
-        if(anger > 4) {
+        if(anger >= 7) {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_angry4[0], wordConfig);
         } else if (anger >= 3) {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_angry3[0], wordConfig);
         } else if (anger <= 2 && anger > 0) {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_angry2[0], wordConfig);
-        } else if (stifled >= 3) {
+        } else if (stifled >= 6) {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_stifled3[0], wordConfig);
         } else if (stifled <= 2 && stifled > 0) {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_stifled2[0], wordConfig);
@@ -161,7 +161,7 @@ class Tower extends Phaser.Scene {
 
     update() {
         if(!finishTowerNarrative[0]) {
-            if(anger > 4) {
+            if(anger >= 7) {
                 this.emotionText = true;
                 this.getNextLine(scriptText.tower_base_angry4);
             } else if (anger >= 3) {
@@ -170,17 +170,16 @@ class Tower extends Phaser.Scene {
             } else if (anger <= 2 && anger > 0) {
                 this.emotionText = true;
                 this.getNextLine(scriptText.tower_base_angry2);
-            } else if (stifled >= 3) {
+            } else if (stifled >= 6) {
                 this.emotionText = true;
                 this.getNextLine(scriptText.tower_base_stifled3);
-            } else if (stifled <= 2 && stifled > 0) {
+            } else if (stifled <= 5 && stifled > 0) {
                 this.emotionText = true;
                 this.getNextLine(scriptText.tower_base_stifled2);
             } else if (stifled == 0 && anger == 0) {
                 this.emotionText = true;
                 finishTowerNarrative[finishTowerIndex] = true;
                 finishTowerIndex++;
-                console.log(finishTowerIndex);
             }
         } else {
             if(!finishTowerNarrative[1]) {
@@ -192,12 +191,12 @@ class Tower extends Phaser.Scene {
     
                 this.button_openDoor.on('pointerdown', function (pointer) {
                     //console.log("anger is " + anger + " and stifled is " + stifled);
-                    if(anger > 2 || stifled > 2) {
+                    if(anger > 4 || stifled > 3) {
                         this.badEndRoute = true;      //branch flag
                         this.placeImage = this.add.image(0, 0, 'stairs').setOrigin(0, 0);
                         narrativeText.setText(scriptText.badEnding[0]);
     
-                    } else if (anger <= 2 && anger > 0 && stifled <= 2 && stifled > 0){
+                    } else if (anger <= 4 && anger > 0 && stifled <= 3 && stifled > 0){
                         this.neutralEndRoute = true;
                         this.placeImage = this.add.image(0, 0, 'neutralend').setOrigin(0,0).setScale(0.96);
                         narrativeText.setText(scriptText.neutralEnding[0]);
