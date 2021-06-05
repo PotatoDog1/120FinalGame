@@ -11,7 +11,7 @@ class Preload extends Phaser.Scene{
         //crossroad temp art assets
         this.load.image('frame', './assets/temp_frame.png');
         this.load.image('bg_notepad', './assets/notepad.png');
-        this.load.image('crossroad', './assets/temp_crossroads.png');
+        this.load.image('crossroad', './assets/crossroads.png');
         this.load.image('portrait', './assets/portrait_shrinked.png');
         this.load.image('tower', './assets/towerTemp.png');
         this.load.image('shoe', './assets/shoe.png');
@@ -22,7 +22,7 @@ class Preload extends Phaser.Scene{
         this.load.image('vignette', './assets/vignette_shrinked.png');
         
         //grotto temp art assets
-        this.load.image('grotto', './assets/grottoTemp.png');
+        this.load.image('grotto', './assets/grotto.png');
         this.load.image('livingRoom', './assets/livingRoom_shrinked.png');
 
         //bridge art assets
