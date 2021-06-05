@@ -37,9 +37,21 @@ class Grotto extends Phaser.Scene {
         });
 
         // scribbling animation
-        let scribble = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
-        scribble.setScale(.10);
-        scribble.anims.play('scribbling');
+        
+        this.scribble = this.add.sprite(410, 53, 'scribble').setOrigin(0, 0);
+        this.scribble.setScale(.09);
+        this.scribble.anims.play('scribbling');
+        
+
+        this.scribbleFaster = this.add.sprite(375, 60, 'scribble').setOrigin(0, 0);
+        this.scribbleFaster.setScale(.13);
+        this.scribbleFaster.anims.play('scribblingFaster');
+
+        
+        this.scribbleFastest = this.add.sprite(330, 25, 'scribble').setOrigin(0, 0);
+        this.scribbleFastest.setScale(.17);
+        this.scribbleFastest.anims.play('scribblingFastest');
+
 
         //narrative 
         scriptText = this.cache.json.get('json_script');
@@ -220,6 +232,22 @@ class Grotto extends Phaser.Scene {
     }
 
     update() {
+
+        if(anger >= 7) {
+            this.scribbleFastest.visible = true;
+        } else if (anger >= 3) {
+            this.scribbleFaster.visible = true;
+            this.scribbleFastest.visible = false;
+        } else if (anger >= 1) {
+            this.scribble.visible = true;
+            this.scribbleFaster.visible = false;
+            this.scribbleFastest.visible = false;
+        } else if (anger == 0) {
+            this.scribble.visible = false;
+            this.scribbleFaster.visible = false;
+            this.scribbleFastest.visible = false;
+        }
+        
 
         if(!finishGrottoNarrative[0]) {
             this.getNextLine(scriptText.grotto);

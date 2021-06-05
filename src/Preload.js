@@ -122,8 +122,8 @@ class Preload extends Phaser.Scene{
         this.anims.create({
             key: 'scribblingFaster',
             frames: this.anims.generateFrameNames('scribble', { 
-                start: 0,
-                end: 4,
+                start: 2,
+                end: 0,
                 prefix: 'scribble',
                 zeroPad: 4    
             }),
@@ -134,8 +134,8 @@ class Preload extends Phaser.Scene{
         this.anims.create({
             key: 'scribblingFastest',
             frames: this.anims.generateFrameNames('scribble', { 
-                start: 0,
-                end: 4,
+                start: 4,
+                end: 2,
                 prefix: 'scribble',
                 zeroPad: 4    
             }),
