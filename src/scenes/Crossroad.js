@@ -147,13 +147,13 @@ class Crossroad extends Phaser.Scene {
         narrativeText = this.add.text(80, 445, scriptText.crossroad[0], wordConfig);
 
         //transition -----------------------------------------------------
-        this.fog_left = this.add.sprite(-521, 0, 'fog_left').setOrigin(0, 0);
+        this.fog_left = this.add.sprite(-640, 0, 'fog_left').setOrigin(0, 0);
         this.fog_left.depth = 2;
         this.transition_left = this.tweens.add({
             targets: this.fog_left,
             delay: 1500,
             ease: 'Sine.easeOut',
-            duration: 1500,
+            duration: 1300,
             x: 0
         });
         this.transition_left.pause();
@@ -165,8 +165,8 @@ class Crossroad extends Phaser.Scene {
             targets: this.fog_right,
             delay: 1500,
             ease: 'Sine.easeOut',
-            duration: 1500,
-            x: 165,
+            duration: 1300,
+            x: 133,
             completeDelay: 1000,
             onComplete: function() {
                 main_bgm.stop(); 

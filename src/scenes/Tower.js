@@ -139,8 +139,8 @@ class Tower extends Phaser.Scene {
             targets: this.fog_left,
             delay: 300,
             ease: 'Sine.easeOut',
-            duration: 1500,
-            x: -521,
+            duration: 1300,
+            x: -640,
             onStart: function () {
                 keySpace.enabled = false;
             },
@@ -152,13 +152,13 @@ class Tower extends Phaser.Scene {
             onCompleteScope: this
         });
         
-        this.fog_right = this.add.sprite(165, 0, 'fog_right').setOrigin(0, 0);
+        this.fog_right = this.add.sprite(133, 0, 'fog_right').setOrigin(0, 0);
         this.fog_right.depth = 2;
         this.transition_right = this.tweens.add({
             targets: this.fog_right,
             delay: 300,
             ease: 'Sine.easeOut',
-            duration: 1500,
+            duration: 1300,
             x: 640,
             onComplete: function() {
                 this.fog_right.destroy();
@@ -185,6 +185,18 @@ class Tower extends Phaser.Scene {
             this.scribbleFaster.visible = false;
             this.scribbleFastest.visible = false;
         }
+
+        
+        if(stifled >= 6) {
+            this.portrait.alpha = 0.2;
+        } else if (stifled >=3) {
+            this.portrait.alpha = 0.5;
+        } else if (stifled >= 1) {
+            this.portrait.alpha = 0.8;
+        } else if (stifled == 0) {
+            this.portrait.alpha = 1;
+        }
+        
         
 
         if(!finishTowerNarrative[0]) {

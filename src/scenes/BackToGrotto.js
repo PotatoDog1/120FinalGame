@@ -117,7 +117,7 @@ class BackToGrotto extends Phaser.Scene {
         this.frame.depth = 1;
 
         //transition -----------------------------------------------------   
-        this.fog_left = this.add.sprite(-521, 0, 'fog_left').setOrigin(0, 0);
+        this.fog_left = this.add.sprite(-640, 0, 'fog_left').setOrigin(0, 0);
         this.fog_left.depth = 2;
         this.fog_left.visible = false;
         
@@ -130,7 +130,7 @@ class BackToGrotto extends Phaser.Scene {
             targets: this.fog_left,
             delay: 1500,
             ease: 'Sine.easeOut',
-            duration: 1500,
+            duration: 1300,
             x: 0
         });
         this.endTransition_left.pause();
@@ -139,8 +139,8 @@ class BackToGrotto extends Phaser.Scene {
             targets: this.fog_right,
             delay: 1500,
             ease: 'Sine.easeOut',
-            duration: 1500,
-            x: 165,
+            duration: 1300,
+            x: 133,
             completeDelay: 1000,
             onComplete: function() {
                 main_bgm.stop(); 
@@ -169,6 +169,17 @@ class BackToGrotto extends Phaser.Scene {
             this.scribble.visible = false;
             this.scribbleFaster.visible = false;
             this.scribbleFastest.visible = false;
+        }
+        
+        
+        if(stifled >= 6) {
+            this.portrait.alpha = 0.2;
+        } else if (stifled >=3) {
+            this.portrait.alpha = 0.5;
+        } else if (stifled >= 1) {
+            this.portrait.alpha = 0.8;
+        } else if (stifled == 0) {
+            this.portrait.alpha = 1;
         }
         
 
