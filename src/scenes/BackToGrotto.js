@@ -222,7 +222,7 @@ class BackToGrotto extends Phaser.Scene {
             this.getNextLine(scriptText.backToGrotto);
         } else {
 
-            //interactive notebook
+            // notebook item
             if(!hasItem[1] && pickingChoice(this.movePastRoute, this.findWayOutRoute)) {
                 this.checkItemNotebookNarrative = true;
             }

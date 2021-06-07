@@ -17,7 +17,7 @@ class Tower extends Phaser.Scene {
         //add UI temp art assets
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
         this.add.image(0, 400, 'bg_notepad').setOrigin(0,0);
-        this.placeImage = this.add.image(0, 0, 'baseOfTower').setOrigin(0, 0);
+        this.placeImage = this.add.image(0, 0, 'baseOfTower').setOrigin(0, 0).setScale(0.96);
         this.portrait = this.add.image(515, 160, 'portrait').setScale(1.15);
         
         //breathing portrait animation
@@ -48,28 +48,49 @@ class Tower extends Phaser.Scene {
         scriptText = this.cache.json.get('json_script');
 
         //interactive objects ----------------------------------------------------
-        this.item_bridge = this.add.sprite(210, 255, 'item_bridge').setScale(0.4).setInteractive({useHandCursor: true});
-        this.checkItemBridge = false;               //turns true when players click on the bridge
-        this.checkItemBridgeNarrative = false;      //turns true when players reach the choices, allows the bridge to be clicked
-                                                    //will turn false after going through its narrative to not allow access anymore
 
-        this.item_bridge.on('pointerover', function(pointer) {
-            this.setScale(0.43);
+        this.polaroid = this.add.sprite(0, 0,'polaroid').setOrigin(0,0).setInteractive({
+            draggable: true,
+            useHandCursor: true
+        });
+        this.polaroid.visible = false;
+        this.polaroid.depth = 1.3;
+
+        this.polaroid_corner = this.add.sprite(193, 190,'polaroid_corner').setInteractive({
+            draggable: true,
+            useHandCursor: true
+        });
+        this.polaroid_corner.depth = 1.2;
+        this.polaroid_corner.visible = false;
+        this.checkItemPolaroidNarrative = false;
+
+        this.polaroid_corner.on('pointerover', function(pointer) {
+            this.setScale(1.05);
         });
 
-        this.item_bridge.on('pointerout', function(pointer) {
-            this.setScale(0.4);
-        })
+        this.polaroid_corner.on('pointerout', function(pointer) {
+            this.setScale(1.0);
+        });
 
-        this.item_bridge.on('pointerdown', function(pointer) { 
-            if(this.checkItemBridgeNarrative){
-                narrativeText.setText(scriptText.bridge_inspectBridge[0]);
-                this.button_crossBridge.visible = false;
-                this.button_cuss.visible = false;
-                this.checkItemBridge = true;
-                this.checkItemBridgeNarrative = false;
+        this.polaroid_corner.on('drag', (pointer,  dragX, dragY) => {
+            this.polaroid.visible = true;
+            this.polaroid_corner.visible = false;
+            this.polaroid.x = dragX;
+            this.polaroid.y = dragY;
+        });
+        
+        this.polaroid_corner.on('drop', (pointer, target) => {
+            if (target.texture.key === 'bag') {
+                this.polaroid.destroy();
+                this.polaroid_corner.destroy();
+                narrativeText.setText(scriptText.polaroid[0]);
+                this.button_openDoor.visible = false;
+                hasItem[3] = true;
+            } else if(target.texture.key === 'noDrop') {        // if they didn't drop it on the inventory bag
+                this.polaroid.visible = false;
+                this.polaroid_corner.visible = true;
             }
-        }, this);
+        });
 
 
         //Inventory related ----------------------------------------------------
@@ -114,7 +135,7 @@ class Tower extends Phaser.Scene {
         }
         //
 
-        this.button_openDoor = this.add.sprite(80, 527, 'openDoor').setOrigin(0,0).setInteractive({useHandCursor: true});
+        this.button_openDoor = this.add.sprite(80, 490, 'openDoor').setOrigin(0,0).setInteractive({useHandCursor: true});
 
         this.button_openDoor.visible = false;
 
@@ -221,12 +242,22 @@ class Tower extends Phaser.Scene {
                 finishTowerIndex++;
             }
         } else {
+
             if(!finishTowerNarrative[1]) {
                 //this.getNextLine(scriptText.tower_base);
                 if(this.emotionText) {
                     this.getNextLine(scriptText.tower_base, true);
                 }
             } else {
+
+                // polaroid item
+                if(!hasItem[3] && pickingChoice(this.badEndRoute, this.neutralEndRoute, this.goodEndRoute)) {
+                    this.checkItemPolaroidNarrative = true;
+                }
+
+                if(hasItem[3] && !finishItemNarrative[3] && this.checkItemPolaroidNarrative) {
+                    this.getNextLine(scriptText.polaroid);
+                }
     
                 this.button_openDoor.on('pointerdown', function (pointer) {
                     //console.log("anger is " + anger + " and stifled is " + stifled);
@@ -293,8 +324,11 @@ class Tower extends Phaser.Scene {
 
         }
 
-        //interactive object check
-
+        //to add the notebook
+        if(finishTowerNarrative[0] && !finishTowerNarrative[1] && nextLine == 4 && !finishItemNarrative[3]) {
+            this.polaroid_corner.visible = true;
+            this.polaroid_corner.input.draggable = false;
+        }
 
         //when it reaches the end of the array
         if (nextLine == target.length){
@@ -303,18 +337,22 @@ class Tower extends Phaser.Scene {
             nextLine = 1;
             firstTimer = true;
 
-            if(!this.checkItemNarrative(target)) {       //if it's a flag narrative
+
+            if(this.checkItemNarrative(target)) {
+                finishItemNarrative[3] = true;      //polaroid
+                this.checkItemPolaroidNarrative = false;
+            } else {                                //if it's a flag narrative
                 finishTowerNarrative[finishTowerIndex] = true;
                 finishTowerIndex++;
-            } else if (this.checkInteractiveNarrative(target)) {
-                interactveNarrartive[i] = true;
-                interactiveIndex++;
             }
 
             //display choices
             if(finishTowerNarrative[1]) {
                 if(pickingChoice(this.goodEndRoute, this.badEndRoute, this.neutralEndRoute)) {
                     showChoiceButtons(this.button_openDoor);
+                }
+                if(!hasItem[3]) {
+                    this.polaroid_corner.input.draggable = true;
                 }
             }
 
@@ -323,7 +361,11 @@ class Tower extends Phaser.Scene {
     }
 
     checkItemNarrative(target) {
-       return false;
+        if(target === scriptText.polaroid) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
