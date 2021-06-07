@@ -132,7 +132,7 @@ class Tower extends Phaser.Scene {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_angry2[0], wordConfig);
         } else if (stifled >= 6) {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_stifled3[0], wordConfig);
-        } else if (stifled <= 2 && stifled > 0) {
+        } else if (stifled <= 5 && stifled > 0) {
             narrativeText = this.add.text(80, 445, scriptText.tower_base_stifled2[0], wordConfig);
         } else if (stifled == 0 && anger == 0) {
             narrativeText = this.add.text(80, 445, "You have finally reached your destination.", wordConfig);

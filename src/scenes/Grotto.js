@@ -727,6 +727,7 @@ class Grotto extends Phaser.Scene {
             delay: 800,
             onComplete: function() {
                 console.log("stifled = " + stifled + " and anger = " + anger);
+                main_bgm.stop();
                 this.scene.start('backToGrottoScene');
             },
             onCompleteScope: this
