@@ -48,10 +48,6 @@ class Crossroad extends Phaser.Scene {
         this.button_yes.visible = false;
         this.button_no.visible = false;
 
-        // scribbling animation
-        let scribble = this.add.sprite(410, 65, 'scribble').setOrigin(0, 0);
-        scribble.setScale(.10);
-        scribble.anims.play('scribbling');
 
         //Inventory related ----------------------------------------------------
 
@@ -146,6 +142,7 @@ class Crossroad extends Phaser.Scene {
         //create text
         narrativeText = this.add.text(80, 445, scriptText.crossroad[0], wordConfig);
 
+        /*
         //transition -----------------------------------------------------
         this.fog_left = this.add.sprite(-640, 0, 'fog_left').setOrigin(0, 0);
         this.fog_left.depth = 2;
@@ -178,7 +175,67 @@ class Crossroad extends Phaser.Scene {
         this.fog_right.visible = false;
 
         this.grottoTransition = false;
+        */
+       //transition -----------------------------------------------------
+       this.fog_left = this.add.sprite(0, 0, 'fog_left').setOrigin(0, 0);
+       this.fog_left.depth = 2;
+       this.transition_left = this.tweens.add({
+           targets: this.fog_left,
+           delay: 300,
+           ease: 'Sine.easeOut',
+           duration: 1300,
+           x: -640,
+           onStart: function () {
+               keySpace.enabled = false;
+           },
+           onStartScope: this,
+           onComplete: function() {
+               this.fog_left.visible = false;
+               keySpace.enabled = true;
+           },
+           onCompleteScope: this
+       });
+       
+       this.fog_right = this.add.sprite(133, 0, 'fog_right').setOrigin(0, 0);
+       this.fog_right.depth = 2;
+       this.transition_right = this.tweens.add({
+           targets: this.fog_right,
+           delay: 300,
+           ease: 'Sine.easeOut',
+           duration: 1300,
+           x: 640,
+           onComplete: function() {
+               this.fog_right.visible = false;
+           },
+           onCompleteScope: this
+       });
 
+       //end transition-------------------------------------------------
+       this.endTransition_left = this.tweens.add({
+           targets: this.fog_left,
+           delay: 1500,
+           ease: 'Sine.easeOut',
+           duration: 1300,
+           x: 0
+       });
+       this.endTransition_left.pause();
+
+       this.endTransition_right = this.tweens.add({
+           targets: this.fog_right,
+           delay: 1500,
+           ease: 'Sine.easeOut',
+           duration: 1300,
+           x: 133,
+           completeDelay: 1000,
+           onComplete: function() {
+               main_bgm.stop(); 
+               this.scene.start('grottoScene');
+           },
+           onCompleteScope: this
+       });
+       this.endTransition_right.pause();
+
+       this.grottoTransition = false;
 
     }
 
@@ -282,8 +339,8 @@ class Crossroad extends Phaser.Scene {
                                             narrativeText.setText("You wander in the fog.");
                                             this.fog_left.visible = true;
                                             this.fog_right.visible = true;
-                                            this.transition_left.play();
-                                            this.transition_right.play();
+                                            this.endTransition_left.play();
+                                            this.endTransition_right.play();
                                             this.grottoTransition = true;
                                         }
 
@@ -312,21 +369,6 @@ class Crossroad extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
             resetGame();
             this.scene.start('menuScene');
-        }
-
-        if(Phaser.Input.Keyboard.JustDown(keyE)) {
-            for(var i = 0; i < 6; i++) {      //to loop through the narrative flag array and reset them all to false
-                finishCrossroadNarrative[i] = true;
-                //console.log("finishCrossroadNarrative[" + i + "] is " + finishCrossroadNarrative[i]);
-            }
-
-            hasItem[0] = true;          //it's the shoe
-            finishItemNarrative[0] = true;      //shoe narrative
-
-            finishCrosswordIndex = 6;     //to reset narrative to the beginning flag
-            nextLine = 1;           //to reset narrative to the beginning line
-            main_bgm.stop();        //to stop game bgm when they come back to menu
-            this.scene.start('grottoScene');
         }
 
     }

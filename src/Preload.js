@@ -5,6 +5,9 @@ class Preload extends Phaser.Scene{
 
     preload() {
 
+        //menu
+        this.load.image('menu', './assets/menu.png');
+
         //fade image
         this.load.image('fade', './assets/fade.png');
 
