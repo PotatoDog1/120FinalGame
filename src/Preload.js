@@ -17,8 +17,8 @@ class Preload extends Phaser.Scene{
         this.load.image('shoe', './assets/shoe.png');
         this.load.image('bag', './assets/inventoryTemp.png');
         this.load.image('towerFog', './assets/towerFogTemp.png');
-        this.load.image('fog_left', './assets/fog_left.png');
-        this.load.image('fog_right', './assets/fog_right.png');
+        this.load.image('fog_left', './assets/fog_left_shrinked.png');
+        this.load.image('fog_right', './assets/fog_right_shrinked.png');
         this.load.image('vignette', './assets/vignette_shrinked.png');
         
         //grotto temp art assets
@@ -27,7 +27,7 @@ class Preload extends Phaser.Scene{
         this.load.image('notebook', './assets/notebook.png');
 
         //bridge art assets
-        this.load.image('bridge', './assets/bridge_v2.png');
+        this.load.image('baseOfTower', './assets/baseOfTower_shrinked.png');
         this.load.image('item_bridge', './assets/item_bridge.png');
         this.load.image('garage', './assets/GarageTemp.png');
 

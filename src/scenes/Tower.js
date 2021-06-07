@@ -17,7 +17,7 @@ class Tower extends Phaser.Scene {
         //add UI temp art assets
         this.add.rectangle(0, 0, game.config.width, game.config.height, 0x575757).setOrigin(0, 0);
         this.add.image(0, 400, 'bg_notepad').setOrigin(0,0);
-        this.placeImage = this.add.image(0, 0, 'bridge').setOrigin(0, 0).setScale(0.4);
+        this.placeImage = this.add.image(0, 0, 'baseOfTower').setOrigin(0, 0);
         this.portrait = this.add.image(515, 160, 'portrait').setScale(1.15);
         
         //breathing portrait animation
