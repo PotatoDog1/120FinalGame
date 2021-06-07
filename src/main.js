@@ -77,7 +77,7 @@ let finishBridgeNarrative = [false, false, false, false, false, false, false, fa
 let finishBridgeIndex = 0;
 
 //tower branch check-----------------------------------------------------------------------
-let finishTowerNarrative = [false, false, false];
+let finishTowerNarrative = [false, false, false, false];
 let finishTowerIndex = 0;
 
 
