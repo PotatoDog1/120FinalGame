@@ -96,7 +96,7 @@ class Crossroad extends Phaser.Scene {
             dropZone: true
         })
 
-        this.shoe = this.add.sprite(193, 129, 'shoe');
+        this.shoe = this.add.sprite(260, 132, 'shoe').setScale(0.59);
         this.shoe.depth = 1.2;
         this.shoe.setInteractive({
             draggable: true,
@@ -104,11 +104,11 @@ class Crossroad extends Phaser.Scene {
         });
 
         this.shoe.on('pointerover', function(pointer) {
-            this.setScale(1.1);
+            this.setScale(0.65);
         });
 
         this.shoe.on('pointerout', function(pointer) {
-            this.setScale(1);
+            this.setScale(0.59);
         })
 
         this.shoe.on('drag', (pointer, dragX, dragY) => {       //actually move the shoe sprite
