@@ -286,7 +286,8 @@
       "You begin the ascent of the spiral staircase,\nsmall windows adorning the its sides, allowing\nyou glimpses into the outside world as\nyou climb.",
       "Your legs are heavy, weary from the journey.\nThe fog seems to recede the higher you climb,\nthe forest becoming more and more visible\nas you trek further up the tower",
       "You climb for what seems like ages, soon\nfinding that the top of this tower has long\nsince been destroyed.",
-      "Or perhaps, it was never completed.",
+      "Or perhaps, it was never completed."],
+   "goodEnding_final":[
       "It stands half-constructed. As you peer below,\nyou find that the ground is a great distance\nbelow you.",
       "You stand at the half-constructed peak of\nthis tower, gazing at the forest and\nits surroundings.",
       "A familiar grotto, noticeable by the forest\nclearing, sways below you. The sounds of\nthe fauna appear to be dying down as the sun\nwanes below the horizon in the distance.",
@@ -306,14 +307,15 @@
       "Sensing that you may not reach the top of the\ntower, you began your way back to the ground.\nYet, the stairs are neverending.",
       "You finally realize you have been trapped\nin this tower, and by this tower.",
       "What did you do to deserve this? Perhaps,\nyou are the only one who can figure this out.",
-      "Bad End - What am I?\n\n\nThank you for playing!"
+      "Bad End - What...am I?\n\n\nThank you for playing!"
    ],
    "neutralEnding":[
       "You begin the ascent of the spiral staircase,\nsmall windows adorning the its sides, allowing\nyou glimpses into the outside world as\nyou climb.",
       "Your legs are heavy, weary from the journey.\nThe fog outside seems to completely engulf\nthe base of the tower.",
       "In other words, below you is a sea of fog,\nthe gray of the clouds staionary above you.",
       "You climb for what seems like ages, soon\nfinding that the top of this tower has long\nsince been destroyed.",
-      "Or perhaps, it was never completed.",
+      "Or perhaps, it was never completed."],
+   "neutralEnding_final":[
       "It stands half-constructed. As you peer below,\nyou find that the ground is a great distance\nbelow you.",
       "Looking up, the forest and its surroundings\nremain drenched in fog.",
       "The coast gently waves in the distance, a singular\nlighthouse planting on a rock formation in the\nwater spins its focused light in a familiar rhythm.",

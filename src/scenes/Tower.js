@@ -19,6 +19,10 @@ class Tower extends Phaser.Scene {
         this.add.image(0, 400, 'bg_notepad').setOrigin(0,0);
         this.placeImage = this.add.image(0, 0, 'baseOfTower').setOrigin(0, 0).setScale(0.96);
         this.portrait = this.add.image(515, 160, 'portrait').setScale(1.15);
+        this.flash = this.add.image(0, 0, 'flash').setOrigin(0, 0);
+        this.flash.alpha = 0;
+        this.flash.depth = 3;
+        this.isFlashed = false;
         
         //breathing portrait animation
         this.tweens.add({
@@ -253,6 +257,7 @@ class Tower extends Phaser.Scene {
                 // polaroid item
                 if(!hasItem[3] && pickingChoice(this.badEndRoute, this.neutralEndRoute, this.goodEndRoute)) {
                     this.checkItemPolaroidNarrative = true;
+                    this.polaroid_corner.input.draggable = true;
                 }
 
                 if(hasItem[3] && !finishItemNarrative[3] && this.checkItemPolaroidNarrative) {
@@ -268,19 +273,28 @@ class Tower extends Phaser.Scene {
     
                     } else if (anger <= 4 && anger > 0 && stifled <= 3 && stifled > 0){
                         this.neutralEndRoute = true;
-                        this.placeImage = this.add.image(0, 0, 'neutralend').setOrigin(0,0).setScale(0.96);
                         narrativeText.setText(scriptText.neutralEnding[0]);
-                    } else if (anger == 0 && stifled == 0) {
+                    } else if (anger == 0 && stifled == 0 && this.checkItem()) {
                         this.goodEndRoute = true;      //branch flag
-                        this.placeImage = this.add.image(0, 0, 'goodend').setOrigin(0,0).setScale(0.96);
                         narrativeText.setText(scriptText.goodEnding[0]);
+                    } else {
+                        this.neutralEndRoute = true;
+                        narrativeText.setText(scriptText.neutralEnding[0]);
                     }
-    
                     destroyChoiceButtons(this.button_openDoor);
+                    this.placeImage = this.add.image(0, 0, 'stairs').setOrigin(0, 0);
                 }, this);
     
-    
                 if(!finishTowerNarrative[2]) {
+
+                    if(!pickingChoice(this.badEndRoute, this.neutralEndRoute, this.goodEndRoute)){
+                        if(!hasItem[3]){
+                            if(this.polaroid_corner != undefined) {
+                                this.polaroid_corner.destroy();
+                            }
+                        }
+                    }
+                    
                     if(this.badEndRoute) {
                         this.getNextLine(scriptText.badEnding);
                     } else if (this.neutralEndRoute) {
@@ -289,10 +303,34 @@ class Tower extends Phaser.Scene {
                         this.getNextLine(scriptText.goodEnding);
                     }
                 } else {
-                    if(this.goodEndRoute || this.badEndRoute || this.neutralEndRoute) {
+                    if(this.badEndRoute) {
                         if(Phaser.Input.Keyboard.JustDown(keySpace)) {
                             resetGame();
                             this.scene.start('menuScene');
+                        }
+                    } else if (this.goodEndRoute) {
+                        if(!finishTowerNarrative[3]) {
+                            if(!this.isFlashed) {
+                                this.sunlightFlash();
+                            }
+                            this.getNextLine(scriptText.goodEnding_final);
+                        } else {
+                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                resetGame();
+                                this.scene.start('menuScene');
+                            }
+                        }
+                    } else if (this.neutralEndRoute) {
+                        if(!finishTowerNarrative[3]) {
+                            if(!this.isFlashed) {
+                                this.sunlightFlash();
+                            }
+                            this.getNextLine(scriptText.neutralEnding_final);
+                        } else {
+                            if(Phaser.Input.Keyboard.JustDown(keySpace)) {
+                                resetGame();
+                                this.scene.start('menuScene');
+                            }
                         }
                     }
     
@@ -351,9 +389,6 @@ class Tower extends Phaser.Scene {
                 if(pickingChoice(this.goodEndRoute, this.badEndRoute, this.neutralEndRoute)) {
                     showChoiceButtons(this.button_openDoor);
                 }
-                if(!hasItem[3]) {
-                    this.polaroid_corner.input.draggable = true;
-                }
             }
 
         }
@@ -366,6 +401,53 @@ class Tower extends Phaser.Scene {
         } else {
             return false;
         }
+    }
+
+    checkItem() {
+        var count = 0;
+        for(var i = 0; i < hasItem.length; i++) {       //to loop through the itemNarrative array and reset them to false
+            if(hasItem[i]) {
+                count++;
+            }
+        }
+
+        if(count == 4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    sunlightFlash() {
+        keySpace.enabled = false;
+        this.tweens.add({
+            targets: this.flash,
+            alpha: 1,
+            duration: 1000,
+            delay: 500,
+            completeDelay: 500,
+            onComplete: function() {
+                this.tweens.add({
+                    targets: this.flash,
+                    alpha: 0,
+                    delay: 800,
+                    duration: 1000,
+                    onStart: function() {
+                        if(this.neutralEndRoute) {
+                            this.placeImage = this.add.image(0, 0, 'neutralend').setOrigin(0,0).setScale(0.96);
+                            narrativeText.setText(scriptText.neutralEnding_final[0]);
+                        } else if (this.goodEndRoute) {
+                            this.placeImage = this.add.image(0, 0, 'goodend').setOrigin(0,0).setScale(0.96);
+                            narrativeText.setText(scriptText.goodEnding_final[0]);
+                        }
+                        keySpace.enabled = true;
+                        this.isFlashed = true;
+                    },
+                    onStartScope: this 
+                });
+            },
+            onCompleteScope: this
+        });   
     }
 
 }
