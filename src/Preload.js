@@ -24,6 +24,7 @@ class Preload extends Phaser.Scene{
         //grotto temp art assets
         this.load.image('grotto', './assets/grotto.png');
         this.load.image('livingRoom', './assets/livingRoom_shrinked.png');
+        this.load.image('notebook', './assets/notebook.png');
 
         //bridge art assets
         this.load.image('bridge', './assets/bridge_v2.png');
@@ -31,6 +32,7 @@ class Preload extends Phaser.Scene{
         this.load.image('garage', './assets/GarageTemp.png');
 
         //tower art assets
+        this.load.image('polaroid', './assets/polaroid.png');
         this.load.image('stairs', './assets/stairs.png');
         this.load.image('goodend', './assets/goodend.png');
         this.load.image('neutralend', './assets/neutralend.png');
