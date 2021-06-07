@@ -36,6 +36,7 @@ class Preload extends Phaser.Scene{
         this.load.image('polaroid_corner', './assets/polaroid_corner.png');
         this.load.image('polaroid', './assets/polaroid.png');
         this.load.image('stairs', './assets/stairs.png');
+        this.load.image('flash', './assets/flash.png');
         this.load.image('goodend', './assets/goodend.png');
         this.load.image('neutralend', './assets/neutralend.png');
 

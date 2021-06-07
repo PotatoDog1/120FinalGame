@@ -225,6 +225,7 @@ class BackToGrotto extends Phaser.Scene {
             // notebook item
             if(!hasItem[1] && pickingChoice(this.movePastRoute, this.findWayOutRoute)) {
                 this.checkItemNotebookNarrative = true;
+                this.notebook.input.draggable = true;
             }
 
             if(hasItem[1] && !finishItemNarrative[1] && this.checkItemNotebookNarrative) {
@@ -377,9 +378,6 @@ class BackToGrotto extends Phaser.Scene {
             if(finishBackGNarrative[0]) {
                 if(pickingChoice(this.movePastRoute, this.findWayOutRoute)) {
                     showChoiceButtons(this.button_movePast, this.button_findWayOut);
-                }
-                if(!hasItem[1]) {
-                    this.notebook.input.draggable = true;
                 }
             }
             
