@@ -243,11 +243,21 @@ class BackToGrotto extends Phaser.Scene {
                 } else {
                     narrativeText.setText(scriptText.grotto_leave[0]);
                 }
+                if(!hasItem[1]){
+                    if(this.notebook != undefined) {
+                        this.notebook.destroy();
+                    }
+                }
                 destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
             }, this);
 
             this.button_findWayOut.on('pointerdown', function(pointer) {
                 this.findWayOutRoute = true;     //branch flag
+                if(!hasItem[1]){
+                    if(this.notebook != undefined) {
+                        this.notebook.destroy();
+                    }
+                }
                 narrativeText.setText(scriptText.grotto_leavePartOne[0]);
                 destroyChoiceButtons(this.button_movePast, this.button_findWayOut);
             }, this);
@@ -319,8 +329,7 @@ class BackToGrotto extends Phaser.Scene {
                                 }
                             } else {
                                 if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                                    resetGame();
-                                    this.scene.start('menuScene');
+                                    this.goNextScene();
                                 }
                             }
                         }
