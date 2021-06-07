@@ -88,18 +88,18 @@ class BackToGrotto extends Phaser.Scene {
         })
 
         //notebook
-        this.notebook = this.add.sprite(91, 170, 'notebook').setInteractive({
+        this.notebook = this.add.sprite(130, 300, 'notebook').setScale(0.35).setInteractive({
             draggable: true,
             useHandCursor: true
         });
         this.notebook.depth = 1.2;
 
         this.notebook.on('pointerover', function(pointer) {
-            this.setScale(1.1);
+            this.setScale(0.4);
         });
 
         this.notebook.on('pointerout', function(pointer) {
-            this.setScale(1);
+            this.setScale(0.35);
         })
 
         //Choices related----------------------------------------------------
