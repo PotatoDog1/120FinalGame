@@ -27,11 +27,12 @@ class Preload extends Phaser.Scene{
         this.load.image('notebook', './assets/notebook.png');
 
         //bridge art assets
-        this.load.image('baseOfTower', './assets/baseOfTower_shrinked.png');
+        this.load.image('bridge', './assets/bridge_v2.png');
         this.load.image('item_bridge', './assets/item_bridge.png');
         this.load.image('garage', './assets/GarageTemp.png');
 
         //tower art assets
+        this.load.image('baseOfTower', './assets/baseOfTower_shrinked.png');
         this.load.image('polaroid', './assets/polaroid.png');
         this.load.image('stairs', './assets/stairs.png');
         this.load.image('goodend', './assets/goodend.png');

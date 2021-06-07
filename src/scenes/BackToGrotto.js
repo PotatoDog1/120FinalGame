@@ -93,6 +93,7 @@ class BackToGrotto extends Phaser.Scene {
             useHandCursor: true
         });
         this.notebook.depth = 1.2;
+        this.checkItemNotebookNarrative = false;
 
         this.notebook.on('pointerover', function(pointer) {
             this.setScale(0.4);
@@ -100,7 +101,26 @@ class BackToGrotto extends Phaser.Scene {
 
         this.notebook.on('pointerout', function(pointer) {
             this.setScale(0.35);
-        })
+        });
+
+        this.notebook.on('drag', (pointer,  dragX, dragY) => {
+            this.notebook.x = dragX;
+            this.notebook.y = dragY;
+        });
+        
+        this.notebook.on('drop', (pointer, target) => {
+            if (target.texture.key === 'bag') {
+                this.notebook.destroy();
+                narrativeText.setText(scriptText.notebook[0]);
+                this.button_movePast.visible = false;
+                this.button_findWayOut.visible = false;
+                hasItem[1] = true;
+            } else if(target.texture.key === 'noDrop') {        // if they didn't drop it on the inventory bag
+                this.returnToLocation(this.notebook);
+            }
+        });
+
+        this.notebook.visible = false;
 
         //Choices related----------------------------------------------------
 
@@ -201,6 +221,16 @@ class BackToGrotto extends Phaser.Scene {
         if(!finishBackGNarrative[0]) {
             this.getNextLine(scriptText.backToGrotto);
         } else {
+
+            //interactive notebook
+            if(!hasItem[1] && pickingChoice(this.movePastRoute, this.findWayOutRoute)) {
+                this.checkItemNotebookNarrative = true;
+            }
+
+            if(hasItem[1] && !finishItemNarrative[1] && this.checkItemNotebookNarrative) {
+                this.getNextLine(scriptText.notebook);
+            }
+
             this.button_movePast.on('pointerdown', function (pointer) {
                 this.movePastRoute = true;      //branch flag
                 if (anger == 2) {
@@ -322,6 +352,12 @@ class BackToGrotto extends Phaser.Scene {
 
         }
 
+        //to add the notebook
+        if(!finishBackGNarrative[0] && nextLine == 4 && !finishItemNarrative[1]) {
+            this.notebook.visible = true;
+            this.notebook.input.draggable = false;
+        }
+
         //when it reaches the end of the array
         if (nextLine == target.length){
 
@@ -329,7 +365,10 @@ class BackToGrotto extends Phaser.Scene {
             nextLine = 1;
             firstTimer = true;
 
-            if(!this.checkItemNarrative(target)){       //if it's a flag narrative
+            if(this.checkItemNarrative(target)) {
+                finishItemNarrative[1] = true;      //notebook
+                this.checkItemNotebookNarrative = false;
+            } else {                                //if it's a flag narrative
                 finishBackGNarrative[finishBackGIndex] = true;
                 finishBackGIndex++;
             }
@@ -338,6 +377,9 @@ class BackToGrotto extends Phaser.Scene {
             if(finishBackGNarrative[0]) {
                 if(pickingChoice(this.movePastRoute, this.findWayOutRoute)) {
                     showChoiceButtons(this.button_movePast, this.button_findWayOut);
+                }
+                if(!hasItem[1]) {
+                    this.notebook.input.draggable = true;
                 }
             }
             
@@ -357,8 +399,17 @@ class BackToGrotto extends Phaser.Scene {
 
     }
 
+    //returns target back to where it was before dragging
+    returnToLocation(target) {
+        target.setPosition(target.input.dragStartX, target.input.dragStartY);
+    }
+
     checkItemNarrative(target) {
-       return false;
+        if(target === scriptText.notebook) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     goNextScene() {
