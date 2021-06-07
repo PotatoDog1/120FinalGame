@@ -93,6 +93,7 @@ class Preload extends Phaser.Scene{
         this.load.image('takeCar', './assets/choices/choice_takeCar.png');
         
         //bridge choice images
+        this.load.image('skateboard', './assets/skateboard.png');
         this.load.image('crossBridge', './assets/choices/choice_crossBridge.png');
         this.load.image('cuss', './assets/choices/choice_cuss.png');
         this.load.image('waitWind', './assets/choices/choice_waitWind.png');

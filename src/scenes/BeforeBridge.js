@@ -540,13 +540,7 @@ class BeforeBridge extends Phaser.Scene {
             targets: this.fade,
             alpha: 1,
             duration: 1000,
-            delay: 800,
-            /*
-            onComplete: function() { 
-                this.scene.start('backToGrottoScene');
-            },
-            */
-            onCompleteScope: this
+            delay: 800
         });       
     }
 
