@@ -258,7 +258,9 @@
    "tower_base":[
       "You stare up at the tower, yet even as you\nsquint your eyes you are unable to see\nthe top.",
       "A small doorway stands in between you and\nthe stairs that are surely inside.",
-      "The tower itself, made of mossy stone and\noverun with foliage, appears weary with age."
+      "The tower itself, made of mossy stone and\noverun with foliage, appears weary with age.",
+      "Beside the rusted and old handle of the tower’s\ndoor lies a polaroid. It is wedged within\nthe frame of the doorway.",
+      "What do you want to do?"
    ],
    "notebook":[
       "The books bindings are loose and flimsy.\nYou take care not to destroy it as\nyou investigate.",
@@ -274,11 +276,11 @@
       "Placing the skateboard into your inventory, you decide to carry on."
    ],
    "polaroid":[
-      "Beside the rusted and old handle of the tower’s door lies a polaroid. It is wedged within the frame of the doorway.",
-      "As you reach to pull the door open, it falls to your feet.",
-      "The polaroid, weathered with age and tattered slightly at the corners, presents a reality of days past.",
-      "A flurry of emotions fills and leave you in quick succession as you hold the polaroid in between your thumb and forefinger.",
-      "With a deep exhale from your nose, you stuff the polaroid deep within the recesses of your pocket."
+      "As you reach to pull the door open, it falls\nto your feet.",
+      "The polaroid, weathered with age and tattered\nslightly at the corners, presents a reality\nof days past.",
+      "A flurry of emotions fills and leave you in\nquick succession as you hold the polaroid\nin between your thumb and forefinger.",
+      "With a deep exhale from your nose, you\nstuff the polaroid deep within the recesses\nof your pocket.",
+      "You are left with one choice now."
    ],
    "goodEnding":[
       "You begin the ascent of the spiral staircase,\nsmall windows adorning the its sides, allowing\nyou glimpses into the outside world as\nyou climb.",
