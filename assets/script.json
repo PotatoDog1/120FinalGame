@@ -257,6 +257,26 @@
       "A small doorway stands in between you and\nthe stairs that are surely inside.",
       "The tower itself, made of mossy stone and\noverun with foliage, appears weary with age."
    ],
+   "notebook":[
+      "A short stump in the corner of your vision catches your gaze. As you turn to look at it, you spot a small, black, grime-encrusted composition notebook.",
+      "The books bindings are loose and flimsy. You take care not to destroy it as you investigate.",
+      "As you flip through, you find that many pages within the notebook are impossible to read.",
+      "Incomplete sentences, trailing off into empty nothingness as the pages reach a jagged edge, prove to be impossible to read. You sigh.", 
+      "Placing the book carefully into your inventory, you move on."
+   ],
+   "skateboard":[
+      "Halfway peeking its way out of the dirt below, a feeling of youth fills you as a skateboard catches your attention.",
+      "Its wheels are grime-encrusted and difficult to spin, a thick resistance blocking the smooth spinning you expect from a well-maintained skateboard.",
+      "It appears useable, for the most part, although you do not trust the aged wood to carry your weight.",
+      "Placing the skateboard into your inventory, you decide to carry on."
+   ],
+   "polaroid":[
+      "Beside the rusted and old handle of the tower’s door lies a polaroid. It is wedged within the frame of the doorway.",
+      "As you reach to pull the door open, it falls to your feet.",
+      "The polaroid, weathered with age and tattered slightly at the corners, presents a reality of days past.",
+      "A flurry of emotions fills and leave you in quick succession as you hold the polaroid in between your thumb and forefinger.",
+      "With a deep exhale from your nose, you stuff the polaroid deep within the recesses of your pocket."
+   ],
    "goodEnding":[
       "You begin the ascent of the spiral staircase,\nsmall windows adorning the its sides, allowing\nyou glimpses into the outside world as\nyou climb.",
       "Your legs are heavy, weary from the journey.\nThe fog seems to recede the higher you climb,\nthe forest becoming more and more visible\nas you trek further up the tower",
