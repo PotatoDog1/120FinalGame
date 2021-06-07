@@ -326,6 +326,7 @@ class BeforeBridge extends Phaser.Scene {
                         if(this.talkingDotsRoute) {
                             this.button_takeCar1.on('pointerdown', function(pointer) {
                                 this.takeCarRoute = true;     //branch flag
+                                this.placeImage = this.add.image(0, 0, 'drive').setOrigin(0, 0);
                                 narrativeText.setText(scriptText.bridge_takeCar[0]);
                                 destroyChoiceButtons(this.button_takeCar1);
                             }, this);
@@ -364,6 +365,7 @@ class BeforeBridge extends Phaser.Scene {
                                 
                                 this.button_takeCar2.on('pointerdown', function(pointer) {
                                     this.takeCarRoute = true;     //branch flag
+                                    this.placeImage = this.add.image(0, 0, 'drive').setOrigin(0, 0);
                                     narrativeText.setText(scriptText.bridge_takeCar[0]);
                                     destroyChoiceButtons(this.button_takeCar2);
                                 }, this);
@@ -383,6 +385,7 @@ class BeforeBridge extends Phaser.Scene {
                         } else if (this.imSorryRoute) {
                             this.button_takeCar3.on('pointerdown', function(pointer) {
                                 this.takeCarRoute = true;     //branch flag
+                                this.placeImage = this.add.image(0, 0, 'drive').setOrigin(0, 0);
                                 narrativeText.setText(scriptText.bridge_takeCar[0]);
                                 destroyChoiceButtons(this.button_takeCar3);
                             }, this);

@@ -32,7 +32,8 @@ class Preload extends Phaser.Scene{
         //bridge art assets
         this.load.image('bridge', './assets/bridge_v2.png');
         this.load.image('item_bridge', './assets/item_bridge.png');
-        this.load.image('garage', './assets/GarageTemp.png');
+        this.load.image('garage', './assets/Garage.png');
+        this.load.image('drive', './assets/drive.png');
 
         //tower art assets
         this.load.image('baseOfTower', './assets/baseOfTower_shrinked.png');
