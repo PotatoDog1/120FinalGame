@@ -90,6 +90,8 @@ class Bridge extends Phaser.Scene {
             dropZone: true
         })
 
+        
+
         //Choices related----------------------------------------------------
 
         narrativeText = this.add.text(80, 445, scriptText.bridge_crossing[0], wordConfig);
