@@ -17,6 +17,38 @@ class Bridge extends Phaser.Scene {
                     keySpace.enabled = true;
                 }
             });  
+
+            //notebook
+            this.skateboard = this.add.sprite(80, 230, 'skateboard').setScale(0.2).setInteractive({
+                draggable: true,
+                useHandCursor: true
+            });
+            this.skateboard.depth = 1.2;
+            this.checkItemSkateboardNarrative = false;
+
+            this.skateboard.on('pointerover', function(pointer) {
+                this.setScale(0.25);
+            });
+
+            this.skateboard.on('pointerout', function(pointer) {
+                this.setScale(0.2);
+            });
+
+            this.skateboard.on('drag', (pointer,  dragX, dragY) => {
+                this.skateboard.x = dragX;
+                this.skatboard.y = dragY;
+            });
+            
+            this.skateboard.on('drop', (pointer, target) => {
+                if (target.texture.key === 'bag') {
+                    this.skateboard.destroy();
+                    narrativeText.setText(scriptText.skateboard[0]);
+                    this.button_continue2.visible = false;
+                    hasItem[2] = true;
+                } else if(target.texture.key === 'noDrop') {        // if they didn't drop it on the inventory bag
+                    this.returnToLocation(this.skateboard);
+                }
+            });
         }
 
         //define keys
@@ -90,12 +122,13 @@ class Bridge extends Phaser.Scene {
             dropZone: true
         })
 
-        
+
 
         //Choices related----------------------------------------------------
 
         narrativeText = this.add.text(80, 445, scriptText.bridge_crossing[0], wordConfig);
 
+        this.button_continue = this.add.sprite(80, 490, 'continue2').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_waitWind = this.add.sprite(80, 490, 'waitWind').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_continueForward = this.add.sprite(80, 527, 'continueForward').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_runAcrossBridge = this.add.sprite(80, 567, 'runAcrossBridge').setOrigin(0,0).setInteractive({useHandCursor: true});
@@ -104,6 +137,7 @@ class Bridge extends Phaser.Scene {
         this.button_pause = this.add.sprite(80, 527, 'pause').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_calmDown = this.add.sprite(80, 490, 'calmDown').setOrigin(0,0).setInteractive({useHandCursor: true});
 
+        this.button_continue.visible = false;
         this.button_waitWind.visible = false;
         this.button_continueForward.visible = false;
         this.button_runAcrossBridge.visible = false;
@@ -112,7 +146,7 @@ class Bridge extends Phaser.Scene {
         this.button_pause.visible = false;
         this.button_calmDown.visible = false;
 
-
+        this.continueRoute = false;
         this.waitWindRoute = false;
         this.continueForwardRoute = false;
         this.runAcrossBridgeRoute = false;

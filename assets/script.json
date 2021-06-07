@@ -201,6 +201,9 @@
       "It hurts, isn't it?"
    ],
    "bridge_crossing":[
+      "Halfway peeking its way out of the dirt below,\na feeling of youth fills you as a skateboard\ncatches your attention.",
+      "What do you want to do?"],
+   "bridge_crossing2":[
       "You approach the bridge, placing your hands\non its posts, each of which are staked deep\ninto the earth.",
       "It beckons you to cross.",
       "You step forward, the wooden floorboards\ncreaking beneath you. The bridge holds your\nweight. You allow yourself a breath of relief.",
@@ -270,7 +273,6 @@
       "What do you want to do now?"
    ],
    "skateboard":[
-      "Halfway peeking its way out of the dirt below, a feeling of youth fills you as a skateboard catches your attention.",
       "Its wheels are grime-encrusted and difficult to spin, a thick resistance blocking the smooth spinning you expect from a well-maintained skateboard.",
       "It appears useable, for the most part, although you do not trust the aged wood to carry your weight.",
       "Placing the skateboard into your inventory, you decide to carry on."

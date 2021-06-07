@@ -131,6 +131,7 @@ class Menu extends Phaser.Scene {
 
             hasItem[0] = true;          //it's the shoe
             finishItemNarrative[0] = true;      //shoe narrative
+            beforeBridgeMemory = true;
             
             this.scene.start('bridgeScene');
         }
@@ -160,7 +161,6 @@ class Menu extends Phaser.Scene {
 
             hasItem[0] = true;                  //it's the shoe
             finishItemNarrative[0] = true;      //shoe narrative
-            stifled = 4;
             this.scene.start('towerScene');
         }
 
