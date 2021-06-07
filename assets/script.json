@@ -81,7 +81,10 @@
    ],
    "backToGrotto":[
       "A strong gust of wind forces you back to\nthe grotto. A chill runs through your spin.",
-      "You are alone again."     
+      "You are alone again.",
+      "A short stump in the corner of your vision\ncatches your gaze.",
+      "As you turn to look at it, you spot a small,\nblack, grime-encrusted composition notebook.",
+      "What do you want to do?"     
    ],
    "grotto_holyShit":[
       "\"Holy fucking shit. You did not\nleave our daughter at school again.\"\nA deafening silence follows her words.",
@@ -258,11 +261,11 @@
       "The tower itself, made of mossy stone and\noverun with foliage, appears weary with age."
    ],
    "notebook":[
-      "A short stump in the corner of your vision catches your gaze. As you turn to look at it, you spot a small, black, grime-encrusted composition notebook.",
-      "The books bindings are loose and flimsy. You take care not to destroy it as you investigate.",
-      "As you flip through, you find that many pages within the notebook are impossible to read.",
-      "Incomplete sentences, trailing off into empty nothingness as the pages reach a jagged edge, prove to be impossible to read. You sigh.", 
-      "Placing the book carefully into your inventory, you move on."
+      "The books bindings are loose and flimsy.\nYou take care not to destroy it as\nyou investigate.",
+      "As you flip through, you find that many\npages within the notebook are impossible\nto read.",
+      "Incomplete sentences, trailing off into empty\nnothingness as the pages reach a jagged edge,\nprove to be impossible to read. You sigh.", 
+      "Placing the book carefully into your inventory,\nyou move on.",
+      "What do you want to do now?"
    ],
    "skateboard":[
       "Halfway peeking its way out of the dirt below, a feeling of youth fills you as a skateboard catches your attention.",

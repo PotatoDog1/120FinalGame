@@ -82,10 +82,10 @@ let finishTowerIndex = 0;
 
 
 //item check - will be updated when items besides shoe got added to the game
-let hasItem = [false];
-    //notes:  [shoe]
-let finishItemNarrative = [false];
-    //notes:              [XXXXX]
+let hasItem = [false, false, false, false];
+    //notes:  [shoe, notebook, skateboard, polaroid]
+let finishItemNarrative = [false, false, false, false];
+    //notes:              [shoe, notebook, skateboard, polaroid]
 
 //interactive object check--------------------------------------------------------------
 let interactiveNarrative = [false];
