@@ -41,15 +41,6 @@ class Menu extends Phaser.Scene {
         this.fadeAway.pause();
 
         this.fadeTransition = false;
-        /*
-        this.add.text(30, game.config.height/2, 'Press [Space] to start game.', menuConfig);
-        this.instructionText = this.add.text(30, game.config.height/1.5, 'Press [Space] to progress,\nPress [Left click] to choose.', menuConfig);
-        this.instructionText.setFontStyle('bold');
-        this.instructionText.setFontSize(18);
-        this.instructionText2 = this.add.text(30, game.config.height/1.25, 
-            'Menu debug keys:\nPress [Q] to go back to Menu\nPress [E] to go to Grotto Scene\nPress [R] to go to backToGrotto Scene\nPress [T] to go to beforeBridge Scene\nPress [Y] to go to Bridge Scene\nPress [U] to go to tower Scene', menuConfig);
-        this.instructionText2.setFontSize(14);
-        */
 
         //end transition-------------------------------------------------
         this.fog_left = this.add.sprite(-640, 0, 'fog_left').setOrigin(0, 0);

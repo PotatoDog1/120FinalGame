@@ -6,7 +6,6 @@ class BeforeBridge extends Phaser.Scene {
     create() {
 
         //define keys
-        keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //add bgm
@@ -407,12 +406,6 @@ class BeforeBridge extends Phaser.Scene {
             }
 
         }
-
-        if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
-            resetGame();
-            this.scene.start('menuScene');
-        }
-
     }
 
     //Functions---------------------------------------------------

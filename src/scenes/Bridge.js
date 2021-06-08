@@ -55,7 +55,6 @@ class Bridge extends Phaser.Scene {
         }
 
         //define keys
-        keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //add bgm
@@ -369,11 +368,6 @@ class Bridge extends Phaser.Scene {
                 }
             }
 
-        }
-
-        if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
-            resetGame();
-            this.scene.start('menuScene');
         }
 
     }

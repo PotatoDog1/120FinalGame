@@ -39,6 +39,7 @@ let menuConfig = {
 let keyQ;
 let keySpace;
 let keyC;
+let keyR;
 
 //define script variables for getNextLine()
 let scriptText;

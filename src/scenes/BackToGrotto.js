@@ -18,10 +18,9 @@ class BackToGrotto extends Phaser.Scene {
             onComplete: function() {
                 keySpace.enabled = true;
             }
-        });  
+        });          
 
         //define keys
-        keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //add bgm
@@ -187,6 +186,26 @@ class BackToGrotto extends Phaser.Scene {
         
         this.grottoTransition = false;
 
+        this.fadeAway = this.tweens.add({
+            targets: this.fade,
+            alpha: 1,
+            duration: 1000,
+            onStart: function() {
+                keySpace.enabled = false;
+                
+            },
+            onComplete: function() {
+                resetGame();
+                this.scene.start('gameOverScene');
+                
+                keySpace.enabled = true;
+            },
+            onCompleteScope: this
+        });  
+        this.fadeAway.pause();
+
+        this.fadeTransition = false;
+
     }
 
     update() {
@@ -301,8 +320,7 @@ class BackToGrotto extends Phaser.Scene {
                     } else {
                         if(this.giveUpRoute) {
                             if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                                resetGame();
-                                this.scene.start('menuScene');
+                                this.gameOver();
                             }
                         } else if (this.goBackGrottoRoute) {
                             this.button_movePast2.on('pointerdown', function (pointer) {
@@ -338,12 +356,6 @@ class BackToGrotto extends Phaser.Scene {
             }
 
         }
-
-        if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
-            resetGame();
-            this.scene.start('menuScene');
-        }
-
     }
 
     //Functions---------------------------------------------------
@@ -426,6 +438,14 @@ class BackToGrotto extends Phaser.Scene {
             this.endTransition_left.play();
             this.endTransition_right.play();
             this.grottoTransition = true;
+        }
+    }
+
+    
+    gameOver() {
+        if(!this.fadeTransition) {
+            this.fadeAway.play();
+            this.fadeTransition = true;
         }
     }
 

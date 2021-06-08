@@ -6,7 +6,6 @@ class Grotto extends Phaser.Scene {
     create() {
 
         //define keys
-        keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //add bgm
@@ -227,6 +226,26 @@ class Grotto extends Phaser.Scene {
         this.endTransition_right.pause();
         
         this.grottoTransition = false;
+
+        this.fadeAway = this.tweens.add({
+             targets: this.fade,
+             alpha: 1,
+             duration: 1000,
+             onStart: function() {
+                 keySpace.enabled = false;
+                 
+             },
+             onComplete: function() {
+                 resetGame();
+                 this.scene.start('gameOverScene');
+                 
+                 keySpace.enabled = true;
+             },
+             onCompleteScope: this
+         });  
+         this.fadeAway.pause();
+ 
+         this.fadeTransition = false;
 
     }
 
@@ -573,11 +592,6 @@ class Grotto extends Phaser.Scene {
 
         }
 
-        if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
-            resetGame();
-            this.scene.start('menuScene');
-        }
-
     }
 
     //Functions---------------------------------------------------
@@ -743,4 +757,6 @@ class Grotto extends Phaser.Scene {
             this.grottoTransition = true;
         }
     }
+
+    
 }
