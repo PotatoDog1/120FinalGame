@@ -73,7 +73,7 @@ let finishBeforeBNarrative = [false, false, false, false, false];
 let finishBeforeBIndex = 0;
 
 //bridge branch check----------------------------------------------------------------------
-let finishBridgeNarrative = [false, false, false, false, false, false, false, false, false, false];
+let finishBridgeNarrative = [false, false, false, false, false, false, false, false, false, false, false];
 let finishBridgeIndex = 0;
 
 //tower branch check-----------------------------------------------------------------------

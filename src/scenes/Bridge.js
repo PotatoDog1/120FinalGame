@@ -36,19 +36,22 @@ class Bridge extends Phaser.Scene {
 
             this.skateboard.on('drag', (pointer,  dragX, dragY) => {
                 this.skateboard.x = dragX;
-                this.skatboard.y = dragY;
+                this.skateboard.y = dragY;
             });
             
             this.skateboard.on('drop', (pointer, target) => {
                 if (target.texture.key === 'bag') {
                     this.skateboard.destroy();
                     narrativeText.setText(scriptText.skateboard[0]);
-                    this.button_continue2.visible = false;
+                    this.button_continue.visible = false;
                     hasItem[2] = true;
                 } else if(target.texture.key === 'noDrop') {        // if they didn't drop it on the inventory bag
                     this.returnToLocation(this.skateboard);
                 }
             });
+
+            this.skateboard.input.draggable = false;
+            
         }
 
         //define keys
@@ -259,81 +262,109 @@ class Bridge extends Phaser.Scene {
             this.getNextLine(scriptText.bridge_crossing);
         } else {
 
-            this.button_waitWind.on('pointerdown', function (pointer) {
-                this.waitWindRoute = true;      //branch flag
-                narrativeText.setText(scriptText.bridge_waitOutTheWind[0]); 
-                destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-            }, this);
+            // skateboard item
+            if(!hasItem[2] && pickingChoice(this.continueRoute)) {
+                this.checkItemSkateboardNarrative = true;
+                this.skateboard.input.draggable = true;
+            }
 
-            this.button_continueForward.on('pointerdown', function(pointer) {
-                this.continueForwardRoute = true;     //branch flag
-                narrativeText.setText(scriptText.bridge_continueFoward[0]);
-                destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
-            }, this);
+            if(hasItem[2] && !finishItemNarrative[2] && this.checkItemSkateboardNarrative) {
+                this.getNextLine(scriptText.skateboard);
+            }
 
-            this.button_runAcrossBridge.on('pointerdown', function(pointer) {
-                this.runAcrossBridgeRoute = true;     //branch flag
-                narrativeText.setText(scriptText.bridge_runAcrossBridge[0]);
-                destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
+            this.button_continue.on('pointerdown', function (pointer) {
+                this.continueRoute = true;      //branch flag
+                narrativeText.setText(scriptText.bridge_crossing2[0]); 
+                destroyChoiceButtons(this.button_continue);
+                if(!hasItem[2]){
+                    if(this.skateboard != undefined) {
+                        this.skateboard.destroy();
+                    }
+                }
             }, this);
 
             if(!finishBridgeNarrative[1]) {
-                if(this.waitWindRoute) {
-                    this.getNextLine(scriptText.bridge_waitOutTheWind);
-                } else if (this.continueForwardRoute) {
-                    this.getNextLine(scriptText.bridge_continueFoward);
-                } else if (this.runAcrossBridgeRoute) {
-                    this.getNextLine(scriptText.bridge_runAcrossBridge);
+                if(this.continueRoute) {
+                    this.getNextLine(scriptText.bridge_crossing2);
                 }
             } else {
-                if(this.waitWindRoute) {
-                    this.button_breatheCalm.on('pointerdown', function (pointer) {
-                        this.breatheCalmRoute = true;      //branch flag
-                        narrativeText.setText(scriptText.bridge_calm[0]); 
-                        destroyChoiceButtons(this.button_breatheCalm);
-                    }, this);
 
-                    if(!finishBridgeNarrative[2]) {
-                        if(this.breatheCalmRoute) {
-                            this.getNextLine(scriptText.bridge_calm);
-                        }
-                    } else {
-                        this.goNextScene();
+                this.button_waitWind.on('pointerdown', function (pointer) {
+                    this.waitWindRoute = true;      //branch flag
+                    narrativeText.setText(scriptText.bridge_waitOutTheWind[0]); 
+                    destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
+                }, this);
+    
+                this.button_continueForward.on('pointerdown', function(pointer) {
+                    this.continueForwardRoute = true;     //branch flag
+                    narrativeText.setText(scriptText.bridge_continueFoward[0]);
+                    destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
+                }, this);
+    
+                this.button_runAcrossBridge.on('pointerdown', function(pointer) {
+                    this.runAcrossBridgeRoute = true;     //branch flag
+                    narrativeText.setText(scriptText.bridge_runAcrossBridge[0]);
+                    destroyChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
+                }, this);
+    
+                if(!finishBridgeNarrative[2]) {
+                    if(this.waitWindRoute) {
+                        this.getNextLine(scriptText.bridge_waitOutTheWind);
+                    } else if (this.continueForwardRoute) {
+                        this.getNextLine(scriptText.bridge_continueFoward);
+                    } else if (this.runAcrossBridgeRoute) {
+                        this.getNextLine(scriptText.bridge_runAcrossBridge);
                     }
-
-                } else if (this.continueForwardRoute) {
-                    this.button_continueTower.on('pointerdown', function (pointer) {
-                        narrativeText.setText("You move towards the direction that the\ntower stands."); 
-                        destroyChoiceButtons(this.button_continueTower, this.button_pause);
-                        this.goNextScene();
-                    }, this);
-
-                    this.button_pause.on('pointerdown', function (pointer) {
-                        this.pauseRoute = true;      //branch flag
-                        narrativeText.setText(scriptText.bridge_calm[0]); 
-                        destroyChoiceButtons(this.button_continueTower, this.button_pause);
-                    }, this);
-
-                    if(!finishBridgeNarrative[2]) {
-                        if(this.pauseRoute) {
-                            this.getNextLine(scriptText.bridge_calm);
+                } else {
+                    if(this.waitWindRoute) {
+                        this.button_breatheCalm.on('pointerdown', function (pointer) {
+                            this.breatheCalmRoute = true;      //branch flag
+                            narrativeText.setText(scriptText.bridge_calm[0]); 
+                            destroyChoiceButtons(this.button_breatheCalm);
+                        }, this);
+    
+                        if(!finishBridgeNarrative[3]) {
+                            if(this.breatheCalmRoute) {
+                                this.getNextLine(scriptText.bridge_calm);
+                            }
+                        } else {
+                            this.goNextScene();
                         }
-                    } else {
-                        this.goNextScene();
-                    }
-                } else if (this.runAcrossBridgeRoute) {
-                    this.button_calmDown.on('pointerdown', function (pointer) {
-                        this.calmDownRoute = true;      //branch flag
-                        narrativeText.setText(scriptText.bridge_calm[0]); 
-                        destroyChoiceButtons(this.button_calmDown);
-                    }, this);
-
-                    if(!finishBridgeNarrative[2]) {
-                        if(this.calmDownRoute) {
-                            this.getNextLine(scriptText.bridge_calm);
+    
+                    } else if (this.continueForwardRoute) {
+                        this.button_continueTower.on('pointerdown', function (pointer) {
+                            narrativeText.setText("You move towards the direction that the\ntower stands."); 
+                            destroyChoiceButtons(this.button_continueTower, this.button_pause);
+                            this.goNextScene();
+                        }, this);
+    
+                        this.button_pause.on('pointerdown', function (pointer) {
+                            this.pauseRoute = true;      //branch flag
+                            narrativeText.setText(scriptText.bridge_calm[0]); 
+                            destroyChoiceButtons(this.button_continueTower, this.button_pause);
+                        }, this);
+    
+                        if(!finishBridgeNarrative[3]) {
+                            if(this.pauseRoute) {
+                                this.getNextLine(scriptText.bridge_calm);
+                            }
+                        } else {
+                            this.goNextScene();
                         }
-                    } else {
-                        this.goNextScene();
+                    } else if (this.runAcrossBridgeRoute) {
+                        this.button_calmDown.on('pointerdown', function (pointer) {
+                            this.calmDownRoute = true;      //branch flag
+                            narrativeText.setText(scriptText.bridge_calm[0]); 
+                            destroyChoiceButtons(this.button_calmDown);
+                        }, this);
+    
+                        if(!finishBridgeNarrative[3]) {
+                            if(this.calmDownRoute) {
+                                this.getNextLine(scriptText.bridge_calm);
+                            }
+                        } else {
+                            this.goNextScene();
+                        }
                     }
                 }
             }
@@ -371,7 +402,7 @@ class Bridge extends Phaser.Scene {
             firstTimer = true;
 
             //variables
-            if(!finishBridgeNarrative[1]) {
+            if(!finishBridgeNarrative[2]) {
                 if(this.waitWindRoute) {
                     stifled += 1;
                     console.log("added 1 to stifled!");
@@ -383,7 +414,7 @@ class Bridge extends Phaser.Scene {
                 }
             }
 
-            if(!finishBridgeNarrative[2]) {
+            if(!finishBridgeNarrative[3]) {
                 if(this.breatheCalmRoute) {
                     if(anger > 0) {
                         anger -= 1;
@@ -409,7 +440,7 @@ class Bridge extends Phaser.Scene {
                 }
 
             }
-
+            /*
             if(!this.checkItemNarrative(target)) {       //if it's a flag narrative
                 finishBridgeNarrative[finishBridgeIndex] = true;
                 finishBridgeIndex++;
@@ -418,14 +449,30 @@ class Bridge extends Phaser.Scene {
                 interactiveIndex++;
             }
 
+            */
+
+            if(this.checkItemNarrative(target)) {
+                finishItemNarrative[2] = true;      //skateboard
+                this.checkItemSkateboardNarrative = false;
+            } else {                                //if it's a flag narrative
+                finishBridgeNarrative[finishBridgeIndex] = true;
+                finishBridgeIndex++;
+            }
+
             //display choices
             if(finishBridgeNarrative[0]) {
+                if(pickingChoice(this.continueRoute)) {
+                    showChoiceButtons(this.button_continue);
+                }
+            }
+
+            if(finishBridgeNarrative[1]) {
                 if(pickingChoice(this.waitWindRoute, this.continueForwardRoute, this.runAcrossBridgeRoute)) {
                     showChoiceButtons(this.button_waitWind, this.button_continueForward, this.button_runAcrossBridge);
                 }
             }
 
-            if(finishBridgeNarrative[1]) {
+            if(finishBridgeNarrative[2]) {
                 if(pickingChoice(this.breatheCalmRoute) && this.waitWindRoute) {
                     showChoiceButtons(this.button_breatheCalm);
                 }
@@ -443,8 +490,17 @@ class Bridge extends Phaser.Scene {
 
     }
 
+    returnToLocation(target) {
+        target.setPosition(target.input.dragStartX, target.input.dragStartY);
+    }
+
+
     checkItemNarrative(target) {
-       return false;
+        if(target === scriptText.skateboard) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     checkInteractiveNarrative(target) {
