@@ -6,8 +6,6 @@ class Crossroad extends Phaser.Scene {
     create() {
 
         //define keys
-        keyQ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-        keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //add sound
@@ -142,40 +140,6 @@ class Crossroad extends Phaser.Scene {
         //create text
         narrativeText = this.add.text(80, 445, scriptText.crossroad[0], wordConfig);
 
-        /*
-        //transition -----------------------------------------------------
-        this.fog_left = this.add.sprite(-640, 0, 'fog_left').setOrigin(0, 0);
-        this.fog_left.depth = 2;
-        this.transition_left = this.tweens.add({
-            targets: this.fog_left,
-            delay: 1500,
-            ease: 'Sine.easeOut',
-            duration: 1300,
-            x: 0
-        });
-        this.transition_left.pause();
-        this.fog_left.visible = false;
-
-        this.fog_right = this.add.sprite(640, 0, 'fog_right').setOrigin(0, 0);
-        this.fog_right.depth = 2;
-        this.transition_right = this.tweens.add({
-            targets: this.fog_right,
-            delay: 1500,
-            ease: 'Sine.easeOut',
-            duration: 1300,
-            x: 133,
-            completeDelay: 1000,
-            onComplete: function() {
-                main_bgm.stop(); 
-                this.scene.start('grottoScene');
-            },
-            onCompleteScope: this
-        });
-        this.transition_right.pause();
-        this.fog_right.visible = false;
-
-        this.grottoTransition = false;
-        */
        //transition -----------------------------------------------------
        this.fog_left = this.add.sprite(0, 0, 'fog_left').setOrigin(0, 0);
        this.fog_left.depth = 2;
@@ -236,6 +200,29 @@ class Crossroad extends Phaser.Scene {
        this.endTransition_right.pause();
 
        this.grottoTransition = false;
+
+       this.fade = this.add.sprite(0, 0, 'fade').setOrigin(0,0);
+       this.fade.depth = 3;
+       this.fade.alpha = 0;
+       this.fadeAway = this.tweens.add({
+            targets: this.fade,
+            alpha: 1,
+            duration: 1000,
+            onStart: function() {
+                keySpace.enabled = false;
+                
+            },
+            onComplete: function() {
+                resetGame();
+                this.scene.start('gameOverScene');
+                
+                keySpace.enabled = true;
+            },
+            onCompleteScope: this
+        });  
+        this.fadeAway.pause();
+
+        this.fadeTransition = false;
 
     }
 
@@ -351,24 +338,17 @@ class Crossroad extends Phaser.Scene {
 
                         } else if(this.leaveRoute2) {
                             if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                                resetGame();
-                                this.scene.start('menuScene');
+                                this.gameOver();
                             }
                         }
                     }
 
                 } else if (this.leaveRoute) {
                     if(Phaser.Input.Keyboard.JustDown(keySpace)) {
-                        resetGame();
-                        this.scene.start('menuScene');
+                        this.gameOver();
                     }
                 }
             }
-        }
-
-        if(Phaser.Input.Keyboard.JustDown(keyQ)) {               //return to menu
-            resetGame();
-            this.scene.start('menuScene');
         }
 
     }
@@ -428,15 +408,14 @@ class Crossroad extends Phaser.Scene {
 
     //checks if target is an item narrative or not;to prevent item narrative texts from messing up the finishCrossroadNarrative/flag array
     checkItemNarrative(target) {
-        /* will update when we have the next item
-        if(target === scriptText.pickUpShoe){           //need to update every time we add an new item
-            console.log("found an item")
-            return true;
-        } else {
-            return false;
-        }
-        */
        return false;
+    }
+
+    gameOver() {
+        if(!this.fadeTransition) {
+            this.fadeAway.play();
+            this.fadeTransition = true;
+        }
     }
 
 }

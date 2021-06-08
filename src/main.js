@@ -15,7 +15,7 @@
     width: 640,
     height: 640,
     autoCenter: true,
-    scene: [Preload, Menu, Credit, Crossroad, Grotto, BackToGrotto, BeforeBridge, Bridge, Tower]
+    scene: [Preload, Menu, Credit, GameOver, Crossroad, Grotto, BackToGrotto, BeforeBridge, Bridge, Tower]
 }
 
 let game = new Phaser.Game(config);

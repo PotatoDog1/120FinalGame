@@ -8,8 +8,9 @@ class Preload extends Phaser.Scene{
         //menu
         this.load.image('menu', './assets/menu.png');
 
-        //credit
+        //credit and game over
         this.load.image('credit', './assets/credits.png');
+        this.load.image('gameover', './assets/gameover.png');
 
         //fade image
         this.load.image('fade', './assets/fade.png');
