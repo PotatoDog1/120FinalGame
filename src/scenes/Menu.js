@@ -6,14 +6,41 @@ class Menu extends Phaser.Scene {
     create() {
 
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-        keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-        keyT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.T);
-        keyY = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Y);
-        keyU = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.U);
+        keyC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
         this.add.image(0, 0, 'menu').setOrigin(0, 0);
+
+        this.fade = this.add.sprite(0, 0, 'fade').setOrigin(0,0);
+        this.fade.depth = 3;
+
+        this.tweens.add({
+            targets: this.fade,
+            alpha: 0,
+            duration: 1000,
+            onStart: function() {
+                keySpace.enabled = false;
+            },
+            onComplete: function() {
+                keySpace.enabled = true;
+            }
+        });  
+
+        this.fadeAway = this.tweens.add({
+            targets: this.fade,
+            alpha: 1,
+            duration: 1000,
+            onStart: function() {
+                keySpace.enabled = false;
+            },
+            onComplete: function() {
+                this.scene.start('creditScene');
+                keySpace.enabled = true;
+            },
+            onCompleteScope: this
+        });  
+        this.fadeAway.pause();
+
+        this.fadeTransition = false;
         /*
         this.add.text(30, game.config.height/2, 'Press [Space] to start game.', menuConfig);
         this.instructionText = this.add.text(30, game.config.height/1.5, 'Press [Space] to progress,\nPress [Left click] to choose.', menuConfig);
@@ -62,6 +89,9 @@ class Menu extends Phaser.Scene {
             this.goCrossroad();
         }
 
+        if(Phaser.Input.Keyboard.JustDown(keyC)) {
+            this.goCredits();
+        }
     }
 
     goCrossroad() {
@@ -71,6 +101,14 @@ class Menu extends Phaser.Scene {
             this.endTransition_left.play();
             this.endTransition_right.play();
             this.grottoTransition = true;
+        }
+    }
+
+    goCredits() {
+        if(!this.fadeTransition) {
+            this.fadeAway.play();
+
+            this.fadeTransition = true;
         }
     }
 }

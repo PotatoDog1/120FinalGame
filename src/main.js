@@ -1,10 +1,10 @@
 /**
  * Lost in Translation
  * A game by:
- * Dany
- * Emily
- * Fion
- * Gillian
+ * Dany - Writer/Sound Designer
+ * Emily - BackgroundArtist
+ * Fion - Programmer/Background and UI Artist
+ * Gillian - Background and Props Artist
  * 
  * Game Title: Lost in Translation
  * Date Completed:
@@ -15,7 +15,7 @@
     width: 640,
     height: 640,
     autoCenter: true,
-    scene: [Preload, Menu, Crossroad, Grotto, BackToGrotto, BeforeBridge, Bridge, Tower]
+    scene: [Preload, Menu, Credit, Crossroad, Grotto, BackToGrotto, BeforeBridge, Bridge, Tower]
 }
 
 let game = new Phaser.Game(config);
@@ -37,13 +37,8 @@ let menuConfig = {
 
 //define keyboard keys
 let keyQ;
-let keyW;
-let keyE;
-let keyR;
-let keyT;
-let keyY;
-let keyU;
 let keySpace;
+let keyC;
 
 //define script variables for getNextLine()
 let scriptText;
