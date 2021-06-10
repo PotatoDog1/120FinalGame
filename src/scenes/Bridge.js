@@ -128,7 +128,11 @@ class Bridge extends Phaser.Scene {
 
         //Choices related----------------------------------------------------
 
-        narrativeText = this.add.text(80, 445, scriptText.bridge_crossing[0], wordConfig);
+        if(beforeBridgeMemory) {
+            narrativeText = this.add.text(80, 445, scriptText.bridge_crossing[0], wordConfig);
+        } else {
+            narrativeText = this.add.text(80, 445, scriptText.bridge_crossing2[0], wordConfig);
+        }
 
         this.button_continue = this.add.sprite(80, 490, 'continue2').setOrigin(0,0).setInteractive({useHandCursor: true});
         this.button_waitWind = this.add.sprite(80, 490, 'waitWind').setOrigin(0,0).setInteractive({useHandCursor: true});
@@ -258,7 +262,15 @@ class Bridge extends Phaser.Scene {
         
 
         if(!finishBridgeNarrative[0]) {
-            this.getNextLine(scriptText.bridge_crossing);
+            if(beforeBridgeMemory) {
+                this.getNextLine(scriptText.bridge_crossing);
+                console.log("did not pass the item");
+            } else {
+                finishBridgeNarrative[0] = true;
+                this.continueRoute = true;
+                finishBridgeIndex++
+                console.log("passing the item narrative");
+            }
         } else {
 
             // skateboard item
